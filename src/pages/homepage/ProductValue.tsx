@@ -51,10 +51,14 @@ function CandidateShowcase() {
   </div>
 }
 
+export function DiscussionToolbarPreview() {
+  return <div className="discussion-doc-toolbar product-editor-toolbar" aria-label="Read-only editor toolbar illustration"><span>11 pt</span><span className="product-toolbar-tools" aria-hidden="true"><b>B</b><i>I</i><u>U</u></span><span>Version history</span></div>
+}
+
 export function DiscussionShowcase() {
   return <div className="product-interface product-discussion" aria-label="Read-only discussion brief editor interface illustration">
     <div className="product-interface-bar"><span>Discussion brief</span><span>Draft · human review required</span></div>
-    <div className="discussion-doc-toolbar product-editor-toolbar" aria-label="Read-only editor toolbar illustration"><span>11 pt</span><span className="product-toolbar-tools" aria-hidden="true"><b>B</b><i>I</i><u>U</u></span><span>Version history</span></div>
+    <DiscussionToolbarPreview/>
     <article className="discussion-doc-editor product-document" aria-label="Illustrative discussion document">
       <header><p className="product-document-kicker">AI-assisted draft · Review and edit in the workspace</p><h4>Leadership discussion brief</h4><p>Bring the evidence and the questions into one conversation.</p></header>
       <section><h5>1. Leadership priorities</h5><p>Confirm the business direction and the experience the role now calls for.</p></section>
