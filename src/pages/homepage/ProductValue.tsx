@@ -5,7 +5,7 @@ import './product-value.css'
 
 // Read-only, anonymized adapters of the real product layouts. No assignment data,
 // provider, candidate scoring, editor commands or persistence is duplicated here.
-function BriefShowcase() {
+export function BriefShowcase() {
   const [version, setVersion] = useState<'current' | 'previous'>('current')
   return <div className="product-interface product-brief" aria-label="Client brief and requirements interface illustration">
     <div className="product-interface-bar"><span>Client brief</span><span>Interface illustration</span></div>
@@ -27,26 +27,31 @@ function BriefShowcase() {
   </div>
 }
 
-function CandidateShowcase() {
-  return <div className="product-interface product-candidates" aria-label="Profile drawer and comparison interface illustration">
-    <div className="product-interface-bar"><span>Candidate evaluation</span><span>Interface illustration</span></div>
-    <div className="product-candidate-grid">
-      <div className="product-matrix"><h4>Candidate comparison</h4><table className="v2-comparison-table"><caption className="sr-only">Illustrative comparison structure; no candidate results are represented.</caption><thead><tr><th scope="col">Role criteria</th><th scope="col">Evidence to examine</th></tr></thead><tbody>
+export function CandidateMatrixPreview() {
+  return <div className="product-matrix"><h4>Candidate comparison</h4><table className="v2-comparison-table"><caption className="sr-only">Illustrative comparison structure; no candidate results are represented.</caption><thead><tr><th scope="col">Role criteria</th><th scope="col">Evidence to examine</th></tr></thead><tbody>
         <tr><th scope="row">Relevant experience</th><td><span className="product-evidence-label">Supplied material</span><p>Responsibilities and operating context</p></td></tr>
         <tr><th scope="row">Leadership scope</th><td><EvidenceLabel kind="unverified"/><p>Clarify personal ownership</p></td></tr>
         <tr><th scope="row">Open questions</th><td><EvidenceLabel kind="unknown"/><p>Carry unanswered questions into discussion</p></td></tr>
       </tbody></table></div>
-      <aside className="product-profile-drawer" aria-label="Read-only candidate profile drawer excerpt">
+}
+
+export function CandidateProfilePreview() {
+  return <aside className="product-profile-drawer" aria-label="Read-only candidate profile drawer excerpt">
         <header className="candidate-full-header"><p>Profile excerpt</p><h4>Relevant experience</h4><span>Review responsibilities in context</span></header>
         <div className="candidate-profile-nav product-profile-nav" aria-label="Profile section labels"><span className="product-profile-active">Experience</span><span>Education</span><span>Projects</span><span>Skill Map</span></div>
         <div className="candidate-full-content"><article className="profile-career-record"><h5>Leadership responsibility</h5><p className="profile-record-meta">Career history · supplied information</p><div className="profile-record-description"><p>Examine the decisions the person owned, the teams they led and the context in which they worked.</p></div></article>
           <div className="product-profile-question"><span>Question for discussion</span><p>What was their personal responsibility, and what still needs verification?</p></div></div>
       </aside>
-    </div>
+}
+
+function CandidateShowcase() {
+  return <div className="product-interface product-candidates" aria-label="Profile drawer and comparison interface illustration">
+    <div className="product-interface-bar"><span>Candidate evaluation</span><span>Interface illustration</span></div>
+    <div className="product-candidate-grid"><CandidateMatrixPreview/><CandidateProfilePreview/></div>
   </div>
 }
 
-function DiscussionShowcase() {
+export function DiscussionShowcase() {
   return <div className="product-interface product-discussion" aria-label="Read-only discussion brief editor interface illustration">
     <div className="product-interface-bar"><span>Discussion brief</span><span>Draft · human review required</span></div>
     <div className="discussion-doc-toolbar product-editor-toolbar" aria-label="Read-only editor toolbar illustration"><span>11 pt</span><span className="product-toolbar-tools" aria-hidden="true"><b>B</b><i>I</i><u>U</u></span><span>Version history</span></div>
