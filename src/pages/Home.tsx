@@ -1,3 +1,4 @@
+import {InteractiveDemo} from './homepage/InteractiveDemo'
 import {TechnologyJudgment} from './homepage/TechnologyJudgment'
 import {OurApproach} from './homepage/OurApproach'
 import {ProductValue} from './homepage/ProductValue'
@@ -9,7 +10,6 @@ import {Button,buttonVariants} from '@/components/ui/button'
 import {Dialog,DialogContent,DialogTitle,DialogDescription,DialogHeader,DialogFooter} from '@/components/ui/dialog'
 import {Input} from '@/components/ui/input'
 import {Textarea} from '@/components/ui/textarea'
-import {GuidedDemo} from '@/components/workspace/GuidedDemo'
 import './marketing-v2.css'
 import './homepage/homepage.css'
 
@@ -17,7 +17,6 @@ export function Home(){
  const [searchParams,setSearchParams]=useSearchParams()
  const [open,setOpen]=useState(()=>searchParams.get('conversation')==='1'),[sent,setSent]=useState(false)
  function changeEnquiryOpen(value:boolean){setOpen(value);if(!value&&searchParams.has('conversation')){const next=new URLSearchParams(searchParams);next.delete('conversation');setSearchParams(next,{replace:true})}}
- const previewFrame=useRef<HTMLIFrameElement>(null)
  const mobileNavigation=useRef<HTMLDetailsElement>(null)
  useEffect(()=>{
   const dismiss=(event:PointerEvent)=>{const menu=mobileNavigation.current;if(menu?.open&&!menu.contains(event.target as Node))menu.open=false}
@@ -33,12 +32,13 @@ export function Home(){
  function request(){setSent(false);setErrors({});setOpen(true)}
  return <div className="marketing marketing-v2 mandate-home"><a className="skip-link" href="#main">Skip to content</a><header className="site-header"><Link to="/" aria-label="Mandate homepage"><img src="/brand/mandate.svg" alt="Mandate" width="141" height="26"/></Link><nav aria-label="Main navigation"><a href="#our-process">Our approach</a><a href="#challenges">Leadership challenges</a><a href="#sample-workspace">Sample workspace</a></nav><Button className="marketing-header-cta" variant="outline" onClick={request}>Request a conversation</Button><details ref={mobileNavigation} className="marketing-mobile-navigation" onKeyDown={event=>{if(event.key==='Escape'){event.preventDefault();closeNavigation();mobileNavigation.current?.querySelector('summary')?.focus()}}}><summary aria-label="Toggle navigation"><RiMenuLine className="menu-open-icon" aria-hidden="true"/><RiCloseLine className="menu-close-icon" aria-hidden="true"/></summary><div className="marketing-mobile-navigation-panel"><nav aria-label="Mobile main navigation"><a href="#our-process" onClick={closeNavigation}>Our approach</a><a href="#challenges" onClick={closeNavigation}>Leadership challenges</a><a href="#sample-workspace" onClick={closeNavigation}>Sample workspace</a></nav><Button onClick={()=>{closeNavigation();request()}}>Request a conversation</Button></div></details></header>
  <main id="main"><section className="mandate-hero" aria-labelledby="homepage-hero-title"><MarketingHeroVideo/><div className="mandate-hero-content"><p className="eyebrow">Executive search for consequential leadership</p><h1 id="homepage-hero-title"><span>The business has changed.</span>{' '}<span>What should its next leader bring?</span></h1><p>Acquisitions, a growing footprint, a new direction. Start with the leadership question, then examine the experience it calls for.</p><div className="mandate-hero-actions"><Button size="lg" onClick={request}>Request a conversation<RiArrowRightLine aria-hidden="true"/></Button><a href="#sample-workspace">Explore sample workspace<RiArrowRightLine aria-hidden="true"/></a></div><small>A fictional advisory firm. A working example of a considered search.</small></div></section>
- <section id="sample-workspace" className="working-preview" aria-labelledby="working-preview-title"><div className="working-preview-intro"><div><p className="eyebrow">Inside a sample assignment</p><h2 id="working-preview-title">A changed priority. A clearer discussion.</h2></div><GuidedDemo previewFrame={previewFrame}/></div><div className="working-preview-surface"><iframe ref={previewFrame} src="/workspace?preview=1" title="Interactive Mandate Studio sample workspace Home" loading="lazy"/></div><p className="preview-caption">Explore the real workspace below, or take the guided path through the assignment, three candidate profiles and discussion brief. Sample changes stay in this browser.</p></section>
+
 
  <section id="challenges" className="mandate-marketing-section"><div className="marketing-section-title centered"><p className="eyebrow">Leadership challenges</p><h2>The same title can call for different experience.</h2><p>Define the work the next leader must do, rather than relying on a familiar job title.</p></div><div className="leadership-capabilities"><article><RiGitMergeLine aria-hidden="true"/><h3>Integrating acquisitions</h3><p>Clarify who personally led the integration work and what their responsibility involved.</p></article><article><RiBuildingLine aria-hidden="true"/><h3>Leading across locations</h3><p>Understand the operating scale behind the experience and the decisions the leader owned.</p></article><article><RiRouteLine aria-hidden="true"/><h3>Preparing for expansion</h3><p>Distinguish helping a business grow from taking responsibility for its next stage.</p></article><article><RiGroupLine aria-hidden="true"/><h3>Comparing experience</h3><p>Assess every profile against the same business need, with room for different trade-offs.</p></article><article><RiQuestionLine aria-hidden="true"/><h3>Investigating unknowns</h3><p>Turn missing evidence into specific questions before making a recommendation.</p></article><article><RiFileTextLine aria-hidden="true"/><h3>Reviewing the current brief</h3><p>Keep the latest mandate and its review status clear when earlier content changes.</p></article></div></section>
  <ProductValue/>
  <OurApproach/>
  <TechnologyJudgment/>
+ <InteractiveDemo onRequestConversation={request}/>
 
 
  <section className="mandate-marketing-section"><div className="marketing-section-title centered"><p className="eyebrow">Questions worth bringing into the conversation</p><h2>Know what needs an answer before deciding.</h2><p>A shared understanding of the role starts with specific questions.</p></div><div className="comprehension-prompts"><p>What changed in the business priority?</p><p>Which experience is documented, and what is still unknown?</p><p>What would you ask before recommending a candidate?</p></div><p className="marketing-context-note">These questions guide the fictional example. Explore the sample to see how the evidence shapes the discussion.</p></section>

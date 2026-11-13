@@ -1,0 +1,20 @@
+{
+  "baseline": "isolated source copy with pre-HOME-07 Shell.tsx and AssignmentFlowProvider.tsx",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "scenario": "200% text plus custom text spacing, exact existing accessibility test treatment",
+  "clipped": [
+    {
+      "label": "Placement value",
+      "height": 278,
+      "scrollHeight": 591
+    },
+    {
+      "label": "Candidates by sector",
+      "height": 278,
+      "scrollHeight": 826
+    }
+  ]
+}
