@@ -1,0 +1,125 @@
+/* Landing-page foundations. Product tokens and workspace layout remain independent.
+   New sections opt into these utilities as their replacements are implemented. */
+.mandate-home {
+  --home-content-width: 1208px;
+  --home-gutter: clamp(24px, 4vw, 64px);
+  --home-section-space: clamp(64px, 8vw, 120px);
+  --home-display-size: clamp(36px, 4.3vw, 64px);
+  --home-heading-size: clamp(28px, 3vw, 44px);
+}
+.mandate-home .homepage-container {
+  width: min(calc(100% - 2 * var(--home-gutter)), var(--home-content-width));
+  margin-inline: auto;
+}
+.mandate-home .homepage-section { padding-block: var(--home-section-space); }
+.mandate-home .homepage-heading {
+  max-width: 22ch;
+  font-size: var(--home-heading-size);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.mandate-home .homepage-copy { max-width: 62ch; font-size: 17px; line-height: 1.7; }
+.mandate-home :is(#our-process, #challenges, #sample-workspace) { scroll-margin-top: 32px; }
+
+.marketing-v2.mandate-home > .site-header {
+  min-height: 88px;
+  padding: 20px max(var(--home-gutter), calc((100vw - var(--home-content-width)) / 2));
+  gap: 32px;
+  background: rgb(14 17 20 / 58%);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+.marketing-v2.mandate-home > .site-header > nav { gap: 28px; font-size: 13px; }
+.marketing-v2.mandate-home > .site-header > nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.marketing-v2.mandate-home > .site-header .marketing-header-cta {
+  min-height: 44px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+  padding-inline: 18px;
+}
+.marketing-v2.mandate-home > .site-header .marketing-header-cta:hover {
+  background: color-mix(in srgb, var(--primary) 88%, white);
+}
+.marketing-v2.mandate-home .mandate-hero {
+  padding: 176px var(--home-gutter) 128px;
+  min-height: max(760px, 100svh);
+}
+.mandate-home .marketing-hero-shade {
+  background: linear-gradient(180deg, rgb(5 8 10 / 54%), rgb(5 8 10 / 71%) 45%, rgb(5 8 10 / 80%));
+}
+.mandate-home .mandate-hero-content { max-width: 1120px; }
+.marketing-v2.mandate-home .mandate-hero-content > .eyebrow {
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: .09em;
+  color: #e1e2e1;
+}
+.marketing-v2.mandate-home .mandate-hero h1 {
+  max-width: 1120px;
+  margin-block: 24px 28px;
+  font-size: var(--home-display-size);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -.04em;
+}
+.mandate-home .mandate-hero h1 > span { display: block; }
+.marketing-v2.mandate-home .mandate-hero-content > p:not(.eyebrow) {
+  max-width: 620px;
+  margin-bottom: 36px;
+  font-size: 17px;
+  line-height: 1.75;
+  color: #e1e2e1;
+  text-wrap: pretty;
+}
+.marketing-v2.mandate-home .mandate-hero .mandate-hero-actions { gap: 16px; }
+.marketing-v2.mandate-home .mandate-hero .mandate-hero-actions > :is(a, [data-slot=button]) {
+  min-height: 50px;
+  padding: 14px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  gap: 12px;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+.marketing-v2.mandate-home .mandate-hero-actions > a:not([data-slot=button]) {
+  border: 1px solid rgb(255 255 255 / 55%);
+  background: rgb(255 255 255 / 4%);
+  color: #fff;
+}
+.marketing-v2.mandate-home .mandate-hero-actions > a:not([data-slot=button]):hover {
+  background: rgb(255 255 255 / 12%);
+  border-color: #fff;
+  color: #fff;
+}
+.marketing-v2.mandate-home .mandate-hero small { margin-top: 24px; color: #d0d2d1; }
+.mandate-home .mandate-hero-content { animation: home-hero-enter 600ms var(--ease-out) both; }
+@keyframes home-hero-enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 1100px) and (min-width: 801px) {
+  .marketing-v2.mandate-home > .site-header { gap: 20px; }
+  .marketing-v2.mandate-home > .site-header > nav { gap: 16px; font-size: 12px; }
+}
+@media (max-width: 800px) {
+  .marketing-v2.mandate-home > .site-header { min-height: 76px; padding: 16px 24px; }
+  .marketing-v2.mandate-home .mandate-hero { min-height: 100svh; padding: 136px 24px 112px; }
+  .marketing-v2.mandate-home .mandate-hero h1 { font-size: clamp(36px, 8vw, 52px); line-height: 1.12; margin-block: 20px 24px; }
+  .marketing-v2.mandate-home .mandate-hero-content > .eyebrow { max-width: 32ch; margin-inline: auto; font-size: 11px; }
+  .marketing-v2.mandate-home .mandate-hero-content > p:not(.eyebrow) { font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
+  .marketing-v2.mandate-home .mandate-hero .mandate-hero-actions { gap: 12px; width: min(100%, 340px); margin-inline: auto; }
+  .marketing-v2.mandate-home .mandate-hero .mandate-hero-actions > :is(a, [data-slot=button]) { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mandate-home .mandate-hero-content { animation: none; }
+  .marketing-v2.mandate-home .mandate-hero .mandate-hero-actions > :is(a, [data-slot=button]) { transition: none; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .marketing-v2.mandate-home > .site-header { background: #101316; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
