@@ -53,7 +53,7 @@ test('homepage navigation targets the existing sections and sample without repla
  const frame=page.locator('#sample-workspace iframe')
  await expect(frame).toHaveAttribute('src','/workspace?preview=1')
  const originalFrame=await frame.elementHandle()
- for(const [name,id] of [['Our approach','our-process'],['Leadership challenges','challenges'],['Sample workspace','sample-workspace']]){
+ for(const [name,id] of [['Our approach','our-process'],['Leadership challenges','challenges'],['Mandate Studio','sample-workspace']]){
   await page.locator('.site-header').getByRole('link',{name,exact:true}).click()
   await expect(page).toHaveURL(new RegExp(`#${id}$`))
   await expect(page.locator(`#${id}`)).toBeInViewport()
@@ -66,7 +66,7 @@ test('homepage navigation targets the existing sections and sample without repla
  await page.setViewportSize({width:390,height:900})
  await page.evaluate(()=>window.scrollTo(0,0))
  await page.locator('summary[aria-label="Toggle navigation"]').click()
- await page.getByRole('navigation',{name:'Mobile main navigation'}).getByRole('link',{name:'Sample workspace',exact:true}).click()
+ await page.getByRole('navigation',{name:'Mobile main navigation'}).getByRole('link',{name:'Mandate Studio',exact:true}).click()
  await expect(page.locator('.marketing-mobile-navigation')).not.toHaveAttribute('open')
  await expect(page.locator('#sample-workspace')).toBeInViewport()
 })
