@@ -1,4 +1,24 @@
-.assignment-step-header{margin-bottom:32px}
-.assignment-page .assignment-step-header h2{margin:0 0 8px;font-size:20px;font-weight:400;line-height:1.4;letter-spacing:-.3px;outline:0}
-.assignment-step-header>p{margin:0;font-size:13px;font-weight:400;line-height:1.65;color:var(--muted-foreground)}
-.assignment-step-header>[role=status]{display:block;margin-top:12px;font-size:12px;color:var(--muted-foreground)}
+.assignment-step-header {
+  margin-bottom: 32px;
+}
+.assignment-page .assignment-step-header h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+  outline: 0;
+}
+.assignment-step-header > p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--muted-foreground);
+}
+.assignment-step-header > [role="status"] {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}

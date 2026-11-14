@@ -1,28 +1,145 @@
-.assignment-steps{position:sticky;top:var(--workspace-topbar-height,49px);z-index:30;margin-bottom:32px;padding:12px 0;background:var(--background)}
-.assignment-steps ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;list-style:none;padding:0;margin:0}
-.assignment-steps li{min-width:0}
-.assignment-step{display:flex;align-items:center;gap:12px;width:100%;height:100%;min-height:68px;padding:12px;border:1px solid var(--border);border-radius:4px;background:transparent;color:var(--foreground);text-align:left;font:inherit;cursor:pointer;text-decoration:none}
-.assignment-step:hover{border-color:var(--workflow-ink)}
-.assignment-step.is-active{border-color:color-mix(in srgb,var(--workflow-ink) 40%,white);background:color-mix(in srgb,var(--workflow-ink) 4%,white)}
-.assignment-step:disabled{cursor:not-allowed;color:rgb(33 33 33 / 40%);border-color:var(--border)}
-.assignment-step-marker{display:grid;place-items:center;width:28px;height:28px;flex-shrink:0;border:1px solid var(--border);border-radius:50%;font-size:12px;color:var(--text-secondary)}
-.is-active .assignment-step-marker{border-color:var(--workflow-ink);color:var(--workflow-ink)}
-.assignment-step-marker.is-complete{border-color:var(--workflow-ink);background:var(--workflow-ink);color:white}
-.assignment-step-marker svg{width:15px;height:15px}
-.assignment-step-marker.is-busy{border-color:color-mix(in srgb,var(--workflow-ink) 30%,white);color:var(--workflow-ink)}
-.assignment-step-copy{display:grid;gap:4px;min-width:0}
-.assignment-step-copy>span{font-size:14px;line-height:1.4;white-space:nowrap}
-.assignment-step-copy small{font-size:11px;line-height:1.5;color:var(--text-secondary)}
-.assignment-step:disabled small{color:rgb(33 33 33 / 35%)}
-.assignment-step-next{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:24px;margin-top:32px;border-top:1px solid var(--border)}
-.assignment-page .assignment-step-next h3{font-size:14px;font-weight:400;line-height:1.5;margin:0 0 6px}
-.assignment-step-next p{margin:0;font-size:12px;line-height:1.6;color:var(--text-secondary)}
-.assignment-step-next>[data-slot=button]{flex-shrink:0}
-[data-step-result-heading]{outline:0}
-@media(max-width:800px){
- .assignment-steps ol{gap:8px}
- .assignment-step{min-height:76px;padding:10px 8px;gap:8px;flex-direction:column;align-items:flex-start}
- .assignment-step-copy>span{font-size:12px;white-space:normal}
- .assignment-step-copy small{font-size:10px}
- .assignment-step-next{align-items:stretch;flex-direction:column;gap:16px}
+.assignment-steps {
+  position: sticky;
+  top: var(--workspace-topbar-height, 49px);
+  z-index: 30;
+  margin-bottom: 32px;
+  padding: 12px 0;
+  background: var(--background);
+}
+.assignment-steps ol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.assignment-steps li {
+  min-width: 0;
+}
+.assignment-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  min-height: 68px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--foreground);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+.assignment-step:hover {
+  border-color: var(--workflow-ink);
+}
+.assignment-step.is-active {
+  border-color: color-mix(in srgb, var(--workflow-ink) 40%, white);
+  background: color-mix(in srgb, var(--workflow-ink) 4%, white);
+}
+.assignment-step:disabled {
+  cursor: not-allowed;
+  color: rgb(33 33 33 / 40%);
+  border-color: var(--border);
+}
+.assignment-step-marker {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.is-active .assignment-step-marker {
+  border-color: var(--workflow-ink);
+  color: var(--workflow-ink);
+}
+.assignment-step-marker.is-complete {
+  border-color: var(--workflow-ink);
+  background: var(--workflow-ink);
+  color: white;
+}
+.assignment-step-marker svg {
+  width: 15px;
+  height: 15px;
+}
+.assignment-step-marker.is-busy {
+  border-color: color-mix(in srgb, var(--workflow-ink) 30%, white);
+  color: var(--workflow-ink);
+}
+.assignment-step-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.assignment-step-copy > span {
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.assignment-step-copy small {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.assignment-step:disabled small {
+  color: rgb(33 33 33 / 35%);
+}
+.assignment-step-next {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 24px;
+  margin-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.assignment-page .assignment-step-next h3 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0 0 6px;
+}
+.assignment-step-next p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+.assignment-step-next > [data-slot="button"] {
+  flex-shrink: 0;
+}
+[data-step-result-heading] {
+  outline: 0;
+}
+@media (max-width: 800px) {
+  .assignment-steps ol {
+    gap: 8px;
+  }
+  .assignment-step {
+    min-height: 76px;
+    padding: 10px 8px;
+    gap: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .assignment-step-copy > span {
+    font-size: 12px;
+    white-space: normal;
+  }
+  .assignment-step-copy small {
+    font-size: 10px;
+  }
+  .assignment-step-next {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 16px;
+  }
 }

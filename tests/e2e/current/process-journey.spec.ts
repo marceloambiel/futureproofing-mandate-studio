@@ -1,81 +1,170 @@
-import {test,expect} from '@playwright/test'
-import AxeBuilder from '@axe-core/playwright'
+import { test, expect } from "@playwright/test"
+import AxeBuilder from "@axe-core/playwright"
 
-for(const width of [1440,1024,390,320])test(`nine-chapter visual process journey works at ${width}`,async({page,request})=>{
- test.setTimeout(90000)
- await page.setViewportSize({width,height:1000})
- const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message))
- await page.goto('/process')
- await expect(page.getByRole('heading',{level:1})).toHaveText('Designing clarity into executive search.')
- await expect(page.locator('[data-process-section]')).toHaveCount(9)
- const navigation=page.getByRole('navigation',{name:'Case study chapters'})
- await expect(navigation.getByRole('link')).toHaveCount(9)
- const rail=page.locator('.journey-sidebar'),article=page.getByRole('main')
- if(width>1000){
-  await expect(rail).toHaveCSS('position','sticky')
-  const left=(await rail.boundingBox())!,right=(await article.boundingBox())!
-  expect(left.x+left.width).toBeLessThan(right.x)
- }else{
-  await expect(rail).toHaveCSS('position','static')
-  const contents=(await rail.boundingBox())!,body=(await article.boundingBox())!
-  expect(contents.y+contents.height).toBeLessThanOrEqual(body.y+1)
- }
- const links=await navigation.getByRole('link').all()
- for(const link of links){const href=await link.getAttribute('href');expect(href).toMatch(/^#/);expect(await page.locator(href!).count()).toBe(1)}
- const files=await page.locator('img').evaluateAll(images=>Array.from(new Set(images.map(image=>image.getAttribute('src')!))))
- for(const file of files)expect((await request.get(file)).ok(),file).toBe(true)
- await page.locator('img').evaluateAll(images=>images.forEach(image=>image.loading='eager'))
- await expect.poll(()=>page.locator('img').evaluateAll(images=>images.every(image=>image.complete&&image.naturalWidth>0))).toBe(true)
- expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true)
- await expect(page.locator('#reasoning')).toContainText('30-day availability')
- await expect(page.locator('#reasoning')).toContainText('45-day availability')
- await expect(page.locator('#reasoning')).toContainText('90-day availability')
- await expect(page.locator('#reflection')).toContainText('Proposed study · not conducted')
- await expect(page.locator('#reflection')).toContainText('4 of 5')
- await expect(page.locator('#website')).toContainText('Architecture diagram')
- await navigation.getByRole('link',{name:/The website/}).click()
- await expect(navigation.getByRole('link',{name:/The website/})).toHaveAttribute('aria-current','location')
- await page.locator('#decisions summary').click()
- await expect(page.locator('.journey-chronology')).toBeVisible()
- await page.locator('#process-evidence summary').click()
- await expect(page.locator('.journey-evidence-notes')).toBeVisible()
- // Audit a stable reading viewport, with open disclosures still present.
- await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}))
- await expect.poll(()=>page.evaluate(()=>scrollY)).toBe(0)
- const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()
- await test.info().attach(`process-axe-${width}`,{body:JSON.stringify(result.violations,null,2),contentType:'application/json'})
- expect(result.violations).toEqual([])
- expect(errors).toEqual([])
- await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}))
- await page.screenshot({path:`docs/process-journey/qa/process-${width}.png`,fullPage:true,animations:'disabled'})
+for (const width of [1440, 1024, 390, 320])
+  test(`nine-chapter visual process journey works at ${width}`, async ({
+    page,
+    request,
+  }) => {
+    test.setTimeout(90000)
+    await page.setViewportSize({ width, height: 1000 })
+    const errors: string[] = []
+    page.on("pageerror", (error) => errors.push(error.message))
+    await page.goto("/process")
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+      "Designing clarity into executive search."
+    )
+    await expect(page.locator("[data-process-section]")).toHaveCount(9)
+    const navigation = page.getByRole("navigation", {
+      name: "Case study chapters",
+    })
+    await expect(navigation.getByRole("link")).toHaveCount(9)
+    const rail = page.locator(".journey-sidebar"),
+      article = page.getByRole("main")
+    if (width > 1000) {
+      await expect(rail).toHaveCSS("position", "sticky")
+      const left = (await rail.boundingBox())!,
+        right = (await article.boundingBox())!
+      expect(left.x + left.width).toBeLessThan(right.x)
+    } else {
+      await expect(rail).toHaveCSS("position", "static")
+      const contents = (await rail.boundingBox())!,
+        body = (await article.boundingBox())!
+      expect(contents.y + contents.height).toBeLessThanOrEqual(body.y + 1)
+    }
+    const links = await navigation.getByRole("link").all()
+    for (const link of links) {
+      const href = await link.getAttribute("href")
+      expect(href).toMatch(/^#/)
+      expect(await page.locator(href!).count()).toBe(1)
+    }
+    const files = await page
+      .locator("img")
+      .evaluateAll((images) =>
+        Array.from(new Set(images.map((image) => image.getAttribute("src")!)))
+      )
+    for (const file of files)
+      expect((await request.get(file)).ok(), file).toBe(true)
+    await page
+      .locator("img")
+      .evaluateAll((images) =>
+        images.forEach((image) => (image.loading = "eager"))
+      )
+    await expect
+      .poll(() =>
+        page
+          .locator("img")
+          .evaluateAll((images) =>
+            images.every((image) => image.complete && image.naturalWidth > 0)
+          )
+      )
+      .toBe(true)
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth + 1
+      )
+    ).toBe(true)
+    await expect(page.locator("#reasoning")).toContainText(
+      "30-day availability"
+    )
+    await expect(page.locator("#reasoning")).toContainText(
+      "45-day availability"
+    )
+    await expect(page.locator("#reasoning")).toContainText(
+      "90-day availability"
+    )
+    await expect(page.locator("#reflection")).toContainText(
+      "Proposed study · not conducted"
+    )
+    await expect(page.locator("#reflection")).toContainText("4 of 5")
+    await expect(page.locator("#website")).toContainText("Architecture diagram")
+    await navigation.getByRole("link", { name: /The website/ }).click()
+    await expect(
+      navigation.getByRole("link", { name: /The website/ })
+    ).toHaveAttribute("aria-current", "location")
+    await page.locator("#decisions summary").click()
+    await expect(page.locator(".journey-chronology")).toBeVisible()
+    await page.locator("#process-evidence summary").click()
+    await expect(page.locator(".journey-evidence-notes")).toBeVisible()
+    // Audit a stable reading viewport, with open disclosures still present.
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }))
+    await expect.poll(() => page.evaluate(() => scrollY)).toBe(0)
+    const result = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
+      .analyze()
+    await test.info().attach(`process-axe-${width}`, {
+      body: JSON.stringify(result.violations, null, 2),
+      contentType: "application/json",
+    })
+    expect(result.violations).toEqual([])
+    expect(errors).toEqual([])
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }))
+    await page.screenshot({
+      path: `docs/process-journey/qa/process-${width}.png`,
+      fullPage: true,
+      animations: "disabled",
+    })
+  })
+
+test("process links preserve existing workspace state and keyboard navigation", async ({
+  page,
+}) => {
+  await page.goto("/process")
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
+  await page.keyboard.press("Tab")
+  await expect(
+    page.getByRole("link", { name: "Skip to the case study" })
+  ).toBeFocused()
+  await page.keyboard.press("Enter")
+  await page
+    .getByRole("navigation", { name: "Case study chapters" })
+    .getByRole("link", { name: /The checks/ })
+    .focus()
+  await page.keyboard.press("Enter")
+  await expect(page).toHaveURL(/#validation$/)
+  await page.locator("#process-evidence summary").focus()
+  await page.keyboard.press("Enter")
+  await expect(page.locator(".journey-evidence-notes")).toBeVisible()
+  await page
+    .getByRole("navigation", { name: "Process page navigation" })
+    .getByRole("link", { name: "Demo" })
+    .click()
+  await expect(page).toHaveURL(/\/workspace$/)
+  await expect(page.locator(".bento-task-list")).toBeVisible()
+  await expect(
+    page.getByRole("link", {
+      name: "Review Northline Integration Search update",
+      exact: true,
+    })
+  ).toBeVisible()
+  const before = await page.evaluate(() =>
+    Object.fromEntries(
+      Object.keys(localStorage)
+        .filter((key) => key.startsWith("mandate-studio:"))
+        .map((key) => [key, localStorage.getItem(key)])
+    )
+  )
+  await page.goto("/process")
+  await page
+    .getByRole("navigation", { name: "Process page navigation" })
+    .getByRole("link", { name: "Demo" })
+    .click()
+  const after = await page.evaluate(() =>
+    Object.fromEntries(
+      Object.keys(localStorage)
+        .filter((key) => key.startsWith("mandate-studio:"))
+        .map((key) => [key, localStorage.getItem(key)])
+    )
+  )
+  expect(after).toEqual(before)
 })
 
-test('process links preserve existing workspace state and keyboard navigation',async({page})=>{
- await page.goto('/process')
- await expect(page.getByRole('heading',{level:1})).toBeVisible()
- await page.keyboard.press('Tab')
- await expect(page.getByRole('link',{name:'Skip to the case study'})).toBeFocused()
- await page.keyboard.press('Enter')
- await page.getByRole('navigation',{name:'Case study chapters'}).getByRole('link',{name:/The checks/}).focus()
- await page.keyboard.press('Enter')
- await expect(page).toHaveURL(/#validation$/)
- await page.locator('#process-evidence summary').focus();await page.keyboard.press('Enter')
- await expect(page.locator('.journey-evidence-notes')).toBeVisible()
- await page.getByRole('navigation',{name:'Process page navigation'}).getByRole('link',{name:'Demo'}).click()
- await expect(page).toHaveURL(/\/workspace$/)
- await expect(page.locator('.bento-task-list')).toBeVisible()
- await expect(page.getByRole('link',{name:'Review Northline Integration Search update',exact:true})).toBeVisible()
- const before=await page.evaluate(()=>Object.fromEntries(Object.keys(localStorage).filter(key=>key.startsWith('mandate-studio:')).map(key=>[key,localStorage.getItem(key)])))
- await page.goto('/process')
- await page.getByRole('navigation',{name:'Process page navigation'}).getByRole('link',{name:'Demo'}).click()
- const after=await page.evaluate(()=>Object.fromEntries(Object.keys(localStorage).filter(key=>key.startsWith('mandate-studio:')).map(key=>[key,localStorage.getItem(key)])))
- expect(after).toEqual(before)
-})
-
-test('process anchors respect reduced motion without mounting homepage inertia',async({page})=>{
- await page.emulateMedia({reducedMotion:'reduce'})
- await page.goto('/process')
- await expect(page.getByRole('heading',{level:1})).toBeVisible()
- await expect(page.locator('html')).toHaveCSS('scroll-behavior','auto')
- await expect(page.locator('html')).not.toHaveClass(/lenis/)
+test("process anchors respect reduced motion without mounting homepage inertia", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" })
+  await page.goto("/process")
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
+  await expect(page.locator("html")).toHaveCSS("scroll-behavior", "auto")
+  await expect(page.locator("html")).not.toHaveClass(/lenis/)
 })

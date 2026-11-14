@@ -1,175 +1,348 @@
-import {test,expect,type Page} from '@playwright/test'
+import { test, expect, type Page } from "@playwright/test"
 
-async function dismissAssignmentUpdate(page:Page) {
- const alert=page.getByRole('dialog',{name:'Assignment updated',exact:true})
- if(await alert.isVisible())await alert.getByRole('button',{name:'Acknowledge',exact:true}).click()
+async function dismissAssignmentUpdate(page: Page) {
+  const alert = page.getByRole("dialog", {
+    name: "Assignment updated",
+    exact: true,
+  })
+  if (await alert.isVisible())
+    await alert
+      .getByRole("button", { name: "Acknowledge", exact: true })
+      .click()
 }
-async function openDemo(page:Page){
- const trigger=page.getByRole('button',{name:'Start guided demo',exact:true})
- await trigger.scrollIntoViewIfNeeded()
- await trigger.click()
- const demo=page.getByRole('dialog',{name:/Guided sample/i})
- await expect(demo).toBeVisible()
- return {demo,frame:page.frameLocator('iframe[title^="Interactive sample:"]'),trigger}
-}
-
-test('V213 V242 V243 assistant insertion after ready creates a fresh persisted draft',async({page})=>{
- await page.goto('/workspace/discussion')
- await page.getByRole('button',{name:'Mark ready for review',exact:true}).click()
- await expect(page.getByText('Ready for review',{exact:true}).first()).toBeVisible()
- const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('mandate-studio:v1')!))
- await page.goto('/workspace')
- await page.getByRole('button',{name:'Prepare a meeting opening',exact:true}).click()
- await page.getByRole('button',{name:'Insert draft into brief',exact:true}).click()
- const editor=page.getByRole('dialog',{name:'Edit discussion brief',exact:true})
- await expect(editor).toBeVisible()
- await expect(editor.getByLabel('Meeting opening',{exact:true})).toHaveValue(/integrat/i)
- await editor.getByRole('button',{name:'Save changes',exact:true}).click()
- await expect(editor).toBeHidden()
- await expect(page.getByText('Draft',{exact:true}).first()).toBeVisible()
- const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('mandate-studio:v1')!))
- expect(after.currentId).not.toBe(before.currentId)
- expect(after.versions.find((version:{id:string})=>version.id===before.currentId)).toEqual(before.versions.find((version:{id:string})=>version.id===before.currentId))
- expect(after.versions.at(-1).status).toBe('draft')
- expect(after.versions[0].status).toBe('earlier-approved')
- await page.reload()
- await expect(page.getByText('Draft',{exact:true}).first()).toBeVisible()
-})
-
-test('V225 V237 Assignment removed list is collapsed, reversible and only comparison membership',async({page})=>{
- await page.goto('/workspace/assignment')
- await dismissAssignmentUpdate(page)
- await page.getByRole('button',{name:'Remove Candidate B from comparison',exact:true}).click()
- const disclosure=page.locator('details').filter({has:page.locator('summary',{hasText:'Removed from comparison'})})
- await expect(disclosure).toBeVisible()
- await expect(disclosure).not.toHaveAttribute('open','')
- await disclosure.locator('summary').click()
- await expect(disclosure).toContainText(/not been rejected or deleted/i)
- await expect(disclosure.getByText('Candidate B',{exact:true})).toBeVisible()
- await disclosure.getByRole('button',{name:'Add Candidate B to comparison',exact:true}).click()
- await expect(disclosure).toHaveCount(0)
- await expect(page.getByRole('button',{name:'Remove Candidate B from comparison',exact:true})).toBeVisible()
- await page.reload()
- await expect(page.getByRole('button',{name:'Remove Candidate B from comparison',exact:true})).toBeVisible()
-})
-
-for(const width of [390,1440]){
- test(`V215 V231 V241 actual embedded guided stages and exact homepage restoration at ${width}`,async({page})=>{
-  await page.setViewportSize({width,height:844})
-  await page.emulateMedia({reducedMotion:'reduce'})
-  await page.goto('/')
-  const trigger=page.getByRole('button',{name:'Start guided demo',exact:true})
+async function openDemo(page: Page) {
+  const trigger = page.getByRole("button", {
+    name: "Start guided demo",
+    exact: true,
+  })
   await trigger.scrollIntoViewIfNeeded()
-  const initialScroll=await page.evaluate(()=>scrollY)
-  const {demo,frame}=await openDemo(page)
-  await expect(frame.getByRole('heading',{name:'Head of Operations',exact:true})).toBeVisible()
-  const update=frame.getByRole('dialog',{name:'Assignment updated',exact:true})
-  if(await update.isVisible())await update.getByRole('button',{name:'Acknowledge',exact:true}).click()
-  await expect(frame.getByText('Geographic expansion',{exact:true}).first()).toBeVisible()
-  await expect(frame.getByText('Integrate two acquisitions',{exact:true}).first()).toBeVisible()
-  await demo.getByRole('button',{name:'Next',exact:true}).click()
-  await expect(frame.getByRole('heading',{name:'Candidate comparison',exact:true})).toBeVisible()
-  await frame.getByRole('button',{name:'View evidence for Candidate C',exact:true}).click()
-  const profile=frame.getByRole('dialog',{name:'Candidate C',exact:true})
-  await expect(profile).toBeVisible()
-  await expect(profile).toContainText(/unverified/i)
-  await expect(profile.getByRole('tab',{name:'Education',exact:true})).toBeVisible()
-  await profile.getByRole('button',{name:'Back to comparison',exact:true}).click()
-  await expect(profile).toBeHidden()
-  await demo.getByRole('button',{name:'Next',exact:true}).click()
-  await expect(frame.getByRole('heading',{name:'Discussion brief',exact:true})).toBeVisible()
-  await frame.getByRole('button',{name:/View evidence.*Candidate B|Candidate B/i}).first().click()
-  await expect(frame.getByRole('dialog',{name:'Candidate B',exact:true})).toBeVisible()
-  await frame.getByRole('dialog',{name:'Candidate B',exact:true}).getByRole('button',{name:/back to discussion/i}).click()
-  await demo.getByRole('button',{name:'Back',exact:true}).click()
-  await expect(frame.getByRole('heading',{name:'Candidate comparison',exact:true})).toBeVisible()
-  await demo.getByRole('button',{name:'Next',exact:true}).click()
-  await expect(frame.getByRole('heading',{name:'Discussion brief',exact:true})).toBeVisible()
-  await demo.getByRole('button',{name:'Finish demo',exact:true}).focus()
-  await page.keyboard.press('Escape')
+  await trigger.click()
+  const demo = page.getByRole("dialog", { name: /Guided sample/i })
+  await expect(demo).toBeVisible()
+  return {
+    demo,
+    frame: page.frameLocator('iframe[title^="Interactive sample:"]'),
+    trigger,
+  }
+}
+
+test("V213 V242 V243 assistant insertion after ready creates a fresh persisted draft", async ({
+  page,
+}) => {
+  await page.goto("/workspace/discussion")
+  await page
+    .getByRole("button", { name: "Mark ready for review", exact: true })
+    .click()
+  await expect(
+    page.getByText("Ready for review", { exact: true }).first()
+  ).toBeVisible()
+  const before = await page.evaluate(() =>
+    JSON.parse(localStorage.getItem("mandate-studio:v1")!)
+  )
+  await page.goto("/workspace")
+  await page
+    .getByRole("button", { name: "Prepare a meeting opening", exact: true })
+    .click()
+  await page
+    .getByRole("button", { name: "Insert draft into brief", exact: true })
+    .click()
+  const editor = page.getByRole("dialog", {
+    name: "Edit discussion brief",
+    exact: true,
+  })
+  await expect(editor).toBeVisible()
+  await expect(
+    editor.getByLabel("Meeting opening", { exact: true })
+  ).toHaveValue(/integrat/i)
+  await editor
+    .getByRole("button", { name: "Save changes", exact: true })
+    .click()
+  await expect(editor).toBeHidden()
+  await expect(page.getByText("Draft", { exact: true }).first()).toBeVisible()
+  const after = await page.evaluate(() =>
+    JSON.parse(localStorage.getItem("mandate-studio:v1")!)
+  )
+  expect(after.currentId).not.toBe(before.currentId)
+  expect(
+    after.versions.find(
+      (version: { id: string }) => version.id === before.currentId
+    )
+  ).toEqual(
+    before.versions.find(
+      (version: { id: string }) => version.id === before.currentId
+    )
+  )
+  expect(after.versions.at(-1).status).toBe("draft")
+  expect(after.versions[0].status).toBe("earlier-approved")
+  await page.reload()
+  await expect(page.getByText("Draft", { exact: true }).first()).toBeVisible()
+})
+
+test("V225 V237 Assignment removed list is collapsed, reversible and only comparison membership", async ({
+  page,
+}) => {
+  await page.goto("/workspace/assignment")
+  await dismissAssignmentUpdate(page)
+  await page
+    .getByRole("button", {
+      name: "Remove Candidate B from comparison",
+      exact: true,
+    })
+    .click()
+  const disclosure = page.locator("details").filter({
+    has: page.locator("summary", { hasText: "Removed from comparison" }),
+  })
+  await expect(disclosure).toBeVisible()
+  await expect(disclosure).not.toHaveAttribute("open", "")
+  await disclosure.locator("summary").click()
+  await expect(disclosure).toContainText(/not been rejected or deleted/i)
+  await expect(
+    disclosure.getByText("Candidate B", { exact: true })
+  ).toBeVisible()
+  await disclosure
+    .getByRole("button", { name: "Add Candidate B to comparison", exact: true })
+    .click()
+  await expect(disclosure).toHaveCount(0)
+  await expect(
+    page.getByRole("button", {
+      name: "Remove Candidate B from comparison",
+      exact: true,
+    })
+  ).toBeVisible()
+  await page.reload()
+  await expect(
+    page.getByRole("button", {
+      name: "Remove Candidate B from comparison",
+      exact: true,
+    })
+  ).toBeVisible()
+})
+
+for (const width of [390, 1440]) {
+  test(`V215 V231 V241 actual embedded guided stages and exact homepage restoration at ${width}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 844 })
+    await page.emulateMedia({ reducedMotion: "reduce" })
+    await page.goto("/")
+    const trigger = page.getByRole("button", {
+      name: "Start guided demo",
+      exact: true,
+    })
+    await trigger.scrollIntoViewIfNeeded()
+    const initialScroll = await page.evaluate(() => scrollY)
+    const { demo, frame } = await openDemo(page)
+    await expect(
+      frame.getByRole("heading", { name: "Head of Operations", exact: true })
+    ).toBeVisible()
+    const update = frame.getByRole("dialog", {
+      name: "Assignment updated",
+      exact: true,
+    })
+    if (await update.isVisible())
+      await update
+        .getByRole("button", { name: "Acknowledge", exact: true })
+        .click()
+    await expect(
+      frame.getByText("Geographic expansion", { exact: true }).first()
+    ).toBeVisible()
+    await expect(
+      frame.getByText("Integrate two acquisitions", { exact: true }).first()
+    ).toBeVisible()
+    await demo.getByRole("button", { name: "Next", exact: true }).click()
+    await expect(
+      frame.getByRole("heading", { name: "Candidate comparison", exact: true })
+    ).toBeVisible()
+    await frame
+      .getByRole("button", {
+        name: "View evidence for Candidate C",
+        exact: true,
+      })
+      .click()
+    const profile = frame.getByRole("dialog", {
+      name: "Candidate C",
+      exact: true,
+    })
+    await expect(profile).toBeVisible()
+    await expect(profile).toContainText(/unverified/i)
+    await expect(
+      profile.getByRole("tab", { name: "Education", exact: true })
+    ).toBeVisible()
+    await profile
+      .getByRole("button", { name: "Back to comparison", exact: true })
+      .click()
+    await expect(profile).toBeHidden()
+    await demo.getByRole("button", { name: "Next", exact: true }).click()
+    await expect(
+      frame.getByRole("heading", { name: "Discussion brief", exact: true })
+    ).toBeVisible()
+    await frame
+      .getByRole("button", { name: /View evidence.*Candidate B|Candidate B/i })
+      .first()
+      .click()
+    await expect(
+      frame.getByRole("dialog", { name: "Candidate B", exact: true })
+    ).toBeVisible()
+    await frame
+      .getByRole("dialog", { name: "Candidate B", exact: true })
+      .getByRole("button", { name: /back to discussion/i })
+      .click()
+    await demo.getByRole("button", { name: "Back", exact: true }).click()
+    await expect(
+      frame.getByRole("heading", { name: "Candidate comparison", exact: true })
+    ).toBeVisible()
+    await demo.getByRole("button", { name: "Next", exact: true }).click()
+    await expect(
+      frame.getByRole("heading", { name: "Discussion brief", exact: true })
+    ).toBeVisible()
+    await demo.getByRole("button", { name: "Finish demo", exact: true }).focus()
+    await page.keyboard.press("Escape")
+    await expect(demo).toBeHidden()
+    await expect(trigger).toBeFocused()
+    await expect.poll(() => page.evaluate(() => scrollY)).toBe(initialScroll)
+    await expect(page).toHaveURL(/\/$/)
+  })
+}
+
+test("V215 V244 dirty guided iframe protects host back/close/live entry until explicit discard", async ({
+  page,
+}) => {
+  await page.goto("/")
+  const { demo, frame, trigger } = await openDemo(page)
+  await demo.getByRole("button", { name: "Next", exact: true }).click()
+  await demo.getByRole("button", { name: "Next", exact: true }).click()
+  await frame
+    .getByRole("button", { name: "Edit discussion brief", exact: true })
+    .click()
+  const editor = frame.getByRole("dialog", {
+    name: "Edit discussion brief",
+    exact: true,
+  })
+  const original = await editor
+    .getByLabel("Meeting opening", { exact: true })
+    .inputValue()
+  const unsaved = "Unsaved iframe opening: integration across twelve locations."
+  await editor.getByLabel("Meeting opening", { exact: true }).fill(unsaved)
+  await demo.getByRole("button", { name: "Back", exact: true }).click()
+  await expect(
+    demo.getByRole("heading", { name: "Unsaved brief changes", exact: true })
+  ).toBeVisible()
+  await demo.getByRole("button", { name: "Keep editing", exact: true }).click()
+  await expect(
+    editor.getByLabel("Meeting opening", { exact: true })
+  ).toHaveValue(unsaved)
+  await demo.getByRole("button", { name: "Finish demo", exact: true }).click()
+  await expect(demo).toBeVisible()
+  await expect(
+    demo.getByRole("heading", { name: "Unsaved brief changes", exact: true })
+  ).toBeVisible()
+  await demo.getByRole("button", { name: "Keep editing", exact: true }).click()
+  await demo
+    .getByRole("link", { name: "Open live sample workspace", exact: true })
+    .click()
+  await expect(page).toHaveURL(/\/$/)
+  await expect(
+    demo.getByRole("heading", { name: "Unsaved brief changes", exact: true })
+  ).toBeVisible()
+  await demo.getByRole("button", { name: "Keep editing", exact: true }).click()
+  await demo.getByRole("button", { name: "Finish demo", exact: true }).focus()
+  await page.keyboard.press("Escape")
+  await expect(demo).toBeVisible()
+  await expect(
+    demo.getByRole("heading", { name: "Unsaved brief changes", exact: true })
+  ).toBeVisible()
+  await demo
+    .getByRole("button", { name: "Discard and continue", exact: true })
+    .click()
   await expect(demo).toBeHidden()
   await expect(trigger).toBeFocused()
-  await expect.poll(()=>page.evaluate(()=>scrollY)).toBe(initialScroll)
-  await expect(page).toHaveURL(/\/$/)
- })
-}
-
-test('V215 V244 dirty guided iframe protects host back/close/live entry until explicit discard',async({page})=>{
- await page.goto('/')
- const {demo,frame,trigger}=await openDemo(page)
- await demo.getByRole('button',{name:'Next',exact:true}).click()
- await demo.getByRole('button',{name:'Next',exact:true}).click()
- await frame.getByRole('button',{name:'Edit discussion brief',exact:true}).click()
- const editor=frame.getByRole('dialog',{name:'Edit discussion brief',exact:true})
- const original=await editor.getByLabel('Meeting opening',{exact:true}).inputValue()
- const unsaved='Unsaved iframe opening: integration across twelve locations.'
- await editor.getByLabel('Meeting opening',{exact:true}).fill(unsaved)
- await demo.getByRole('button',{name:'Back',exact:true}).click()
- await expect(demo.getByRole('heading',{name:'Unsaved brief changes',exact:true})).toBeVisible()
- await demo.getByRole('button',{name:'Keep editing',exact:true}).click()
- await expect(editor.getByLabel('Meeting opening',{exact:true})).toHaveValue(unsaved)
- await demo.getByRole('button',{name:'Finish demo',exact:true}).click()
- await expect(demo).toBeVisible()
- await expect(demo.getByRole('heading',{name:'Unsaved brief changes',exact:true})).toBeVisible()
- await demo.getByRole('button',{name:'Keep editing',exact:true}).click()
- await demo.getByRole('link',{name:'Open live sample workspace',exact:true}).click()
- await expect(page).toHaveURL(/\/$/)
- await expect(demo.getByRole('heading',{name:'Unsaved brief changes',exact:true})).toBeVisible()
- await demo.getByRole('button',{name:'Keep editing',exact:true}).click()
- await demo.getByRole('button',{name:'Finish demo',exact:true}).focus()
- await page.keyboard.press('Escape')
- await expect(demo).toBeVisible()
- await expect(demo.getByRole('heading',{name:'Unsaved brief changes',exact:true})).toBeVisible()
- await demo.getByRole('button',{name:'Discard and continue',exact:true}).click()
- await expect(demo).toBeHidden()
- await expect(trigger).toBeFocused()
- await page.goto('/workspace/discussion')
- await page.getByRole('button',{name:'Edit discussion brief',exact:true}).click()
- await expect(page.getByLabel('Meeting opening',{exact:true})).toHaveValue(original)
+  await page.goto("/workspace/discussion")
+  await page
+    .getByRole("button", { name: "Edit discussion brief", exact: true })
+    .click()
+  await expect(page.getByLabel("Meeting opening", { exact: true })).toHaveValue(
+    original
+  )
 })
 
-test('V215 V244 parent browser Back preserves dirty embedded brief until explicit choice',async({page})=>{
- await page.goto('/process')
- await page.getByRole('link',{name:'Mandate Studio homepage',exact:true}).click()
- const {demo,frame}=await openDemo(page)
- await demo.getByRole('button',{name:'Next',exact:true}).click()
- await demo.getByRole('button',{name:'Next',exact:true}).click()
- await frame.getByRole('button',{name:'Edit discussion brief',exact:true}).click()
- const input=frame.getByLabel('Meeting opening',{exact:true})
- await input.fill('Unsaved iframe text before parent browser Back.')
- await page.goBack()
- await expect(demo).toBeVisible()
- await expect(demo.getByRole('heading',{name:'Unsaved brief changes',exact:true})).toBeVisible()
- await demo.getByRole('button',{name:'Keep editing',exact:true}).click()
- await expect(input).toHaveValue('Unsaved iframe text before parent browser Back.')
- await page.goBack()
- await demo.getByRole('button',{name:'Discard and continue',exact:true}).click()
- await expect(page).toHaveURL(/\/process$/)
+test("V215 V244 parent browser Back preserves dirty embedded brief until explicit choice", async ({
+  page,
+}) => {
+  await page.goto("/process")
+  await page
+    .getByRole("link", { name: "Mandate Studio homepage", exact: true })
+    .click()
+  const { demo, frame } = await openDemo(page)
+  await demo.getByRole("button", { name: "Next", exact: true }).click()
+  await demo.getByRole("button", { name: "Next", exact: true }).click()
+  await frame
+    .getByRole("button", { name: "Edit discussion brief", exact: true })
+    .click()
+  const input = frame.getByLabel("Meeting opening", { exact: true })
+  await input.fill("Unsaved iframe text before parent browser Back.")
+  await page.goBack()
+  await expect(demo).toBeVisible()
+  await expect(
+    demo.getByRole("heading", { name: "Unsaved brief changes", exact: true })
+  ).toBeVisible()
+  await demo.getByRole("button", { name: "Keep editing", exact: true }).click()
+  await expect(input).toHaveValue(
+    "Unsaved iframe text before parent browser Back."
+  )
+  await page.goBack()
+  await demo
+    .getByRole("button", { name: "Discard and continue", exact: true })
+    .click()
+  await expect(page).toHaveURL(/\/process$/)
 })
 
-for(const width of [390,1440]){
- test(`V215 V234 V253 guided nested profile Escape closes one layer at ${width}`,async({page})=>{
-  await page.setViewportSize({width,height:844})
-  await page.goto('/')
-  const {demo,frame}=await openDemo(page)
-  await demo.getByRole('button',{name:'Next',exact:true}).click()
-  await expect(frame.getByRole('heading',{name:'Candidate comparison',exact:true})).toBeVisible()
-  await frame.getByRole('button',{name:'View evidence for Candidate A',exact:true}).click()
-  const profile=frame.getByRole('dialog',{name:'Candidate A',exact:true})
-  await profile.getByRole('button',{name:'View full profile',exact:true}).click()
-  const full=frame.getByRole('dialog',{name:'Candidate A · Full profile',exact:true})
-  await expect(full).toBeVisible()
-  await full.press('Escape')
-  await expect(full).toBeHidden()
-  await expect(profile).toBeVisible()
-  await expect(demo).toBeVisible()
-  await expect(profile.getByRole('button',{name:'View full profile',exact:true})).toBeFocused()
-  await profile.press('Escape')
-  await expect(profile).toBeHidden()
-  await expect(demo).toBeVisible()
-  await expect(frame.getByRole('button',{name:'View evidence for Candidate A',exact:true})).toBeFocused()
-  await demo.getByRole('button',{name:'Next',exact:true}).focus()
-  await page.keyboard.press('Escape')
-  await expect(demo).toBeHidden()
- })
+for (const width of [390, 1440]) {
+  test(`V215 V234 V253 guided nested profile Escape closes one layer at ${width}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 844 })
+    await page.goto("/")
+    const { demo, frame } = await openDemo(page)
+    await demo.getByRole("button", { name: "Next", exact: true }).click()
+    await expect(
+      frame.getByRole("heading", { name: "Candidate comparison", exact: true })
+    ).toBeVisible()
+    await frame
+      .getByRole("button", {
+        name: "View evidence for Candidate A",
+        exact: true,
+      })
+      .click()
+    const profile = frame.getByRole("dialog", {
+      name: "Candidate A",
+      exact: true,
+    })
+    await profile
+      .getByRole("button", { name: "View full profile", exact: true })
+      .click()
+    const full = frame.getByRole("dialog", {
+      name: "Candidate A · Full profile",
+      exact: true,
+    })
+    await expect(full).toBeVisible()
+    await full.press("Escape")
+    await expect(full).toBeHidden()
+    await expect(profile).toBeVisible()
+    await expect(demo).toBeVisible()
+    await expect(
+      profile.getByRole("button", { name: "View full profile", exact: true })
+    ).toBeFocused()
+    await profile.press("Escape")
+    await expect(profile).toBeHidden()
+    await expect(demo).toBeVisible()
+    await expect(
+      frame.getByRole("button", {
+        name: "View evidence for Candidate A",
+        exact: true,
+      })
+    ).toBeFocused()
+    await demo.getByRole("button", { name: "Next", exact: true }).focus()
+    await page.keyboard.press("Escape")
+    await expect(demo).toBeHidden()
+  })
 }

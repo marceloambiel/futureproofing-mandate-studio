@@ -1,13 +1,41 @@
-.mandate-home .interactive-demo { background: var(--background); color: var(--foreground); scroll-margin-top: 88px; }
-.mandate-home .interactive-demo-intro { max-width: 880px; margin-bottom: 64px; }
-.mandate-home .interactive-demo-intro > .eyebrow { margin: 0 0 22px; color: var(--muted-foreground); font-size: 12px; letter-spacing: .06em; }
-.mandate-home .interactive-demo-intro > h2 { max-width: 28ch; margin: 0 0 26px; }
-.mandate-home .interactive-demo-intro > .homepage-copy { margin: 0; color: var(--muted-foreground); }
+.mandate-home .interactive-demo {
+  background: var(--background);
+  color: var(--foreground);
+  scroll-margin-top: 88px;
+}
+.mandate-home .interactive-demo-intro {
+  max-width: 880px;
+  margin-bottom: 64px;
+}
+.mandate-home .interactive-demo-intro > .eyebrow {
+  margin: 0 0 22px;
+  color: var(--muted-foreground);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+.mandate-home .interactive-demo-intro > h2 {
+  max-width: 28ch;
+  margin: 0 0 26px;
+}
+.mandate-home .interactive-demo-intro > .homepage-copy {
+  margin: 0;
+  color: var(--muted-foreground);
+}
 @media (max-width: 800px) {
-  .mandate-home .interactive-demo-intro { margin-bottom: 56px; }
+  .mandate-home .interactive-demo-intro {
+    margin-bottom: 56px;
+  }
 }
 /* The demo frame follows the same content margins as the surrounding sections. */
-.mandate-home .interactive-demo .demo-preview-container { width: 100%; margin-inline: 0; }
+.mandate-home .interactive-demo .demo-preview-container {
+  width: 100%;
+  margin-inline: 0;
+}
 
-.mandate-home .interactive-demo-intro { margin-inline: auto; text-align: center; }
-.mandate-home .interactive-demo-intro > :is(h2, .homepage-copy) { margin-inline: auto; }
+.mandate-home .interactive-demo-intro {
+  margin-inline: auto;
+  text-align: center;
+}
+.mandate-home .interactive-demo-intro > :is(h2, .homepage-copy) {
+  margin-inline: auto;
+}

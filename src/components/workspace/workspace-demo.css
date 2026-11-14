@@ -1,49 +1,187 @@
-.marketing-v2 .workspace-demo { width: 100%; }
-.marketing-v2 .demo-preview-container { position: relative; isolation: isolate; padding: 32px; border-radius: 8px; background: #202020; }
-.marketing-v2 .demo-preview-container::before { content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: url('/images/demo/architecture-backdrop.jpg') center / cover no-repeat; filter: grayscale(1) brightness(.32); pointer-events: none; }
-.marketing-v2 .demo-frame-host { width: 100%; overflow: hidden; border: 1px solid rgb(255 255 255 / 50%); border-radius: 8px; background: var(--card); box-shadow: 0 16px 48px rgb(0 0 0 / 16%); }
-.marketing-v2 .demo-preview-stage { position: relative; }
-.marketing-v2 .demo-frame-viewport { min-width: 0; height: 780px; pointer-events: none; filter: grayscale(1) blur(3px); }
-.marketing-v2 .demo-frame-viewport > iframe { display: block; width: 100%; height: 100%; border: 0; background: var(--background); }
-.marketing-v2 .demo-preview-entry { position: absolute; inset: 0; display: grid; place-items: center; padding: 16px; cursor: pointer; text-decoration: none; }
-.marketing-v2 .demo-preview-entry:focus-visible { outline: 3px solid var(--foreground); outline-offset: -6px; }
-.marketing-v2 .demo-start-notice { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 28px; border: 1px solid var(--primary); border-radius: 4px; background: var(--primary); box-shadow: 0 8px 32px rgb(0 0 0 / 14%); color: var(--primary-foreground); font-size: 16px; font-weight: 500; line-height: 1.25; text-align: center; }
+.marketing-v2 .workspace-demo {
+  width: 100%;
+}
+.marketing-v2 .demo-preview-container {
+  position: relative;
+  isolation: isolate;
+  padding: 32px;
+  border-radius: 8px;
+  background: #202020;
+}
+.marketing-v2 .demo-preview-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: url("/images/demo/architecture-backdrop.jpg") center / cover
+    no-repeat;
+  filter: grayscale(1) brightness(0.32);
+  pointer-events: none;
+}
+.marketing-v2 .demo-frame-host {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 50%);
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: 0 16px 48px rgb(0 0 0 / 16%);
+}
+.marketing-v2 .demo-preview-stage {
+  position: relative;
+}
+.marketing-v2 .demo-frame-viewport {
+  min-width: 0;
+  height: 780px;
+  pointer-events: none;
+  filter: grayscale(1) blur(3px);
+}
+.marketing-v2 .demo-frame-viewport > iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--background);
+}
+.marketing-v2 .demo-preview-entry {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.marketing-v2 .demo-preview-entry:focus-visible {
+  outline: 3px solid var(--foreground);
+  outline-offset: -6px;
+}
+.marketing-v2 .demo-start-notice {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 14px 28px;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  background: var(--primary);
+  box-shadow: 0 8px 32px rgb(0 0 0 / 14%);
+  color: var(--primary-foreground);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: center;
+}
 @media (hover: hover) {
- .marketing-v2 .demo-preview-entry:hover .demo-start-notice { background: color-mix(in srgb, var(--primary) 88%, white); border-color: var(--primary); }
+  .marketing-v2 .demo-preview-entry:hover .demo-start-notice {
+    background: color-mix(in srgb, var(--primary) 88%, white);
+    border-color: var(--primary);
+  }
 }
 @media (max-width: 800px) {
- .marketing-v2 .demo-frame-viewport { height: 700px; }
+  .marketing-v2 .demo-frame-viewport {
+    height: 700px;
+  }
 }
 
 /* A quiet expanding outline draws attention while the label itself stays still. */
-.marketing-v2 .demo-start-notice { position: relative; isolation: isolate; }
-.marketing-v2 .demo-start-notice::after { content: ''; position: absolute; inset: -5px; z-index: -1; border: 1px solid var(--primary); border-radius: inherit; opacity: 0; pointer-events: none; }
+.marketing-v2 .demo-start-notice {
+  position: relative;
+  isolation: isolate;
+}
+.marketing-v2 .demo-start-notice::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: -1;
+  border: 1px solid var(--primary);
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+}
 @media (prefers-reduced-motion: no-preference) {
- .marketing-v2 .demo-start-notice::after { animation: demo-start-pulse 3.2s var(--ease-soft) infinite; }
+  .marketing-v2 .demo-start-notice::after {
+    animation: demo-start-pulse 3.2s var(--ease-soft) infinite;
+  }
 }
 @keyframes demo-start-pulse {
- 0%, 100% { transform: scale(1); opacity: 0; }
- 20% { opacity: .42; }
- 75% { transform: scale(1.14); opacity: 0; }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.42;
+  }
+  75% {
+    transform: scale(1.14);
+    opacity: 0;
+  }
 }
-.marketing-v2 .demo-preview-entry:focus-visible .demo-start-notice::after { animation: none; opacity: 0; }
+.marketing-v2 .demo-preview-entry:focus-visible .demo-start-notice::after {
+  animation: none;
+  opacity: 0;
+}
 @media (hover: hover) {
- .marketing-v2 .demo-preview-entry:hover .demo-start-notice::after { animation: none; opacity: 0; }
+  .marketing-v2 .demo-preview-entry:hover .demo-start-notice::after {
+    animation: none;
+    opacity: 0;
+  }
 }
 
 @media (min-width: 801px) {
- .marketing-v2 .demo-frame-viewport { height: auto; aspect-ratio: 213 / 130; }
+  .marketing-v2 .demo-frame-viewport {
+    height: auto;
+    aspect-ratio: 213 / 130;
+  }
 }
 
 /* Keep the live preview mounted while its viewport expands into the app. */
-.marketing-v2 .workspace-demo[data-opening] .demo-frame-host { position: fixed; inset: 0; z-index: 1000; width: 100vw; height: 100dvh; transform-origin: top left; will-change: transform; }
+.marketing-v2 .workspace-demo[data-opening] .demo-frame-host {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100dvh;
+  transform-origin: top left;
+  will-change: transform;
+}
 .marketing-v2 .workspace-demo[data-opening] .demo-preview-stage,
-.marketing-v2 .workspace-demo[data-opening] .demo-frame-viewport { height: 100%; aspect-ratio: auto; }
-.marketing-v2 .workspace-demo[data-opening] .demo-preview-entry { visibility: hidden; }
-.marketing-v2 .workspace-demo[data-opening] .demo-start-notice::after { animation: none; }
-.marketing-v2 .workspace-demo[data-opening] .demo-frame-viewport { will-change: filter; }
-.marketing-v2 .workspace-demo[data-opening] .demo-preview-container { z-index: 1000; }
+.marketing-v2 .workspace-demo[data-opening] .demo-frame-viewport {
+  height: 100%;
+  aspect-ratio: auto;
+}
+.marketing-v2 .workspace-demo[data-opening] .demo-preview-entry {
+  visibility: hidden;
+}
+.marketing-v2 .workspace-demo[data-opening] .demo-start-notice::after {
+  animation: none;
+}
+.marketing-v2 .workspace-demo[data-opening] .demo-frame-viewport {
+  will-change: filter;
+}
+.marketing-v2 .workspace-demo[data-opening] .demo-preview-container {
+  z-index: 1000;
+}
 
-.marketing-v2 .demo-expanding-background { position: fixed; inset: 0; z-index: 999; width: 100vw; height: 100dvh; background: url('/images/demo/architecture-backdrop.jpg') center / cover no-repeat; filter: grayscale(1) brightness(.32); transform-origin: top left; will-change: transform; pointer-events: none; }
-.marketing-v2 .demo-start-notice { gap: 8px; }
-.marketing-v2 .demo-start-notice > svg { width: 20px; height: 20px; flex-shrink: 0; }
+.marketing-v2 .demo-expanding-background {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100dvh;
+  background: url("/images/demo/architecture-backdrop.jpg") center / cover
+    no-repeat;
+  filter: grayscale(1) brightness(0.32);
+  transform-origin: top left;
+  will-change: transform;
+  pointer-events: none;
+}
+.marketing-v2 .demo-start-notice {
+  gap: 8px;
+}
+.marketing-v2 .demo-start-notice > svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}

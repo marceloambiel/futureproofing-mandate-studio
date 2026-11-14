@@ -1,29 +1,121 @@
 /* A continuous light surface after the demo, separated by whitespace only. */
-.marketing-v2.mandate-home .homepage-faq { padding-top: var(--home-section-space); background: var(--background); color: var(--foreground); border: 0; scroll-margin-top: 88px; }
-.mandate-home .homepage-faq-content { width: 100%; max-width: 760px; margin-inline: auto; }
-.mandate-home .homepage-faq .homepage-heading { max-width: none; margin: 0 0 48px; text-align: center; }
-.mandate-home .homepage-faq-list { display: grid; gap: 8px; }
-.mandate-home .homepage-faq-list details { min-width: 0; }
-.mandate-home .homepage-faq-list summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 64px; padding: 18px 0; list-style: none; cursor: pointer; font-size: 16px; font-weight: 500; line-height: 1.5; }
-.mandate-home .homepage-faq-list summary::-webkit-details-marker { display: none; }
-.mandate-home .homepage-faq-list summary::after { content: ''; width: 16px; height: 16px; flex-shrink: 0; background: linear-gradient(currentColor,currentColor) center / 12px 1px no-repeat, linear-gradient(currentColor,currentColor) center / 1px 12px no-repeat; }
-.mandate-home .homepage-faq-list details[open] > summary::after { background-size: 12px 1px, 0 0; }
-.mandate-home .homepage-faq-list summary:focus-visible { outline: 2px solid var(--foreground); outline-offset: 4px; border-radius: 4px; }
-.mandate-home .homepage-faq-list details > p { margin: 0; padding: 0 40px 20px 0; color: var(--muted-foreground); font-size: 15px; line-height: 1.7; }
+.marketing-v2.mandate-home .homepage-faq {
+  padding-top: var(--home-section-space);
+  background: var(--background);
+  color: var(--foreground);
+  border: 0;
+  scroll-margin-top: 88px;
+}
+.mandate-home .homepage-faq-content {
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+}
+.mandate-home .homepage-faq .homepage-heading {
+  max-width: none;
+  margin: 0 0 48px;
+  text-align: center;
+}
+.mandate-home .homepage-faq-list {
+  display: grid;
+  gap: 8px;
+}
+.mandate-home .homepage-faq-list details {
+  min-width: 0;
+}
+.mandate-home .homepage-faq-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 64px;
+  padding: 18px 0;
+  list-style: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.mandate-home .homepage-faq-list summary::-webkit-details-marker {
+  display: none;
+}
+.mandate-home .homepage-faq-list summary::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  background:
+    linear-gradient(currentColor, currentColor) center / 12px 1px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 1px 12px no-repeat;
+}
+.mandate-home .homepage-faq-list details[open] > summary::after {
+  background-size:
+    12px 1px,
+    0 0;
+}
+.mandate-home .homepage-faq-list summary:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.mandate-home .homepage-faq-list details > p {
+  margin: 0;
+  padding: 0 40px 20px 0;
+  color: var(--muted-foreground);
+  font-size: 15px;
+  line-height: 1.7;
+}
 @media (max-width: 650px) {
- .mandate-home .homepage-faq .homepage-heading { margin-bottom: 32px; }
- .mandate-home .homepage-faq-list summary { font-size: 15px; gap: 16px; }
- .mandate-home .homepage-faq-list details > p { padding-right: 32px; font-size: 14px; }
+  .mandate-home .homepage-faq .homepage-heading {
+    margin-bottom: 32px;
+  }
+  .mandate-home .homepage-faq-list summary {
+    font-size: 15px;
+    gap: 16px;
+  }
+  .mandate-home .homepage-faq-list details > p {
+    padding-right: 32px;
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 1200px) {
- .marketing-v2.mandate-home .homepage-faq { padding-top: var(--home-section-space); }
+  .marketing-v2.mandate-home .homepage-faq {
+    padding-top: var(--home-section-space);
+  }
 }
 
-.mandate-home .homepage-faq-contact { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 40px; }
-.mandate-home .homepage-faq-contact > p { margin: 0; color: var(--muted-foreground); font-size: 15px; line-height: 1.7; }
-.mandate-home .homepage-faq-contact > button { height: var(--home-cta-height); padding-inline: 12px; border: 0; background: transparent; color: var(--foreground); font-size: 13px; font-weight: 500; }
-@media (hover: hover) { .mandate-home .homepage-faq-contact > button:hover { background: transparent; text-decoration: underline; text-underline-offset: 4px; } }
+.mandate-home .homepage-faq-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+.mandate-home .homepage-faq-contact > p {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.mandate-home .homepage-faq-contact > button {
+  height: var(--home-cta-height);
+  padding-inline: 12px;
+  border: 0;
+  background: transparent;
+  color: var(--foreground);
+  font-size: 13px;
+  font-weight: 500;
+}
+@media (hover: hover) {
+  .mandate-home .homepage-faq-contact > button:hover {
+    background: transparent;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
 
 /* Match the demo-to-heading gap below the closing FAQ contact row. */
-.marketing-v2.mandate-home .homepage-faq { padding-bottom: calc(var(--home-section-space) * 2); }
+.marketing-v2.mandate-home .homepage-faq {
+  padding-bottom: calc(var(--home-section-space) * 2);
+}

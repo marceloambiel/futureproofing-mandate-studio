@@ -1,49 +1,169 @@
 /* Website-only feedback: product previews retain their own animation/state. */
-.mandate-home :is(.homepage-primary-cta,.homepage-section-actions > button,.homepage-section-actions > a,.homepage-final-actions > button,.mandate-hero-actions > a,.marketing-header-login) {
- transition: transform 150ms var(--ease-out), background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+.mandate-home
+  :is(
+    .homepage-primary-cta,
+    .homepage-section-actions > button,
+    .homepage-section-actions > a,
+    .homepage-final-actions > button,
+    .mandate-hero-actions > a,
+    .marketing-header-login
+  ) {
+  transition:
+    transform 150ms var(--ease-out),
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
 }
-.mandate-home :is(.homepage-section-actions,.mandate-hero-actions) > a > svg { transition: transform 200ms var(--ease-out); }
-.mandate-home .product-brief-tabs > button { transition: color 180ms ease, border-color 180ms ease; }
-.mandate-home .product-comparison-scaled tbody :is(th,td) { transition: background-color 180ms ease; }
-.mandate-home .homepage-faq-list summary { border-radius: 4px; transition: color 180ms ease, background-color 180ms ease; }
-.mandate-home .homepage-faq-list summary::after { transition: transform 220ms var(--ease-out); }
-.mandate-home .homepage-faq-list details[open] > summary::after { transform: rotate(180deg); }
-.mandate-home .homepage-footer :is(a,button),
-.mandate-home .site-header nav a { transition: color 180ms ease, text-decoration-color 180ms ease; text-underline-offset: 4px; }
-.enquiry-dialog input,.enquiry-dialog textarea,.homepage-signin-popup input { transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease; }
-.homepage-signin-popup { transform-origin: var(--transform-origin); transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); }
-.homepage-signin-popup[data-starting-style],.homepage-signin-popup[data-ending-style] { opacity: 0; transform: translateY(-4px) scale(.98); }
+.mandate-home :is(.homepage-section-actions, .mandate-hero-actions) > a > svg {
+  transition: transform 200ms var(--ease-out);
+}
+.mandate-home .product-brief-tabs > button {
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+.mandate-home .product-comparison-scaled tbody :is(th, td) {
+  transition: background-color 180ms ease;
+}
+.mandate-home .homepage-faq-list summary {
+  border-radius: 4px;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease;
+}
+.mandate-home .homepage-faq-list summary::after {
+  transition: transform 220ms var(--ease-out);
+}
+.mandate-home .homepage-faq-list details[open] > summary::after {
+  transform: rotate(180deg);
+}
+.mandate-home .homepage-footer :is(a, button),
+.mandate-home .site-header nav a {
+  transition:
+    color 180ms ease,
+    text-decoration-color 180ms ease;
+  text-underline-offset: 4px;
+}
+.enquiry-dialog input,
+.enquiry-dialog textarea,
+.homepage-signin-popup input {
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+.homepage-signin-popup {
+  transform-origin: var(--transform-origin);
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+}
+.homepage-signin-popup[data-starting-style],
+.homepage-signin-popup[data-ending-style] {
+  opacity: 0;
+  transform: translateY(-4px) scale(0.98);
+}
 
 @media (prefers-reduced-motion: no-preference) {
- .mandate-home .leadership-challenge { transition: border-color 180ms ease; }
- .mandate-home .tech-card-icon { transition: transform 220ms var(--ease-out), color 180ms ease; }
- .mandate-home .product-feature { transition: border-color 200ms ease; }
- .mandate-home .homepage-faq-list details[open] > p { animation: homepage-answer-in 200ms var(--ease-out) both; }
- .mandate-home :is(.homepage-primary-cta,.homepage-section-actions > button,.homepage-section-actions > a,.homepage-final-actions > button,.mandate-hero-actions > a,.marketing-header-login):active:not(:disabled) { transform: scale(.98); }
+  .mandate-home .leadership-challenge {
+    transition: border-color 180ms ease;
+  }
+  .mandate-home .tech-card-icon {
+    transition:
+      transform 220ms var(--ease-out),
+      color 180ms ease;
+  }
+  .mandate-home .product-feature {
+    transition: border-color 200ms ease;
+  }
+  .mandate-home .homepage-faq-list details[open] > p {
+    animation: homepage-answer-in 200ms var(--ease-out) both;
+  }
+  .mandate-home
+    :is(
+      .homepage-primary-cta,
+      .homepage-section-actions > button,
+      .homepage-section-actions > a,
+      .homepage-final-actions > button,
+      .mandate-hero-actions > a,
+      .marketing-header-login
+    ):active:not(:disabled) {
+    transform: scale(0.98);
+  }
 }
-@keyframes homepage-answer-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes homepage-answer-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 @media (hover: hover) and (pointer: fine) {
- .mandate-home .homepage-primary-cta:hover { box-shadow: 0 3px 12px rgb(0 0 0 / 10%); }
- .mandate-home :is(.homepage-section-actions,.mandate-hero-actions) > a:hover > svg { transform: translateX(3px); }
- .mandate-home .homepage-faq-list summary:hover { background-color: rgb(0 0 0 / 2%); }
- .mandate-home .homepage-footer :is(a,button):hover { text-decoration: underline; }
- .mandate-home .product-comparison-scaled tbody tr:hover > :is(th,td) { background-color: #F8F8F8; }
+  .mandate-home .homepage-primary-cta:hover {
+    box-shadow: 0 3px 12px rgb(0 0 0 / 10%);
+  }
+  .mandate-home
+    :is(.homepage-section-actions, .mandate-hero-actions)
+    > a:hover
+    > svg {
+    transform: translateX(3px);
+  }
+  .mandate-home .homepage-faq-list summary:hover {
+    background-color: rgb(0 0 0 / 2%);
+  }
+  .mandate-home .homepage-footer :is(a, button):hover {
+    text-decoration: underline;
+  }
+  .mandate-home .product-comparison-scaled tbody tr:hover > :is(th, td) {
+    background-color: #f8f8f8;
+  }
 }
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
- .mandate-home .tech-card:hover .tech-card-icon { transform: translateY(-2px); color: var(--primary); }
- .mandate-home .product-feature:hover { border-color: var(--focus-secondary); }
+  .mandate-home .tech-card:hover .tech-card-icon {
+    transform: translateY(-2px);
+    color: var(--primary);
+  }
+  .mandate-home .product-feature:hover {
+    border-color: var(--focus-secondary);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
- .mandate-home :is(.homepage-primary-cta,.homepage-section-actions > button,.homepage-section-actions > a,.homepage-final-actions > button,.mandate-hero-actions > a,.marketing-header-login),
- .mandate-home :is(.homepage-section-actions,.mandate-hero-actions) > a > svg,
- .mandate-home .homepage-faq-list summary::after { transition: none; }
- .homepage-signin-popup { transition: opacity 150ms ease; }
- .homepage-signin-popup[data-starting-style],.homepage-signin-popup[data-ending-style] { transform: none; }
- .mandate-home :is(.homepage-section-actions,.mandate-hero-actions) > a:hover > svg { transform: none; }
+  .mandate-home
+    :is(
+      .homepage-primary-cta,
+      .homepage-section-actions > button,
+      .homepage-section-actions > a,
+      .homepage-final-actions > button,
+      .mandate-hero-actions > a,
+      .marketing-header-login
+    ),
+  .mandate-home :is(.homepage-section-actions, .mandate-hero-actions) > a > svg,
+  .mandate-home .homepage-faq-list summary::after {
+    transition: none;
+  }
+  .homepage-signin-popup {
+    transition: opacity 150ms ease;
+  }
+  .homepage-signin-popup[data-starting-style],
+  .homepage-signin-popup[data-ending-style] {
+    transform: none;
+  }
+  .mandate-home
+    :is(.homepage-section-actions, .mandate-hero-actions)
+    > a:hover
+    > svg {
+    transform: none;
+  }
 }
 
 /* Only enhanced pages hide pending groups; without JS all content stays visible. */
 @media (prefers-reduced-motion: no-preference) {
- .mandate-home [data-home-reveal]:not([data-home-visible=true]) { opacity: 0; }
+  .mandate-home [data-home-reveal]:not([data-home-visible="true"]) {
+    opacity: 0;
+  }
 }

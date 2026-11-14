@@ -1,59 +1,108 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from "@playwright/test"
 
-for (const viewport of [{width:1440,height:1000},{width:390,height:844}]) {
-  test(`V255 fixed final screenshot state set ${viewport.width}x${viewport.height}`, async ({ page }) => {
+for (const viewport of [
+  { width: 1440, height: 1000 },
+  { width: 390, height: 844 },
+]) {
+  test(`V255 fixed final screenshot state set ${viewport.width}x${viewport.height}`, async ({
+    page,
+  }) => {
     await page.setViewportSize(viewport)
-    await page.emulateMedia({ reducedMotion:'reduce' })
-    const errors:string[]=[]
-    page.on('pageerror', error=>errors.push(error.message))
-    page.on('console', message=>{if(message.type()==='error')errors.push(message.text())})
-    async function capture(state:string, overlay = false) {
-      await expect(page.locator('main').first()).toBeVisible()
-      await page.evaluate(async()=>{await document.fonts.ready})
-      expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true)
-      await page.screenshot({path:test.info().outputPath(`${state}-${viewport.width}.png`),fullPage:!overlay,animations:'disabled'})
+    await page.emulateMedia({ reducedMotion: "reduce" })
+    const errors: string[] = []
+    page.on("pageerror", (error) => errors.push(error.message))
+    page.on("console", (message) => {
+      if (message.type() === "error") errors.push(message.text())
+    })
+    async function capture(state: string, overlay = false) {
+      await expect(page.locator("main").first()).toBeVisible()
+      await page.evaluate(async () => {
+        await document.fonts.ready
+      })
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth + 1
+        )
+      ).toBe(true)
+      await page.screenshot({
+        path: test.info().outputPath(`${state}-${viewport.width}.png`),
+        fullPage: !overlay,
+        animations: "disabled",
+      })
     }
-    await page.goto('/')
-    await capture('homepage')
-    await page.goto('/workspace')
-    await capture('workspace-home')
-    await page.goto('/workspace/assignment')
-    const alert=page.getByRole('dialog',{name:/assignment updated|board priority changed/i})
+    await page.goto("/")
+    await capture("homepage")
+    await page.goto("/workspace")
+    await capture("workspace-home")
+    await page.goto("/workspace/assignment")
+    const alert = page.getByRole("dialog", {
+      name: /assignment updated|board priority changed/i,
+    })
     await expect(alert).toBeVisible()
-    await capture('assignment-alert', true)
-    await alert.getByRole('button',{name:/acknowledge|got it|continue|understood/i}).click()
-    await page.evaluate(()=>scrollTo(0,0))
-    await page.getByRole('button',{name:/updated.*mandate|view mandate changes|updated/i}).first().click()
-    await expect(page.getByRole('dialog').last()).toContainText('V1')
-    await capture('section-diff', true)
-    await page.keyboard.press('Escape')
-    await page.goto('/workspace/candidates')
-    await capture('comparison')
-    await page.evaluate(()=>scrollTo(0,0))
-    await page.getByRole('button',{name:'View evidence for Candidate C',exact:true}).click()
-    const panel=page.getByRole('dialog',{name:'Candidate C',exact:true})
+    await capture("assignment-alert", true)
+    await alert
+      .getByRole("button", { name: /acknowledge|got it|continue|understood/i })
+      .click()
+    await page.evaluate(() => scrollTo(0, 0))
+    await page
+      .getByRole("button", {
+        name: /updated.*mandate|view mandate changes|updated/i,
+      })
+      .first()
+      .click()
+    await expect(page.getByRole("dialog").last()).toContainText("V1")
+    await capture("section-diff", true)
+    await page.keyboard.press("Escape")
+    await page.goto("/workspace/candidates")
+    await capture("comparison")
+    await page.evaluate(() => scrollTo(0, 0))
+    await page
+      .getByRole("button", {
+        name: "View evidence for Candidate C",
+        exact: true,
+      })
+      .click()
+    const panel = page.getByRole("dialog", { name: "Candidate C", exact: true })
     await expect(panel).toBeVisible()
-    await capture('side-profile', true)
-    await panel.getByRole('button',{name:'View full profile',exact:true}).click()
-    await expect(page.getByRole('dialog',{name:/Candidate C.*full profile|full profile.*Candidate C/i})).toBeVisible()
-    await capture('full-profile', true)
-    await page.keyboard.press('Escape')
-    await page.keyboard.press('Escape')
-    await page.goto('/workspace/experts')
-    await capture('experts')
-    await page.goto('/workspace/discussion')
-    await capture('discussion')
-    await page.evaluate(()=>scrollTo(0,0))
-    await page.getByRole('button',{name:'Compare versions',exact:true}).click()
-    await expect(page.getByRole('dialog',{name:'Compare versions',exact:true})).toBeVisible()
-    await capture('version-comparison', true)
-    await page.keyboard.press('Escape')
-    await page.goto('/')
-    await page.getByRole('button',{name:/start guided demo|explore guided demo/i}).first().click()
-    await expect(page.getByRole('dialog',{name:/guided sample/i})).toBeVisible()
-    await capture('guided-demo', true)
-    await page.keyboard.press('Escape')
+    await capture("side-profile", true)
+    await panel
+      .getByRole("button", { name: "View full profile", exact: true })
+      .click()
+    await expect(
+      page.getByRole("dialog", {
+        name: /Candidate C.*full profile|full profile.*Candidate C/i,
+      })
+    ).toBeVisible()
+    await capture("full-profile", true)
+    await page.keyboard.press("Escape")
+    await page.keyboard.press("Escape")
+    await page.goto("/workspace/experts")
+    await capture("experts")
+    await page.goto("/workspace/discussion")
+    await capture("discussion")
+    await page.evaluate(() => scrollTo(0, 0))
+    await page
+      .getByRole("button", { name: "Compare versions", exact: true })
+      .click()
+    await expect(
+      page.getByRole("dialog", { name: "Compare versions", exact: true })
+    ).toBeVisible()
+    await capture("version-comparison", true)
+    await page.keyboard.press("Escape")
+    await page.goto("/")
+    await page
+      .getByRole("button", { name: /start guided demo|explore guided demo/i })
+      .first()
+      .click()
+    await expect(
+      page.getByRole("dialog", { name: /guided sample/i })
+    ).toBeVisible()
+    await capture("guided-demo", true)
+    await page.keyboard.press("Escape")
     expect(errors).toEqual([])
-    await test.info().attach('console-health',{body:JSON.stringify(errors),contentType:'application/json'})
+    await test.info().attach("console-health", {
+      body: JSON.stringify(errors),
+      contentType: "application/json",
+    })
   })
 }

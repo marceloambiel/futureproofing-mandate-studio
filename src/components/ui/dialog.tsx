@@ -52,7 +52,25 @@ function DialogContent({
   confirmation?: boolean
 }) {
   const popupRef = React.useRef<HTMLDivElement>(null)
-  const closeButton = showCloseButton ? <DialogPrimitive.Close data-slot="dialog-close" render={<Button variant="ghost" className={confirmation ? 'confirmation-dialog-close' : 'absolute top-2 right-2'} size="icon-sm"/>}><RiCloseLine/><span className="sr-only">Close</span></DialogPrimitive.Close> : null
+  const closeButton = showCloseButton ? (
+    <DialogPrimitive.Close
+      data-slot="dialog-close"
+      render={
+        <Button
+          variant="ghost"
+          className={
+            confirmation
+              ? "confirmation-dialog-close"
+              : "absolute top-2 right-2"
+          }
+          size="icon-sm"
+        />
+      }
+    >
+      <RiCloseLine />
+      <span className="sr-only">Close</span>
+    </DialogPrimitive.Close>
+  ) : null
   return (
     <DialogPortal>
       <DialogOverlay />

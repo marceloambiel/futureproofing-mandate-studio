@@ -1,373 +1,1684 @@
 /* Assignment uses the homepage's neutral surfaces and action-only accent. */
-.workspace-main:has(>.assignment-page){max-width:none;padding:48px 32px 32px}
-.app-main .workspace-page.assignment-page{max-width:none;padding:0;color:var(--foreground);font-size:14px}
-.app-main:has(.assignment-page)>.workspace-topbar{padding-inline:24px}
-.app-main:has(.assignment-page)>.assignment-stage-nav{padding-inline:32px;gap:24px;background:transparent}
-.app-main:has(.assignment-page)>.assignment-stage-nav a{padding:12px 0;font-size:14px;font-weight:400;color:var(--text-secondary)}
-.app-main:has(.assignment-page)>.assignment-stage-nav a.active{color:var(--foreground);border-color:var(--foreground)}
-.assignment-page h1{font-size:24px;font-weight:400;line-height:1.3;letter-spacing:-.5px}
-.assignment-page h2{font-size:16px;font-weight:400;line-height:1.4;letter-spacing:-.3px}
-.assignment-page h3{font-size:14px;font-weight:400;line-height:1.5;letter-spacing:normal}
-.assignment-page .workspace-muted,.assignment-page .workspace-eyebrow,.assignment-page .workspace-context-note,.assignment-page .workspace-footnote{font-weight:400;color:var(--text-secondary)}
-.assignment-page .workspace-page-heading{margin-bottom:24px;gap:24px}
-.assignment-page .workspace-eyebrow{font-size:12px;margin-bottom:8px!important}
-.assignment-page .workspace-page-heading .workspace-muted{margin:0;font-size:13px}
-.assignment-ai-summary{margin-top:24px;max-width:none}
-.assignment-header-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 32px;max-width:760px;margin:32px 0 0}
-.assignment-header-facts dt{margin-bottom:6px;font-size:12px;font-weight:400;color:var(--text-secondary)}
-.assignment-header-facts dd{margin:0;font-size:14px;font-weight:400;line-height:1.6;color:var(--foreground)}
-.assignment-overview>.assignment-details-columns{margin-top:32px}
-@media(max-width:650px){.assignment-header-facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.assignment-header-facts>div:first-child{grid-column:1/-1}}
-.assignment-summary-label{display:flex;align-items:center;gap:6px;margin-bottom:6px;font-size:12px;font-weight:400;color:var(--text-secondary)}
-.assignment-page .assignment-ai-summary p{margin:0;font-size:14px;font-weight:400;line-height:1.6;color:var(--foreground)}
-.assignment-page .assignment-update-alert{position:fixed;top:16px;left:calc(50% + 112px);transform:translateX(-50%);z-index:40;display:flex;align-items:center;width:max-content;max-width:calc(100vw - 288px);padding:12px 16px 12px 24px;margin:0;gap:16px;border:1px solid var(--notice-border);border-radius:var(--card-radius);background:var(--notice-surface);-webkit-backdrop-filter:blur(var(--notice-blur));backdrop-filter:blur(var(--notice-blur));color:var(--notice-title);font-size:13px;box-shadow:var(--notice-shadow)}
-.assignment-toast-copy{min-width:0;line-height:1.6}
-.assignment-page .assignment-update-alert h2{display:inline;margin:0 8px 0 0;font-size:14px;font-weight:400;line-height:inherit}
-.assignment-page .assignment-update-alert p{display:inline;margin:0;font-size:12px;line-height:inherit;color:var(--notice-text)}
-.assignment-page .assignment-update-alert .assignment-toast-close{width:32px;height:32px;min-height:32px;padding:0;border-radius:4px;flex-shrink:0;color:var(--notice-meta)}
-.assignment-page .assignment-update-alert .assignment-toast-close:hover{background:transparent;color:var(--notice-title)}
-@media(min-width:801px) and (max-width:1100px){.assignment-page .assignment-update-alert{left:calc(50% + 100px);max-width:calc(100vw - 264px)}}
-@media(max-width:800px){.assignment-page .assignment-update-alert{left:50%;max-width:calc(100vw - 32px)}}
-.assignment-page .workspace-context-grid{margin-bottom:24px;border-inline:0;border-radius:0;background:transparent}
-.assignment-page .workspace-context-grid>div{padding:16px;gap:12px}
-.assignment-page .workspace-context-grid>div:first-child{padding-left:0}
-.assignment-page .workspace-context-grid svg{width:16px;height:16px;color:var(--text-secondary)}
-.assignment-page .workspace-context-grid strong{font-size:14px;font-weight:400}
-.assignment-page .workspace-context-grid small{font-size:12px;color:var(--text-secondary)}
-.assignment-page>.workspace-section,.assignment-overview>.workspace-section{padding:16px 0;margin:0;border:0;border-top:1px solid var(--border);border-radius:0;background:transparent}
-.assignment-page .workspace-section-heading{gap:16px;margin-bottom:16px}
-.assignment-page .workspace-section-heading h2{margin-bottom:4px}
-.assignment-page .workspace-section-heading p{margin:0;font-size:13px}
-.assignment-mandate-heading{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.assignment-page .assignment-mandate-heading h2{margin:0}
-.assignment-mandate-heading .notification-new-tag{margin-left:0}
-.assignment-page .workspace-priority-section{--mandate-text-size:14px}
-.assignment-page .workspace-priority-section>p{margin:0;font-size:var(--mandate-text-size);line-height:1.6}
-.assignment-page .workspace-priority-pair{gap:16px}
-.assignment-page .workspace-priority-pair>div{padding:16px;border-color:var(--border);border-radius:var(--card-radius);background:var(--card)}
-.assignment-page .workspace-priority-pair>.workspace-priority-current{background:var(--muted);border-color:var(--input)}
-.assignment-page .workspace-priority-pair h3{font-size:16px;font-weight:400}
-.assignment-page .workspace-priority-pair p:not(.workspace-eyebrow){font-size:13px;line-height:1.6;color:var(--muted-foreground)}
-.assignment-page .workspace-context-note{margin-top:16px!important;line-height:1.6}
-.assignment-page .workspace-criteria-list{gap:24px}
-.assignment-page .workspace-criteria-list h3{margin-bottom:6px}
-.assignment-page .workspace-criteria-list p{font-size:13px;line-height:1.6;color:var(--muted-foreground)}
-.assignment-page .workspace-criterion-number{width:24px;height:24px;background:rgb(0 0 0 / 5%);border:0;border-radius:4px;color:var(--foreground);font-weight:400}
-.assignment-page .assignment-candidate-list article{padding:24px 0;font-size:14px}
-.assignment-page .assignment-candidate-name{gap:12px;margin-bottom:12px}
-.assignment-page .assignment-candidate-name button{font-size:14px;font-weight:400}
-.assignment-page .assignment-candidate-name .v2-profile-avatar{width:32px;height:32px;border-radius:4px}
-.assignment-page .assignment-candidate-name>span:last-child{font-size:12px;color:var(--text-secondary)}
-.assignment-page .assignment-profiles .workspace-actions{padding-top:16px;gap:8px}
-.assignment-page .workspace-text-link{font-size:13px;font-weight:400}
-.assignment-page .workspace-next-step{padding:24px 0;border-top:1px solid var(--border)}
-.assignment-page .workspace-profile-initials span{border-radius:4px;font-weight:400}
-.assignment-page .workspace-footnote{margin:0;padding-top:16px;border-top:1px solid var(--border);font-size:11px}
-.assignment-page .workspace-warning{border-color:var(--input);background:var(--muted);color:var(--foreground)}
-.assignment-page [data-slot=button],body:has(.assignment-page) .workspace-dialog [data-slot=button]{height:auto;min-height:32px;padding:7px 10px;border-radius:4px;font-size:12px;font-weight:400;line-height:1.4}
-.assignment-page .change-tag[data-slot=button]{color:var(--foreground);background:rgb(0 0 0 / 5%);border-color:transparent}
-.assignment-page .change-tag[data-slot=button]:hover{background:rgb(0 0 0 / 10%)}
-body:has(.assignment-page) .workspace-dialog{padding:16px;border-radius:var(--card-radius);color:var(--foreground)}
-body:has(.assignment-page) .workspace-dialog [data-slot=dialog-title]{font-size:16px;font-weight:400}
-body:has(.assignment-page) .workspace-dialog h2,body:has(.assignment-page) .workspace-dialog h3{font-weight:400}
-body:has(.assignment-page) .workspace-dialog [data-slot=dialog-footer]{margin:0 -16px -16px;padding:16px}
-body:has(.assignment-page) .workspace-version-pane{padding:16px;border-radius:var(--card-radius)}
-body:has(.assignment-page) .workspace-version-current{background:var(--muted);border-color:var(--input)}
-body:has(.assignment-page) .workspace-mandate-strip strong{color:var(--foreground);font-weight:400}
-body:has(.assignment-page) :is(.workspace-dialog,.v2-profile-summary,.v2-profile-mobile) .workspace-evidence-provided{background:var(--muted);color:var(--muted-foreground)}
-body:has(.assignment-page) :is(.v2-profile-summary,.v2-profile-mobile) :is(h2,h3,strong,[data-slot=sheet-title]){font-weight:400}
-body:has(.assignment-page) :is(.v2-profile-summary,.v2-profile-mobile) .v2-profile-avatar{width:32px;height:32px;border-radius:4px}
-body:has(.assignment-page) :is(.v2-profile-summary,.v2-profile-mobile) .v2-profile-tabs [role=tab]{color:var(--muted-foreground);font-weight:400}
-body:has(.assignment-page) :is(.v2-profile-summary,.v2-profile-mobile) .v2-profile-tabs [aria-selected=true]{color:var(--foreground);border-color:var(--foreground)}
-body:has(.assignment-page) :is(.v2-profile-summary,.v2-profile-mobile) [data-slot=button]{border-radius:4px;font-weight:400}
-body:has(.assignment-page) .workspace-dialog .v2-comparison-table :is(th,h2){font-weight:400}
-@media(max-width:650px){
- .assignment-page .workspace-section-heading{flex-direction:column;align-items:flex-start}
- .assignment-page .workspace-context-grid>div{padding:16px 0}
- .assignment-page .assignment-update-alert{gap:12px;border-radius:24px;flex-direction:row;align-items:center}
- .assignment-page .workspace-page-heading>.workspace-actions{max-width:none}
- .assignment-page .workspace-priority-pair{gap:12px}
- .assignment-page .workspace-criteria-list{gap:20px}
- .assignment-page .workspace-footnote{align-items:flex-start;line-height:1.6}
+.workspace-main:has(> .assignment-page) {
+  max-width: none;
+  padding: 48px 32px 32px;
+}
+.app-main .workspace-page.assignment-page {
+  max-width: none;
+  padding: 0;
+  color: var(--foreground);
+  font-size: 14px;
+}
+.app-main:has(.assignment-page) > .workspace-topbar {
+  padding-inline: 24px;
+}
+.app-main:has(.assignment-page) > .assignment-stage-nav {
+  padding-inline: 32px;
+  gap: 24px;
+  background: transparent;
+}
+.app-main:has(.assignment-page) > .assignment-stage-nav a {
+  padding: 12px 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+.app-main:has(.assignment-page) > .assignment-stage-nav a.active {
+  color: var(--foreground);
+  border-color: var(--foreground);
+}
+.assignment-page h1 {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.5px;
+}
+.assignment-page h2 {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+}
+.assignment-page h3 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+.assignment-page .workspace-muted,
+.assignment-page .workspace-eyebrow,
+.assignment-page .workspace-context-note,
+.assignment-page .workspace-footnote {
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+.assignment-page .workspace-page-heading {
+  margin-bottom: 24px;
+  gap: 24px;
+}
+.assignment-page .workspace-eyebrow {
+  font-size: 12px;
+  margin-bottom: 8px !important;
+}
+.assignment-page .workspace-page-heading .workspace-muted {
+  margin: 0;
+  font-size: 13px;
+}
+.assignment-ai-summary {
+  margin-top: 24px;
+  max-width: none;
+}
+.assignment-header-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 32px;
+  max-width: 760px;
+  margin: 32px 0 0;
+}
+.assignment-header-facts dt {
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+.assignment-header-facts dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--foreground);
+}
+.assignment-overview > .assignment-details-columns {
+  margin-top: 32px;
+}
+@media (max-width: 650px) {
+  .assignment-header-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .assignment-header-facts > div:first-child {
+    grid-column: 1/-1;
+  }
+}
+.assignment-summary-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+.assignment-page .assignment-ai-summary p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--foreground);
+}
+.assignment-page .assignment-update-alert {
+  position: fixed;
+  top: 16px;
+  left: calc(50% + 112px);
+  transform: translateX(-50%);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  max-width: calc(100vw - 288px);
+  padding: 12px 16px 12px 24px;
+  margin: 0;
+  gap: 16px;
+  border: 1px solid var(--notice-border);
+  border-radius: var(--card-radius);
+  background: var(--notice-surface);
+  -webkit-backdrop-filter: blur(var(--notice-blur));
+  backdrop-filter: blur(var(--notice-blur));
+  color: var(--notice-title);
+  font-size: 13px;
+  box-shadow: var(--notice-shadow);
+}
+.assignment-toast-copy {
+  min-width: 0;
+  line-height: 1.6;
+}
+.assignment-page .assignment-update-alert h2 {
+  display: inline;
+  margin: 0 8px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: inherit;
+}
+.assignment-page .assignment-update-alert p {
+  display: inline;
+  margin: 0;
+  font-size: 12px;
+  line-height: inherit;
+  color: var(--notice-text);
+}
+.assignment-page .assignment-update-alert .assignment-toast-close {
+  width: 32px;
+  height: 32px;
+  min-height: 32px;
+  padding: 0;
+  border-radius: 4px;
+  flex-shrink: 0;
+  color: var(--notice-meta);
+}
+.assignment-page .assignment-update-alert .assignment-toast-close:hover {
+  background: transparent;
+  color: var(--notice-title);
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .assignment-page .assignment-update-alert {
+    left: calc(50% + 100px);
+    max-width: calc(100vw - 264px);
+  }
+}
+@media (max-width: 800px) {
+  .assignment-page .assignment-update-alert {
+    left: 50%;
+    max-width: calc(100vw - 32px);
+  }
+}
+.assignment-page .workspace-context-grid {
+  margin-bottom: 24px;
+  border-inline: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.assignment-page .workspace-context-grid > div {
+  padding: 16px;
+  gap: 12px;
+}
+.assignment-page .workspace-context-grid > div:first-child {
+  padding-left: 0;
+}
+.assignment-page .workspace-context-grid svg {
+  width: 16px;
+  height: 16px;
+  color: var(--text-secondary);
+}
+.assignment-page .workspace-context-grid strong {
+  font-size: 14px;
+  font-weight: 400;
+}
+.assignment-page .workspace-context-grid small {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.assignment-page > .workspace-section,
+.assignment-overview > .workspace-section {
+  padding: 16px 0;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+}
+.assignment-page .workspace-section-heading {
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.assignment-page .workspace-section-heading h2 {
+  margin-bottom: 4px;
+}
+.assignment-page .workspace-section-heading p {
+  margin: 0;
+  font-size: 13px;
+}
+.assignment-mandate-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.assignment-page .assignment-mandate-heading h2 {
+  margin: 0;
+}
+.assignment-mandate-heading .notification-new-tag {
+  margin-left: 0;
+}
+.assignment-page .workspace-priority-section {
+  --mandate-text-size: 14px;
+}
+.assignment-page .workspace-priority-section > p {
+  margin: 0;
+  font-size: var(--mandate-text-size);
+  line-height: 1.6;
+}
+.assignment-page .workspace-priority-pair {
+  gap: 16px;
+}
+.assignment-page .workspace-priority-pair > div {
+  padding: 16px;
+  border-color: var(--border);
+  border-radius: var(--card-radius);
+  background: var(--card);
+}
+.assignment-page .workspace-priority-pair > .workspace-priority-current {
+  background: var(--muted);
+  border-color: var(--input);
+}
+.assignment-page .workspace-priority-pair h3 {
+  font-size: 16px;
+  font-weight: 400;
+}
+.assignment-page .workspace-priority-pair p:not(.workspace-eyebrow) {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.assignment-page .workspace-context-note {
+  margin-top: 16px !important;
+  line-height: 1.6;
+}
+.assignment-page .workspace-criteria-list {
+  gap: 24px;
+}
+.assignment-page .workspace-criteria-list h3 {
+  margin-bottom: 6px;
+}
+.assignment-page .workspace-criteria-list p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.assignment-page .workspace-criterion-number {
+  width: 24px;
+  height: 24px;
+  background: rgb(0 0 0 / 5%);
+  border: 0;
+  border-radius: 4px;
+  color: var(--foreground);
+  font-weight: 400;
+}
+.assignment-page .assignment-candidate-list article {
+  padding: 24px 0;
+  font-size: 14px;
+}
+.assignment-page .assignment-candidate-name {
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.assignment-page .assignment-candidate-name button {
+  font-size: 14px;
+  font-weight: 400;
+}
+.assignment-page .assignment-candidate-name .v2-profile-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+}
+.assignment-page .assignment-candidate-name > span:last-child {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.assignment-page .assignment-profiles .workspace-actions {
+  padding-top: 16px;
+  gap: 8px;
+}
+.assignment-page .workspace-text-link {
+  font-size: 13px;
+  font-weight: 400;
+}
+.assignment-page .workspace-next-step {
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+}
+.assignment-page .workspace-profile-initials span {
+  border-radius: 4px;
+  font-weight: 400;
+}
+.assignment-page .workspace-footnote {
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+}
+.assignment-page .workspace-warning {
+  border-color: var(--input);
+  background: var(--muted);
+  color: var(--foreground);
+}
+.assignment-page [data-slot="button"],
+body:has(.assignment-page) .workspace-dialog [data-slot="button"] {
+  height: auto;
+  min-height: 32px;
+  padding: 7px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+.assignment-page .change-tag[data-slot="button"] {
+  color: var(--foreground);
+  background: rgb(0 0 0 / 5%);
+  border-color: transparent;
+}
+.assignment-page .change-tag[data-slot="button"]:hover {
+  background: rgb(0 0 0 / 10%);
+}
+body:has(.assignment-page) .workspace-dialog {
+  padding: 16px;
+  border-radius: var(--card-radius);
+  color: var(--foreground);
+}
+body:has(.assignment-page) .workspace-dialog [data-slot="dialog-title"] {
+  font-size: 16px;
+  font-weight: 400;
+}
+body:has(.assignment-page) .workspace-dialog h2,
+body:has(.assignment-page) .workspace-dialog h3 {
+  font-weight: 400;
+}
+body:has(.assignment-page) .workspace-dialog [data-slot="dialog-footer"] {
+  margin: 0 -16px -16px;
+  padding: 16px;
+}
+body:has(.assignment-page) .workspace-version-pane {
+  padding: 16px;
+  border-radius: var(--card-radius);
+}
+body:has(.assignment-page) .workspace-version-current {
+  background: var(--muted);
+  border-color: var(--input);
+}
+body:has(.assignment-page) .workspace-mandate-strip strong {
+  color: var(--foreground);
+  font-weight: 400;
+}
+body:has(.assignment-page)
+  :is(.workspace-dialog, .v2-profile-summary, .v2-profile-mobile)
+  .workspace-evidence-provided {
+  background: var(--muted);
+  color: var(--muted-foreground);
+}
+body:has(.assignment-page)
+  :is(.v2-profile-summary, .v2-profile-mobile)
+  :is(h2, h3, strong, [data-slot="sheet-title"]) {
+  font-weight: 400;
+}
+body:has(.assignment-page)
+  :is(.v2-profile-summary, .v2-profile-mobile)
+  .v2-profile-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+}
+body:has(.assignment-page)
+  :is(.v2-profile-summary, .v2-profile-mobile)
+  .v2-profile-tabs
+  [role="tab"] {
+  color: var(--muted-foreground);
+  font-weight: 400;
+}
+body:has(.assignment-page)
+  :is(.v2-profile-summary, .v2-profile-mobile)
+  .v2-profile-tabs
+  [aria-selected="true"] {
+  color: var(--foreground);
+  border-color: var(--foreground);
+}
+body:has(.assignment-page)
+  :is(.v2-profile-summary, .v2-profile-mobile)
+  [data-slot="button"] {
+  border-radius: 4px;
+  font-weight: 400;
+}
+body:has(.assignment-page) .workspace-dialog .v2-comparison-table :is(th, h2) {
+  font-weight: 400;
+}
+@media (max-width: 650px) {
+  .assignment-page .workspace-section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .assignment-page .workspace-context-grid > div {
+    padding: 16px 0;
+  }
+  .assignment-page .assignment-update-alert {
+    gap: 12px;
+    border-radius: 24px;
+    flex-direction: row;
+    align-items: center;
+  }
+  .assignment-page .workspace-page-heading > .workspace-actions {
+    max-width: none;
+  }
+  .assignment-page .workspace-priority-pair {
+    gap: 12px;
+  }
+  .assignment-page .workspace-criteria-list {
+    gap: 20px;
+  }
+  .assignment-page .workspace-footnote {
+    align-items: flex-start;
+    line-height: 1.6;
+  }
 }
 
-.assignment-summary-label svg{width:16px;height:16px;flex-shrink:0}
-.assignment-page .assignment-company-name{font-size:16px;margin:0 0 6px}
-.assignment-page .assignment-company-description{max-width:720px;margin:0 0 24px;font-size:14px;line-height:1.6;color:var(--muted-foreground)}
-.assignment-details-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 24px;margin:0}
-.assignment-details-grid>div{min-width:0}
-.assignment-details-grid dt{margin:0 0 4px;font-size:12px;font-weight:400;color:var(--text-secondary)}
-.assignment-details-grid dd{margin:0;font-size:14px;font-weight:400;line-height:1.6;color:var(--foreground)}
-@media(max-width:1100px){.assignment-details-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:650px){.assignment-details-grid{grid-template-columns:1fr;gap:20px}}
-.assignment-layout>.assignment-stage-nav{position:sticky;top:var(--workspace-topbar-height,49px);z-index:30;width:calc(100% + 64px);padding:0 32px;gap:24px;margin:0 -32px 32px;background:var(--background)}
-.assignment-layout>.assignment-stage-nav a{padding:12px 0;font-size:14px;font-weight:400;color:var(--text-secondary);white-space:nowrap}
-.assignment-layout>.assignment-stage-nav a.active{color:var(--foreground);border-color:var(--foreground)}
-.assignment-layout>.workspace-page{max-width:none;width:100%;padding:0}
-.assignment-overview>.workspace-priority-section:first-child{border-top:0;padding-top:0}
-.assignment-layout>.workspace-page>.workspace-page-heading h2{font-size:16px;font-weight:400;margin:0 0 6px}
-@media(max-width:650px){.assignment-layout>.assignment-stage-nav{gap:20px}.assignment-layout>.assignment-stage-nav a{font-size:13px}}
-
-.assignment-details-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;border-top:0}
-.assignment-details-columns>.workspace-section{padding:16px 0;margin:0;border:0;border-radius:0;background:transparent}
-@media(min-width:801px){.assignment-details-columns>.workspace-section+section{position:relative}.assignment-details-columns>.workspace-section+section::before{content:'';position:absolute;top:0;bottom:0;left:-16px;width:1px;background:var(--border)}}
-.assignment-details-columns .assignment-details-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-.assignment-page .assignment-details-columns .workspace-section-heading{margin-bottom:12px}
-.assignment-page .assignment-company-name{margin-bottom:16px}
-.assignment-overview .assignment-candidate-list article{padding-block:16px}
-@media(max-width:800px){.assignment-details-columns{grid-template-columns:1fr;gap:0}.assignment-details-columns>.workspace-section+section{border-top:1px solid var(--border)}}
-@media(max-width:650px){.assignment-details-columns .assignment-details-grid{grid-template-columns:1fr;gap:16px}}
-.assignment-page .mandate-versions-trigger{display:inline-flex;align-items:center;gap:6px;margin:8px 0 0;padding:0;border:0;border-radius:0;background:transparent;color:var(--text-secondary);font-family:inherit;font-size:12px;font-weight:400;line-height:1.6;text-align:left;text-decoration:none}
-.assignment-page .mandate-versions-trigger:hover{color:var(--action-text)}
-.mandate-versions-dialog[data-slot=dialog-content]{width:640px;max-width:calc(100vw - 32px)}
-.mandate-versions-list{display:grid;gap:20px}
-.mandate-version-label{display:flex;align-items:center;gap:8px;margin:0 0 12px;font-size:12px;color:var(--muted-foreground)}
-.mandate-version-label .notification-new-tag{margin-left:0}
-.mandate-versions-list h2{font-size:16px;font-weight:400;line-height:1.4;margin:0 0 8px}
-.mandate-versions-list section>p:last-child{margin:0;font-size:14px;line-height:1.6;color:var(--foreground)}
-
-.mandate-version-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px}
-.mandate-version-meta .mandate-version-label{margin:0}
-.mandate-version-time{padding:3px 6px;border-radius:4px;background:rgb(0 0 0 / 5%);color:var(--muted-foreground);font-size:11px;line-height:1.5}
-.mandate-versions-list .mandate-version-text{margin:0;font-size:14px;line-height:1.6;color:var(--foreground)}
-.mandate-version-author{display:block;margin-top:12px;font-size:12px;color:var(--text-secondary)}
-.assignment-page .assignment-mandate-heading{margin-bottom:12px}
-.client-brief-document{padding:16px;border:1px solid var(--border);border-radius:var(--card-radius);background:var(--card);color:var(--foreground)}
-.client-brief-document-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px;font-size:12px;color:var(--muted-foreground)}
-.client-brief-document-label{display:flex;align-items:center;gap:8px}
-.client-brief-document-label svg{width:16px;height:16px;flex-shrink:0}
-.client-brief-document-header time{padding:0;background:transparent;color:var(--text-secondary);font-size:11px}
-.assignment-page .client-brief-from,.client-brief-document .client-brief-from{margin:0 0 16px;font-size:12px;color:var(--text-secondary)}
-.client-brief-body{max-width:900px}
-.assignment-page .client-brief-body p,.client-brief-document .client-brief-body p{margin:0 0 12px;font-size:14px;font-weight:400;line-height:1.7;color:var(--foreground)}
-.client-brief-document .client-brief-body p:last-child{margin-bottom:0}
-.mandate-versions-dialog[data-slot=dialog-content]{width:720px}
-.assignment-page .assignment-mandate-heading .mandate-versions-trigger{margin:0 0 0 auto}
-
-.client-brief-history-group{display:grid;gap:10px}
-.client-brief-history-tag{justify-self:start;padding:0;background:transparent;font-family:inherit;font-size:12px;font-weight:400;line-height:1.6;color:var(--text-secondary)}
-.client-brief-history-past .client-brief-document{background:var(--muted)}
-.assignment-details-columns>.workspace-section{padding-block:24px}
-.assignment-page .assignment-details-columns .workspace-section-heading{margin-bottom:24px}
-.assignment-page .assignment-company-identity{margin-bottom:24px}
-.assignment-page .assignment-company-identity .assignment-company-name{margin:0 0 4px;font-size:14px;font-weight:500;line-height:1.4;letter-spacing:-.2px}
-.assignment-page .assignment-role-name{margin:0 0 24px;font-size:14px;font-weight:500;line-height:1.4;letter-spacing:-.2px}
-.assignment-page .assignment-company-identity p{margin:0;font-size:13px;line-height:1.5;color:var(--text-secondary)}
-.assignment-fact-list{display:grid;gap:16px;margin:0}
-.assignment-fact-list>div{display:grid;grid-template-columns:112px minmax(0,1fr);gap:16px;align-items:baseline}
-.assignment-fact-list dt{margin:0;font-size:12px;font-weight:400;color:var(--text-secondary);line-height:1.6}
-.assignment-fact-list dd{margin:0;font-size:14px;font-weight:400;color:var(--foreground);line-height:1.6}
-@media(max-width:1100px){.assignment-fact-list>div{grid-template-columns:92px minmax(0,1fr);gap:12px}}
-.assignment-layout .workspace-comparison-page>.assignment-profiles{padding:0;margin:0 0 48px;border:0;border-radius:0;background:transparent}
-.assignment-layout #candidate-comparison{scroll-margin-top:calc(var(--workspace-topbar-height,49px) + 64px)}
-
-@media(min-width:801px) and (max-width:1150px){
- .assignment-details-columns{grid-template-columns:repeat(2,minmax(0,1fr))}
- .assignment-details-columns>.assignment-search-details{grid-column:1/-1;border-top:1px solid var(--border)}
- .assignment-details-columns>.assignment-search-details::before{display:none}
+.assignment-summary-label svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.assignment-page .assignment-company-name {
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+.assignment-page .assignment-company-description {
+  max-width: 720px;
+  margin: 0 0 24px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.assignment-details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 24px;
+  margin: 0;
+}
+.assignment-details-grid > div {
+  min-width: 0;
+}
+.assignment-details-grid dt {
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+.assignment-details-grid dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--foreground);
+}
+@media (max-width: 1100px) {
+  .assignment-details-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 650px) {
+  .assignment-details-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+.assignment-layout > .assignment-stage-nav {
+  position: sticky;
+  top: var(--workspace-topbar-height, 49px);
+  z-index: 30;
+  width: calc(100% + 64px);
+  padding: 0 32px;
+  gap: 24px;
+  margin: 0 -32px 32px;
+  background: var(--background);
+}
+.assignment-layout > .assignment-stage-nav a {
+  padding: 12px 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.assignment-layout > .assignment-stage-nav a.active {
+  color: var(--foreground);
+  border-color: var(--foreground);
+}
+.assignment-layout > .workspace-page {
+  max-width: none;
+  width: 100%;
+  padding: 0;
+}
+.assignment-overview > .workspace-priority-section:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.assignment-layout > .workspace-page > .workspace-page-heading h2 {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 6px;
+}
+@media (max-width: 650px) {
+  .assignment-layout > .assignment-stage-nav {
+    gap: 20px;
+  }
+  .assignment-layout > .assignment-stage-nav a {
+    font-size: 13px;
+  }
 }
 
-@media(min-width:1151px){
- .assignment-details-columns{column-gap:0}
- .assignment-details-columns>.workspace-section{padding-inline:24px}
- .assignment-details-columns>.workspace-section:first-child{padding-left:0}
- .assignment-details-columns>.workspace-section:last-child{padding-right:0}
- .assignment-details-columns>.workspace-section+section::before{left:-.5px}
+.assignment-details-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  border-top: 0;
+}
+.assignment-details-columns > .workspace-section {
+  padding: 16px 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+@media (min-width: 801px) {
+  .assignment-details-columns > .workspace-section + section {
+    position: relative;
+  }
+  .assignment-details-columns > .workspace-section + section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -16px;
+    width: 1px;
+    background: var(--border);
+  }
+}
+.assignment-details-columns .assignment-details-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.assignment-page .assignment-details-columns .workspace-section-heading {
+  margin-bottom: 12px;
+}
+.assignment-page .assignment-company-name {
+  margin-bottom: 16px;
+}
+.assignment-overview .assignment-candidate-list article {
+  padding-block: 16px;
+}
+@media (max-width: 800px) {
+  .assignment-details-columns {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .assignment-details-columns > .workspace-section + section {
+    border-top: 1px solid var(--border);
+  }
+}
+@media (max-width: 650px) {
+  .assignment-details-columns .assignment-details-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+.assignment-page .mandate-versions-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: left;
+  text-decoration: none;
+}
+.assignment-page .mandate-versions-trigger:hover {
+  color: var(--action-text);
+}
+.mandate-versions-dialog[data-slot="dialog-content"] {
+  width: 640px;
+  max-width: calc(100vw - 32px);
+}
+.mandate-versions-list {
+  display: grid;
+  gap: 20px;
+}
+.mandate-version-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+.mandate-version-label .notification-new-tag {
+  margin-left: 0;
+}
+.mandate-versions-list h2 {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0 0 8px;
+}
+.mandate-versions-list section > p:last-child {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--foreground);
 }
 
-.assignment-summary-label,.assignment-header-facts dt{font-family:inherit;font-size:12px;font-weight:400;line-height:1.6;color:var(--text-secondary)}
-.mandate-versions-trigger svg{width:16px;height:16px;flex-shrink:0}
-@media(min-width:801px){.assignment-details-columns>.workspace-section+section::before{top:24px;bottom:24px;left:-16.5px}}
-@media(min-width:1151px){
- .assignment-details-columns{column-gap:48px}
- .assignment-details-columns>.workspace-section{padding-inline:0}
- .assignment-details-columns>.workspace-section+section::before{left:-24.5px}
+.mandate-version-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.mandate-version-meta .mandate-version-label {
+  margin: 0;
+}
+.mandate-version-time {
+  padding: 3px 6px;
+  border-radius: 4px;
+  background: rgb(0 0 0 / 5%);
+  color: var(--muted-foreground);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.mandate-versions-list .mandate-version-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--foreground);
+}
+.mandate-version-author {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.assignment-page .assignment-mandate-heading {
+  margin-bottom: 12px;
+}
+.client-brief-document {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--card);
+  color: var(--foreground);
+}
+.client-brief-document-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+.client-brief-document-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.client-brief-document-label svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.client-brief-document-header time {
+  padding: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+.assignment-page .client-brief-from,
+.client-brief-document .client-brief-from {
+  margin: 0 0 16px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.client-brief-body {
+  max-width: 900px;
+}
+.assignment-page .client-brief-body p,
+.client-brief-document .client-brief-body p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--foreground);
+}
+.client-brief-document .client-brief-body p:last-child {
+  margin-bottom: 0;
+}
+.mandate-versions-dialog[data-slot="dialog-content"] {
+  width: 720px;
+}
+.assignment-page .assignment-mandate-heading .mandate-versions-trigger {
+  margin: 0 0 0 auto;
 }
 
-.assignment-layout>.workspace-page-heading{margin-bottom:32px}
-.assignment-layout>.workspace-page-heading h1{margin-bottom:0}
-.assignment-overview .assignment-mandate-heading{margin-bottom:16px}
-.assignment-overview .client-brief-document{padding:24px}
-.assignment-overview-actions{display:flex;justify-content:flex-end;padding-top:32px}
+.client-brief-history-group {
+  display: grid;
+  gap: 10px;
+}
+.client-brief-history-tag {
+  justify-self: start;
+  padding: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+.client-brief-history-past .client-brief-document {
+  background: var(--muted);
+}
+.assignment-details-columns > .workspace-section {
+  padding-block: 24px;
+}
+.assignment-page .assignment-details-columns .workspace-section-heading {
+  margin-bottom: 24px;
+}
+.assignment-page .assignment-company-identity {
+  margin-bottom: 24px;
+}
+.assignment-page .assignment-company-identity .assignment-company-name {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+}
+.assignment-page .assignment-role-name {
+  margin: 0 0 24px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+}
+.assignment-page .assignment-company-identity p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.assignment-fact-list {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+}
+.assignment-fact-list > div {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 16px;
+  align-items: baseline;
+}
+.assignment-fact-list dt {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.assignment-fact-list dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--foreground);
+  line-height: 1.6;
+}
+@media (max-width: 1100px) {
+  .assignment-fact-list > div {
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 12px;
+  }
+}
+.assignment-layout .workspace-comparison-page > .assignment-profiles {
+  padding: 0;
+  margin: 0 0 48px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.assignment-layout #candidate-comparison {
+  scroll-margin-top: calc(var(--workspace-topbar-height, 49px) + 64px);
+}
+
+@media (min-width: 801px) and (max-width: 1150px) {
+  .assignment-details-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .assignment-details-columns > .assignment-search-details {
+    grid-column: 1/-1;
+    border-top: 1px solid var(--border);
+  }
+  .assignment-details-columns > .assignment-search-details::before {
+    display: none;
+  }
+}
+
+@media (min-width: 1151px) {
+  .assignment-details-columns {
+    column-gap: 0;
+  }
+  .assignment-details-columns > .workspace-section {
+    padding-inline: 24px;
+  }
+  .assignment-details-columns > .workspace-section:first-child {
+    padding-left: 0;
+  }
+  .assignment-details-columns > .workspace-section:last-child {
+    padding-right: 0;
+  }
+  .assignment-details-columns > .workspace-section + section::before {
+    left: -0.5px;
+  }
+}
+
+.assignment-summary-label,
+.assignment-header-facts dt {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+.mandate-versions-trigger svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+@media (min-width: 801px) {
+  .assignment-details-columns > .workspace-section + section::before {
+    top: 24px;
+    bottom: 24px;
+    left: -16.5px;
+  }
+}
+@media (min-width: 1151px) {
+  .assignment-details-columns {
+    column-gap: 48px;
+  }
+  .assignment-details-columns > .workspace-section {
+    padding-inline: 0;
+  }
+  .assignment-details-columns > .workspace-section + section::before {
+    left: -24.5px;
+  }
+}
+
+.assignment-layout > .workspace-page-heading {
+  margin-bottom: 32px;
+}
+.assignment-layout > .workspace-page-heading h1 {
+  margin-bottom: 0;
+}
+.assignment-overview .assignment-mandate-heading {
+  margin-bottom: 16px;
+}
+.assignment-overview .client-brief-document {
+  padding: 24px;
+}
+.assignment-overview-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 32px;
+}
 
 /* Client source document and the structured information extracted from it. */
-.assignment-document-layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(280px,1fr);gap:32px;align-items:start}
-.assignment-document-column{position:sticky;top:calc(var(--workspace-topbar-height,49px) + var(--assignment-navigation-height,56px) + 16px);min-width:0}
-.assignment-document-reader{height:clamp(420px,calc(100dvh - 220px),800px);overflow-y:auto;overscroll-behavior:contain;border:1px solid var(--border);border-radius:var(--card-radius);background:transparent;padding:0;outline-offset:4px}
-.assignment-overview .assignment-document-reader .client-brief-document{padding:40px 36px;border:0;border-radius:0;background:var(--card)}
-.client-brief-paper-title{margin:36px 0 24px}
-.client-brief-paper-title>span{font-size:11px;color:var(--text-secondary);letter-spacing:.08em;text-transform:uppercase}
-.assignment-page .client-brief-paper-title h2,.client-brief-document .client-brief-paper-title h2{font-size:24px;font-weight:400;line-height:1.3;margin:12px 0 8px;letter-spacing:-.4px}
-.client-brief-paper-title>p{font-size:16px;margin:0;line-height:1.5}
-.client-brief-body>section{margin-top:32px}
-.assignment-page .client-brief-body h3,.client-brief-document .client-brief-body h3{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;font-size:14px;font-weight:500;line-height:1.5;margin:0 0 12px;letter-spacing:normal}
-.client-brief-section-number{font-size:11px;font-weight:400;color:var(--text-secondary);margin-right:2px}
-.client-brief-body .notification-new-tag{margin-left:auto}
-.assignment-extracted-details{padding-left:24px;border-left:1px solid var(--border);min-width:0}
-.assignment-extracted-label{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:12px;color:var(--text-secondary);margin-bottom:28px}
-.assignment-extracted-label svg{width:14px;height:14px}
-.assignment-extracted-label>span{width:100%;font-size:11px;padding-left:20px}
-.assignment-extracted-section+section{padding-top:24px;margin-top:24px;border-top:1px solid var(--border)}
-.assignment-page .assignment-extracted-section h2{margin:0 0 20px;font-size:16px;font-weight:400}
-.assignment-extracted-facts{display:grid;gap:16px;margin:0}
-.assignment-extracted-facts dt{display:flex;align-items:center;gap:8px;font-size:12px;line-height:1.6;font-weight:400;color:var(--text-secondary);margin:0 0 4px}
-.assignment-extracted-facts dd{font-size:14px;line-height:1.6;font-weight:400;margin:0;color:var(--foreground)}
-.assignment-summary-label .notification-new-tag{margin-left:2px}
-body:has(.assignment-page) .mandate-versions-dialog[data-slot=dialog-content]{width:720px;max-width:calc(100vw - 32px);max-height:calc(100dvh - 48px)}
-.brief-version-preview{display:grid;gap:12px;width:100%;padding:20px;border:1px solid var(--border);border-radius:var(--card-radius);background:var(--card);text-align:left;color:var(--foreground);font:inherit;cursor:pointer}
-.client-brief-history-past .brief-version-preview{background:var(--muted)}
-
-.brief-preview-title{display:flex;align-items:center;gap:8px;font-size:14px}
-.brief-preview-title svg{width:16px;height:16px;flex-shrink:0}
-.brief-preview-title svg:last-child{margin-left:auto;color:var(--text-secondary)}
-.brief-preview-meta{font-size:11px;line-height:1.6;color:var(--text-secondary)}
-.brief-preview-section{display:grid;gap:12px}
-.brief-preview-section-title{font-size:14px;font-weight:500;line-height:1.5}
-.brief-preview-copy{display:block;font-size:14px;line-height:1.7}
-.brief-preview-read{font-size:12px;color:var(--text-secondary)}
-body:has(.assignment-page) .mandate-versions-dialog.brief-version-reading{display:flex;flex-direction:column;height:min(900px,calc(100dvh - 48px));overflow:hidden;gap:16px}
-.brief-versions-back{display:flex;align-items:center;align-self:start;gap:6px;border:0;padding:0;background:none;font:inherit;font-size:12px;color:var(--text-secondary);cursor:pointer}
-.brief-versions-back:hover{color:var(--action-text)}
-.brief-versions-back svg{width:14px;height:14px}
-.brief-version-document{min-height:0;flex:1;overflow-y:auto;overscroll-behavior:contain;outline-offset:-2px}
-.brief-version-document .client-brief-document{padding:32px}
-@media(max-width:950px){
- .assignment-document-layout{grid-template-columns:minmax(0,1fr);gap:32px}
- .assignment-document-column{position:static}
- .assignment-extracted-details{padding-left:0;border-left:0}
- .assignment-document-reader{height:600px}
+.assignment-document-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  gap: 32px;
+  align-items: start;
 }
-@media(max-width:650px){
- .assignment-document-reader{height:520px}
- .assignment-overview .assignment-document-reader .client-brief-document,.brief-version-document .client-brief-document{padding:24px 20px}
- .assignment-mandate-heading{flex-wrap:wrap}
- .assignment-page .assignment-mandate-heading .mandate-versions-trigger{font-size:11px}
- .client-brief-paper-title{margin-top:24px}
- .brief-version-preview{padding:16px}
+.assignment-document-column {
+  position: sticky;
+  top: calc(
+    var(--workspace-topbar-height, 49px) +
+      var(--assignment-navigation-height, 56px) + 16px
+  );
+  min-width: 0;
+}
+.assignment-document-reader {
+  height: clamp(420px, calc(100dvh - 220px), 800px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  background: transparent;
+  padding: 0;
+  outline-offset: 4px;
+}
+.assignment-overview .assignment-document-reader .client-brief-document {
+  padding: 40px 36px;
+  border: 0;
+  border-radius: 0;
+  background: var(--card);
+}
+.client-brief-paper-title {
+  margin: 36px 0 24px;
+}
+.client-brief-paper-title > span {
+  font-size: 11px;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.assignment-page .client-brief-paper-title h2,
+.client-brief-document .client-brief-paper-title h2 {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 12px 0 8px;
+  letter-spacing: -0.4px;
+}
+.client-brief-paper-title > p {
+  font-size: 16px;
+  margin: 0;
+  line-height: 1.5;
+}
+.client-brief-body > section {
+  margin-top: 32px;
+}
+.assignment-page .client-brief-body h3,
+.client-brief-document .client-brief-body h3 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0 0 12px;
+  letter-spacing: normal;
+}
+.client-brief-section-number {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-right: 2px;
+}
+.client-brief-body .notification-new-tag {
+  margin-left: auto;
+}
+.assignment-extracted-details {
+  padding-left: 24px;
+  border-left: 1px solid var(--border);
+  min-width: 0;
+}
+.assignment-extracted-label {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+}
+.assignment-extracted-label svg {
+  width: 14px;
+  height: 14px;
+}
+.assignment-extracted-label > span {
+  width: 100%;
+  font-size: 11px;
+  padding-left: 20px;
+}
+.assignment-extracted-section + section {
+  padding-top: 24px;
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.assignment-page .assignment-extracted-section h2 {
+  margin: 0 0 20px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.assignment-extracted-facts {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+}
+.assignment-extracted-facts dt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin: 0 0 4px;
+}
+.assignment-extracted-facts dd {
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 400;
+  margin: 0;
+  color: var(--foreground);
+}
+.assignment-summary-label .notification-new-tag {
+  margin-left: 2px;
+}
+body:has(.assignment-page)
+  .mandate-versions-dialog[data-slot="dialog-content"] {
+  width: 720px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100dvh - 48px);
+}
+.brief-version-preview {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--card);
+  text-align: left;
+  color: var(--foreground);
+  font: inherit;
+  cursor: pointer;
+}
+.client-brief-history-past .brief-version-preview {
+  background: var(--muted);
+}
+
+.brief-preview-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+.brief-preview-title svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.brief-preview-title svg:last-child {
+  margin-left: auto;
+  color: var(--text-secondary);
+}
+.brief-preview-meta {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+.brief-preview-section {
+  display: grid;
+  gap: 12px;
+}
+.brief-preview-section-title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.brief-preview-copy {
+  display: block;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.brief-preview-read {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+body:has(.assignment-page) .mandate-versions-dialog.brief-version-reading {
+  display: flex;
+  flex-direction: column;
+  height: min(900px, calc(100dvh - 48px));
+  overflow: hidden;
+  gap: 16px;
+}
+.brief-versions-back {
+  display: flex;
+  align-items: center;
+  align-self: start;
+  gap: 6px;
+  border: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.brief-versions-back:hover {
+  color: var(--action-text);
+}
+.brief-versions-back svg {
+  width: 14px;
+  height: 14px;
+}
+.brief-version-document {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  outline-offset: -2px;
+}
+.brief-version-document .client-brief-document {
+  padding: 32px;
+}
+@media (max-width: 950px) {
+  .assignment-document-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+  .assignment-document-column {
+    position: static;
+  }
+  .assignment-extracted-details {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .assignment-document-reader {
+    height: 600px;
+  }
+}
+@media (max-width: 650px) {
+  .assignment-document-reader {
+    height: 520px;
+  }
+  .assignment-overview .assignment-document-reader .client-brief-document,
+  .brief-version-document .client-brief-document {
+    padding: 24px 20px;
+  }
+  .assignment-mandate-heading {
+    flex-wrap: wrap;
+  }
+  .assignment-page .assignment-mandate-heading .mandate-versions-trigger {
+    font-size: 11px;
+  }
+  .client-brief-paper-title {
+    margin-top: 24px;
+  }
+  .brief-version-preview {
+    padding: 16px;
+  }
 }
 
 /* The client file uses ordinary document typography, separate from app labels. */
-.client-brief-document{font-family:Arial,Helvetica,sans-serif}
-.client-brief-paper-title{margin:0 0 24px}
-.assignment-page .client-brief-paper-title h2,.client-brief-document .client-brief-paper-title h2{margin:0 0 12px;font-family:Arial,Helvetica,sans-serif;font-size:24px;font-weight:600;line-height:1.25;letter-spacing:0}
-.client-brief-paper-title>p{margin:0;font-size:15px;line-height:1.5}
-.assignment-page .client-brief-author,.client-brief-document .client-brief-author{margin:0 0 32px;font-size:12px;line-height:1.6;color:var(--foreground)}
-.assignment-page .client-brief-body h3,.client-brief-document .client-brief-body h3{display:block;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;line-height:1.5;margin:0 0 12px}
-.assignment-page .client-brief-body p,.client-brief-document .client-brief-body p{font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6}
-.assignment-overview .assignment-document-reader .client-brief-document,.brief-version-document .client-brief-document{padding:48px}
-@media(max-width:650px){
- .assignment-overview .assignment-document-reader .client-brief-document,.brief-version-document .client-brief-document{padding:28px 24px}
- .client-brief-paper-title{margin-top:0}
+.client-brief-document {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.client-brief-paper-title {
+  margin: 0 0 24px;
+}
+.assignment-page .client-brief-paper-title h2,
+.client-brief-document .client-brief-paper-title h2 {
+  margin: 0 0 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+.client-brief-paper-title > p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.assignment-page .client-brief-author,
+.client-brief-document .client-brief-author {
+  margin: 0 0 32px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--foreground);
+}
+.assignment-page .client-brief-body h3,
+.client-brief-document .client-brief-body h3 {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+.assignment-page .client-brief-body p,
+.client-brief-document .client-brief-body p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.assignment-overview .assignment-document-reader .client-brief-document,
+.brief-version-document .client-brief-document {
+  padding: 48px;
+}
+@media (max-width: 650px) {
+  .assignment-overview .assignment-document-reader .client-brief-document,
+  .brief-version-document .client-brief-document {
+    padding: 28px 24px;
+  }
+  .client-brief-paper-title {
+    margin-top: 0;
+  }
 }
 
 /* Changed values link directly to their own source history. */
-.assignment-changed-field{display:inline-flex;align-items:center;gap:4px;vertical-align:middle}
-.assignment-history-icon{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:24px;height:24px;padding:4px;border:0;border-radius:4px;background:transparent;color:var(--text-secondary);cursor:pointer}
-.assignment-history-icon svg{width:16px;height:16px}
-.assignment-history-icon:hover{color:var(--action-text)}
-.assignment-history-icon:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
-.field-history-list{display:grid;gap:16px}
-.field-history-entry h3{margin:0 0 8px;font-size:12px;font-weight:400;color:var(--text-secondary)}
-.field-history-value{padding:12px;border:1px solid var(--border);border-radius:var(--card-radius);background:var(--card)}
-.field-history-past .field-history-value{background:var(--muted)}
-.field-history-value>p{margin:0;font-size:14px;line-height:1.6;color:var(--foreground)}
-.field-history-source{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px;font-size:11px;line-height:1.6;color:var(--text-secondary)}
-body:has(.assignment-page) .field-history-dialog[data-slot=dialog-content]{width:480px;max-width:calc(100vw - 32px)}
+.assignment-changed-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  vertical-align: middle;
+}
+.assignment-history-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.assignment-history-icon svg {
+  width: 16px;
+  height: 16px;
+}
+.assignment-history-icon:hover {
+  color: var(--action-text);
+}
+.assignment-history-icon:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.field-history-list {
+  display: grid;
+  gap: 16px;
+}
+.field-history-entry h3 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+.field-history-value {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--card);
+}
+.field-history-past .field-history-value {
+  background: var(--muted);
+}
+.field-history-value > p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--foreground);
+}
+.field-history-source {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+body:has(.assignment-page) .field-history-dialog[data-slot="dialog-content"] {
+  width: 480px;
+  max-width: calc(100vw - 32px);
+}
 
 /* Overview details share the preparation panel’s surface and text scale. */
-.assignment-page .assignment-extracted-details.workspace-preparation{padding:20px;border:1px solid var(--border);border-radius:var(--card-radius);background:var(--card);font-size:12px;line-height:1.65}
-.assignment-page .assignment-extracted-details .assignment-extracted-section h2{margin-bottom:16px;font-size:16px;font-weight:400}
-.assignment-extracted-details .assignment-extracted-facts dd{font-size:12px;line-height:1.65}
-@media(max-width:650px){.assignment-page .assignment-extracted-details.workspace-preparation{padding:19px}}
+.assignment-page .assignment-extracted-details.workspace-preparation {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--card);
+  font-size: 12px;
+  line-height: 1.65;
+}
+.assignment-page
+  .assignment-extracted-details
+  .assignment-extracted-section
+  h2 {
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.assignment-extracted-details .assignment-extracted-facts dd {
+  font-size: 12px;
+  line-height: 1.65;
+}
+@media (max-width: 650px) {
+  .assignment-page .assignment-extracted-details.workspace-preparation {
+    padding: 19px;
+  }
+}
 
 /* Bring the update into view from just above the viewport. */
-.assignment-page .assignment-update-alert{opacity:1;transition:transform var(--notification-enter-duration) var(--ease-soft),opacity 300ms var(--ease-soft)}
-@starting-style{
- .assignment-page .assignment-update-alert{opacity:0;transform:translate(-50%,calc(-100% - 16px))}
+.assignment-page .assignment-update-alert {
+  opacity: 1;
+  transition:
+    transform var(--notification-enter-duration) var(--ease-soft),
+    opacity 300ms var(--ease-soft);
 }
-@media(prefers-reduced-motion:reduce){.assignment-page .assignment-update-alert{transition:none}}
+@starting-style {
+  .assignment-page .assignment-update-alert {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 16px));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .assignment-page .assignment-update-alert {
+    transition: none;
+  }
+}
 
-.assignment-editable-heading{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:16px}
-.assignment-page .assignment-editable-heading h2{margin:0}
-.assignment-detail-tertiary{display:inline-flex;flex-shrink:0;padding:0;border:0;background:transparent;color:var(--muted-foreground);font:inherit;font-size:12px;line-height:1.6;cursor:pointer;text-decoration:none}
-.assignment-detail-tertiary:hover{color:var(--action-text)}
-.assignment-detail-edited{font-size:10px;color:var(--muted-foreground)}
-.assignment-detail-fields{display:grid;gap:20px}
-.assignment-detail-fields label{display:grid;gap:8px;font-size:12px;color:var(--muted-foreground)}
-.assignment-detail-fields textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:4px;resize:vertical;background:var(--card);color:var(--foreground);font:inherit;font-size:14px;line-height:1.6}
-.assignment-detail-fields textarea:focus{outline:1px solid var(--foreground);outline-offset:0}
-.assignment-detail-restore{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px}
-.assignment-detail-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:24px}
-.assignment-detail-history{display:grid;gap:24px}
-.assignment-detail-history>section+section{border-top:1px solid var(--border);padding-top:24px}
-.assignment-detail-history h3{display:grid;gap:4px;font-size:13px;font-weight:400;margin:0 0 16px}
-.assignment-detail-history time{font-size:11px;color:var(--muted-foreground)}
-.assignment-detail-history dl{display:grid;gap:12px;margin:0 0 16px}
-.assignment-detail-history dt{font-size:12px;color:var(--muted-foreground)}
-.assignment-detail-history dd{font-size:13px;line-height:1.6;margin:4px 0 0}
-.assignment-review-required{padding:16px 20px;margin-bottom:24px;border:1px solid var(--warning-border);border-radius:var(--card-radius);background:var(--warning-surface);color:var(--warning);font-size:12px;line-height:1.7}
-.assignment-review-required p{margin:4px 0 0}
-@media(max-width:800px){.assignment-detail-fields textarea{font-size:16px}}
-.assignment-page .assignment-extracted-details .assignment-editable-heading h2{margin:0}
+.assignment-editable-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.assignment-page .assignment-editable-heading h2 {
+  margin: 0;
+}
+.assignment-detail-tertiary {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted-foreground);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.6;
+  cursor: pointer;
+  text-decoration: none;
+}
+.assignment-detail-tertiary:hover {
+  color: var(--action-text);
+}
+.assignment-detail-edited {
+  font-size: 10px;
+  color: var(--muted-foreground);
+}
+.assignment-detail-fields {
+  display: grid;
+  gap: 20px;
+}
+.assignment-detail-fields label {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+.assignment-detail-fields textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  resize: vertical;
+  background: var(--card);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.assignment-detail-fields textarea:focus {
+  outline: 1px solid var(--foreground);
+  outline-offset: 0;
+}
+.assignment-detail-restore {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+}
+.assignment-detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+.assignment-detail-history {
+  display: grid;
+  gap: 24px;
+}
+.assignment-detail-history > section + section {
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
+.assignment-detail-history h3 {
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0 0 16px;
+}
+.assignment-detail-history time {
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.assignment-detail-history dl {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 16px;
+}
+.assignment-detail-history dt {
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+.assignment-detail-history dd {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 4px 0 0;
+}
+.assignment-review-required {
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  border: 1px solid var(--warning-border);
+  border-radius: var(--card-radius);
+  background: var(--warning-surface);
+  color: var(--warning);
+  font-size: 12px;
+  line-height: 1.7;
+}
+.assignment-review-required p {
+  margin: 4px 0 0;
+}
+@media (max-width: 800px) {
+  .assignment-detail-fields textarea {
+    font-size: 16px;
+  }
+}
+.assignment-page .assignment-extracted-details .assignment-editable-heading h2 {
+  margin: 0;
+}
 
-.assignment-page .assignment-update-alert>.assignment-toast-leading-icon{width:18px;height:18px;flex-shrink:0;color:var(--notice-meta)}
+.assignment-page .assignment-update-alert > .assignment-toast-leading-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--notice-meta);
+}
 
-@media(max-width:800px){
- .assignment-page .assignment-update-alert{display:grid;grid-template-columns:18px minmax(0,1fr) 32px;align-items:start;column-gap:8px;padding:16px;border-radius:16px}
- .assignment-page .assignment-update-alert>.assignment-toast-leading-icon{grid-column:1;grid-row:1;margin-top:1px}
- .assignment-page .assignment-update-alert .assignment-toast-copy{grid-column:2;grid-row:1;min-width:0}
- .assignment-page .assignment-update-alert h2{display:block;margin:0 0 4px;font-size:12px;line-height:20px;white-space:nowrap}
- .assignment-page .assignment-update-alert p{display:block;font-size:12px;line-height:1.6}
- .assignment-page .assignment-update-alert .assignment-toast-close{grid-column:3;grid-row:1;align-self:start;justify-self:end;width:44px;height:44px;min-height:44px;margin-top:-12px;margin-right:-12px}
+@media (max-width: 800px) {
+  .assignment-page .assignment-update-alert {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr) 32px;
+    align-items: start;
+    column-gap: 8px;
+    padding: 16px;
+    border-radius: 16px;
+  }
+  .assignment-page .assignment-update-alert > .assignment-toast-leading-icon {
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 1px;
+  }
+  .assignment-page .assignment-update-alert .assignment-toast-copy {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+  }
+  .assignment-page .assignment-update-alert h2 {
+    display: block;
+    margin: 0 0 4px;
+    font-size: 12px;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+  .assignment-page .assignment-update-alert p {
+    display: block;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .assignment-page .assignment-update-alert .assignment-toast-close {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: start;
+    justify-self: end;
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+    margin-top: -12px;
+    margin-right: -12px;
+  }
 }
 
 /* Brief-derived details share the page surface; the document keeps its paper frame. */
-.assignment-page .assignment-extracted-details>.brief-breakdown-title{display:flex;align-items:center;gap:8px;margin:0 0 24px;font-size:16px;font-weight:400;line-height:1.4;white-space:nowrap}
-@media(min-width:801px){
- .assignment-page .assignment-extracted-details.workspace-preparation{padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+.assignment-page .assignment-extracted-details > .brief-breakdown-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 24px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: nowrap;
 }
-@media(min-width:1101px){
- .assignment-page .assignment-document-layout{grid-template-columns:minmax(0,2fr) minmax(280px,1fr);gap:24px}
- .assignment-page .assignment-extracted-details.workspace-preparation{padding-left:24px;border-left:1px solid var(--border)}
+@media (min-width: 801px) {
+  .assignment-page .assignment-extracted-details.workspace-preparation {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
 }
-@media(max-width:800px){
- .assignment-page .assignment-extracted-details>.brief-breakdown-title{margin-bottom:4px}
+@media (min-width: 1101px) {
+  .assignment-page .assignment-document-layout {
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+    gap: 24px;
+  }
+  .assignment-page .assignment-extracted-details.workspace-preparation {
+    padding-left: 24px;
+    border-left: 1px solid var(--border);
+  }
+}
+@media (max-width: 800px) {
+  .assignment-page .assignment-extracted-details > .brief-breakdown-title {
+    margin-bottom: 4px;
+  }
 }
 
-.brief-breakdown-ai-tag{display:inline-flex;flex-shrink:0;padding:2px 5px;border-radius:4px;background:var(--muted);color:var(--text-secondary);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;font-weight:400;line-height:1.4;letter-spacing:normal;text-transform:uppercase}
+.brief-breakdown-ai-tag {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: var(--muted);
+  color: var(--text-secondary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: uppercase;
+}
 
 /* The stronger border recedes around the toast as its dismissal time runs out. */
-.assignment-page .assignment-update-alert>.assignment-toast-countdown{position:absolute;inset:-1px;width:calc(100% + 2px);height:calc(100% + 2px);overflow:visible;pointer-events:none;color:var(--primary)}
-.assignment-toast-countdown rect{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:0}
+.assignment-page .assignment-update-alert > .assignment-toast-countdown {
+  position: absolute;
+  inset: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  overflow: visible;
+  pointer-events: none;
+  color: var(--primary);
+}
+.assignment-toast-countdown rect {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+}
 
 /* The brief breakdown stays on a white information surface beside the document. */
-.assignment-page .assignment-document-layout>.assignment-extracted-details.workspace-preparation{
- padding:24px;border:0;border-radius:var(--card-radius);background:var(--card);color:var(--foreground);
+.assignment-page
+  .assignment-document-layout
+  > .assignment-extracted-details.workspace-preparation {
+  padding: 24px;
+  border: 0;
+  border-radius: var(--card-radius);
+  background: var(--card);
+  color: var(--foreground);
 }
-@media(max-width:800px){.assignment-page .assignment-document-layout>.assignment-extracted-details.workspace-preparation{padding:20px}}
+@media (max-width: 800px) {
+  .assignment-page
+    .assignment-document-layout
+    > .assignment-extracted-details.workspace-preparation {
+    padding: 20px;
+  }
+}
 
-.assignment-page .assignment-document-layout>.assignment-extracted-details .mobile-assignment-section{background:var(--card)}
+.assignment-page
+  .assignment-document-layout
+  > .assignment-extracted-details
+  .mobile-assignment-section {
+  background: var(--card);
+}
 
-@media(prefers-reduced-transparency:reduce){.assignment-page .assignment-update-alert{background:var(--card);-webkit-backdrop-filter:none;backdrop-filter:none}}
+@media (prefers-reduced-transparency: reduce) {
+  .assignment-page .assignment-update-alert {
+    background: var(--card);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
 
 /* On Overview, assignment context carries the dark emphasis instead of the breakdown. */
-.assignment-layout:has(.assignment-document-layout)>.assignment-general-info{
- --foreground:var(--focus-text);--ring:var(--primary);--text-secondary:var(--focus-secondary);--muted-foreground:var(--text-secondary);
- --card:var(--focus-surface);--muted:var(--focus-muted);--border:var(--focus-border);--action-text:var(--primary);--action-stroke:var(--primary);
- background:var(--card);color:var(--foreground);
+.assignment-layout:has(.assignment-document-layout) > .assignment-general-info {
+  --foreground: var(--focus-text);
+  --ring: var(--primary);
+  --text-secondary: var(--focus-secondary);
+  --muted-foreground: var(--text-secondary);
+  --card: var(--focus-surface);
+  --muted: var(--focus-muted);
+  --border: var(--focus-border);
+  --action-text: var(--primary);
+  --action-stroke: var(--primary);
+  background: var(--card);
+  color: var(--foreground);
 }
 
-.assignment-page .assignment-extracted-details>.brief-breakdown-title{flex-wrap:wrap;white-space:normal}
-@media(max-width:800px){
- .assignment-page .assignment-update-alert h2{white-space:normal;overflow-wrap:anywhere}
- .assignment-page .assignment-primary-action[data-slot=button]{white-space:normal;text-align:center}
+.assignment-page .assignment-extracted-details > .brief-breakdown-title {
+  flex-wrap: wrap;
+  white-space: normal;
+}
+@media (max-width: 800px) {
+  .assignment-page .assignment-update-alert h2 {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .assignment-page .assignment-primary-action[data-slot="button"] {
+    white-space: normal;
+    text-align: center;
+  }
 }
 
 /* Double the desktop brief/breakdown gutter, taking the added space only
    from the breakdown while retaining the document's previous track width. */
-@media(min-width:1101px){
- .assignment-page .assignment-document-layout{
-  grid-template-columns:minmax(0,min(calc((100% - 24px) / 3 * 2),calc(100% - 304px))) minmax(0,1fr);
-  column-gap:48px;
- }
+@media (min-width: 1101px) {
+  .assignment-page .assignment-document-layout {
+    grid-template-columns:
+      minmax(0, min(calc((100% - 24px) / 3 * 2), calc(100% - 304px)))
+      minmax(0, 1fr);
+    column-gap: 48px;
+  }
 }

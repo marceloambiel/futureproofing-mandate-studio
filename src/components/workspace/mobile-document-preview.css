@@ -1,62 +1,332 @@
-.mobile-document-preview{position:relative;overflow:hidden;border:1px solid var(--border);border-radius:var(--card-radius);background:white}
-.mobile-document-preview:hover,.mobile-document-preview:focus-within{border-color:var(--action-text)}
-.mobile-document-preview-paper{height:412.5px;overflow:hidden;pointer-events:none;user-select:none;mask-image:linear-gradient(#000 65%,transparent)}
-.mobile-document-preview-paper .client-brief-document{padding:24px!important;border:0}
-.mobile-document-preview-paper .discussion-doc-editor{padding:24px;min-height:0}
-.mobile-document-preview-action{display:flex;align-items:center;gap:8px;padding:16px;border-top:1px solid var(--border);font-size:12px;color:var(--muted-foreground)}
-.mobile-document-preview-action svg{width:16px;height:16px}
-.mobile-document-preview-action svg:last-child{margin-left:auto}
-.mobile-document-preview>button{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:transparent;cursor:pointer}
-.mobile-document-preview>button:focus-visible{outline:2px solid var(--ring);outline-offset:-3px}
-body .workspace-dialog.mobile-document-dialog[data-slot=dialog-content]{position:fixed;inset:0;display:block;transform:none;translate:none!important;width:100%;max-width:100%;height:100dvh;max-height:100dvh;margin:0;padding:0;border:0;border-radius:0;overflow-y:auto;overscroll-behavior:contain;animation:none}
-.mobile-document-dialog>[data-slot=dialog-header]{position:sticky;top:0;z-index:30;min-height:60px;padding:20px 56px 20px 20px;border-bottom:1px solid var(--border);background:var(--background)}
-.mobile-document-dialog>[data-slot=dialog-close]{position:fixed;top:14px;right:14px;z-index:40}
-.mobile-document-dialog .client-brief-document{padding:28px 24px;border:0;border-radius:0}
-.mobile-document-dialog .discussion-doc-toolbar{top:60px;max-width:none;margin:0;border-width:0 0 1px;border-radius:0;overflow:visible}
-.mobile-document-dialog .discussion-doc-paper{margin:0;border:0;border-radius:0}
-.mobile-document-dialog .discussion-doc-editor{padding:28px 24px 64px;font-size:16px;min-height:calc(100dvh - 160px)}
-.mobile-document-dialog .mobile-document-feedback{padding:0 16px}
-.mobile-document-dialog .mobile-document-feedback:empty{display:none}
-
-.mobile-discussion-editor>[data-slot=dialog-header]{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px;padding:12px;background:var(--focus-surface);color:var(--focus-text);border-bottom-color:var(--focus-border)}
-body .workspace-dialog.mobile-discussion-editor>[data-slot=dialog-header]>[data-slot=dialog-title]{grid-column:2;grid-row:1;text-align:center;white-space:nowrap;margin:0;font-size:13px;line-height:24px;color:var(--focus-text)}
-.mobile-discussion-header-actions{display:contents}
-body .workspace-dialog.mobile-discussion-editor .mobile-discussion-header-actions>[data-slot=button]{grid-row:1;min-height:44px;width:auto;white-space:nowrap;font-size:12px;padding:8px 6px}
-.mobile-discussion-header-actions>[data-slot=button]:first-child{grid-column:1;justify-self:start;color:var(--focus-text);background:transparent;border-color:var(--focus-border)}
-.mobile-discussion-header-actions>[data-slot=button]:last-child{grid-column:3;justify-self:end}
-@media(min-width:375px){body .workspace-dialog.mobile-discussion-editor>[data-slot=dialog-header]>[data-slot=dialog-title]{font-size:14px}}
-.mobile-discussion-editor .discussion-doc-toolbar{top:68px;flex-wrap:nowrap;padding:4px 12px;gap:0;overflow:visible}
-.mobile-discussion-editor .discussion-doc-format-tools{flex-wrap:nowrap;gap:0;min-width:0}
-.mobile-discussion-editor .discussion-toolbar-divider{display:none}
-.mobile-discussion-editor .discussion-font-size{flex-shrink:0;width:68px;padding-inline:2px}
-.mobile-discussion-editor .discussion-font-size select{width:44px;min-width:44px}
-.mobile-discussion-editor .discussion-doc-format-tools>button,.mobile-discussion-editor .discussion-format-group{width:44px;min-width:44px;height:44px;min-height:44px}
-.mobile-discussion-editor .discussion-format-group{border:0;background:transparent;color:var(--foreground);font-size:12px;padding:0 2px}
-.mobile-discussion-editor .discussion-doc-toolbar-actions{flex-wrap:nowrap;margin-left:auto;gap:0}
-.mobile-discussion-editor .discussion-history-trigger{display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0}
-.mobile-discussion-editor .discussion-history-trigger svg{width:18px;height:18px}
-
-@media(max-width:374px){body .workspace-dialog.mobile-discussion-editor .mobile-discussion-header-actions>[data-slot=button]{font-size:11px}}
-
-/* Mobile editing keeps the primary save action within reach at the screen bottom. */
-.mobile-discussion-editor>[data-slot=dialog-header]{grid-template-columns:minmax(0,1fr) auto}
-body .workspace-dialog.mobile-discussion-editor>[data-slot=dialog-header]>[data-slot=dialog-title]{grid-column:1;justify-self:start;text-align:left;font-size:16px}
-.mobile-discussion-header-actions>[data-slot=button]:first-child{grid-column:2;justify-self:end}
-body .workspace-dialog.mobile-discussion-editor .mobile-discussion-header-actions>[data-slot=button]{font-size:12px;padding-inline:12px}
-.mobile-discussion-save-bar{position:fixed;inset:auto 0 0;z-index:40;padding:16px 24px max(16px,env(safe-area-inset-bottom));background:transparent;border:0;box-shadow:none;pointer-events:none}
-body .workspace-dialog.mobile-discussion-editor .mobile-discussion-save-bar>[data-slot=button]{pointer-events:auto;display:flex;justify-content:center;width:100%;min-height:48px;padding:12px 16px;font-size:14px}
-.mobile-discussion-editor .discussion-doc-editor{padding-bottom:calc(104px + env(safe-area-inset-bottom));scroll-padding-bottom:104px}
-
-.mobile-discussion-editor>[data-slot=dialog-header]{--ring:var(--focus-text)}
-.mobile-document-dialog{scroll-padding-block:128px 104px}
-@media(max-width:800px){
- .mobile-discussion-editor .discussion-format-group{font-size:16px}
- .mobile-discussion-editor .discussion-font-size select{font-size:16px}
+.mobile-document-preview {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  background: white;
+}
+.mobile-document-preview:hover,
+.mobile-document-preview:focus-within {
+  border-color: var(--action-text);
+}
+.mobile-document-preview-paper {
+  height: 412.5px;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  mask-image: linear-gradient(#000 65%, transparent);
+}
+.mobile-document-preview-paper .client-brief-document {
+  padding: 24px !important;
+  border: 0;
+}
+.mobile-document-preview-paper .discussion-doc-editor {
+  padding: 24px;
+  min-height: 0;
+}
+.mobile-document-preview-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+.mobile-document-preview-action svg {
+  width: 16px;
+  height: 16px;
+}
+.mobile-document-preview-action svg:last-child {
+  margin-left: auto;
+}
+.mobile-document-preview > button {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.mobile-document-preview > button:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: -3px;
+}
+body .workspace-dialog.mobile-document-dialog[data-slot="dialog-content"] {
+  position: fixed;
+  inset: 0;
+  display: block;
+  transform: none;
+  translate: none !important;
+  width: 100%;
+  max-width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  animation: none;
+}
+.mobile-document-dialog > [data-slot="dialog-header"] {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  min-height: 60px;
+  padding: 20px 56px 20px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+}
+.mobile-document-dialog > [data-slot="dialog-close"] {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 40;
+}
+.mobile-document-dialog .client-brief-document {
+  padding: 28px 24px;
+  border: 0;
+  border-radius: 0;
+}
+.mobile-document-dialog .discussion-doc-toolbar {
+  top: 60px;
+  max-width: none;
+  margin: 0;
+  border-width: 0 0 1px;
+  border-radius: 0;
+  overflow: visible;
+}
+.mobile-document-dialog .discussion-doc-paper {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+.mobile-document-dialog .discussion-doc-editor {
+  padding: 28px 24px 64px;
+  font-size: 16px;
+  min-height: calc(100dvh - 160px);
+}
+.mobile-document-dialog .mobile-document-feedback {
+  padding: 0 16px;
+}
+.mobile-document-dialog .mobile-document-feedback:empty {
+  display: none;
 }
 
-.mobile-discussion-editor .discussion-doc-toolbar{top:var(--editor-header-height,68px);overflow-x:auto;overflow-y:hidden}
-body .workspace-dialog.mobile-discussion-editor>[data-slot=dialog-header]>[data-slot=dialog-title]{white-space:normal;overflow-wrap:anywhere}
-.mobile-discussion-editor .discussion-doc-format-tools,.mobile-discussion-editor .discussion-doc-toolbar-actions{flex-shrink:0}
-.mobile-discussion-editor .discussion-format-group{width:max(44px,3ch)}
-.mobile-discussion-editor .discussion-font-size{width:auto;min-width:68px}
-.mobile-discussion-editor .discussion-font-size select{width:max(44px,3ch)}
+.mobile-discussion-editor > [data-slot="dialog-header"] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--focus-surface);
+  color: var(--focus-text);
+  border-bottom-color: var(--focus-border);
+}
+body
+  .workspace-dialog.mobile-discussion-editor
+  > [data-slot="dialog-header"]
+  > [data-slot="dialog-title"] {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: center;
+  white-space: nowrap;
+  margin: 0;
+  font-size: 13px;
+  line-height: 24px;
+  color: var(--focus-text);
+}
+.mobile-discussion-header-actions {
+  display: contents;
+}
+body
+  .workspace-dialog.mobile-discussion-editor
+  .mobile-discussion-header-actions
+  > [data-slot="button"] {
+  grid-row: 1;
+  min-height: 44px;
+  width: auto;
+  white-space: nowrap;
+  font-size: 12px;
+  padding: 8px 6px;
+}
+.mobile-discussion-header-actions > [data-slot="button"]:first-child {
+  grid-column: 1;
+  justify-self: start;
+  color: var(--focus-text);
+  background: transparent;
+  border-color: var(--focus-border);
+}
+.mobile-discussion-header-actions > [data-slot="button"]:last-child {
+  grid-column: 3;
+  justify-self: end;
+}
+@media (min-width: 375px) {
+  body
+    .workspace-dialog.mobile-discussion-editor
+    > [data-slot="dialog-header"]
+    > [data-slot="dialog-title"] {
+    font-size: 14px;
+  }
+}
+.mobile-discussion-editor .discussion-doc-toolbar {
+  top: 68px;
+  flex-wrap: nowrap;
+  padding: 4px 12px;
+  gap: 0;
+  overflow: visible;
+}
+.mobile-discussion-editor .discussion-doc-format-tools {
+  flex-wrap: nowrap;
+  gap: 0;
+  min-width: 0;
+}
+.mobile-discussion-editor .discussion-toolbar-divider {
+  display: none;
+}
+.mobile-discussion-editor .discussion-font-size {
+  flex-shrink: 0;
+  width: 68px;
+  padding-inline: 2px;
+}
+.mobile-discussion-editor .discussion-font-size select {
+  width: 44px;
+  min-width: 44px;
+}
+.mobile-discussion-editor .discussion-doc-format-tools > button,
+.mobile-discussion-editor .discussion-format-group {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
+}
+.mobile-discussion-editor .discussion-format-group {
+  border: 0;
+  background: transparent;
+  color: var(--foreground);
+  font-size: 12px;
+  padding: 0 2px;
+}
+.mobile-discussion-editor .discussion-doc-toolbar-actions {
+  flex-wrap: nowrap;
+  margin-left: auto;
+  gap: 0;
+}
+.mobile-discussion-editor .discussion-history-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+}
+.mobile-discussion-editor .discussion-history-trigger svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 374px) {
+  body
+    .workspace-dialog.mobile-discussion-editor
+    .mobile-discussion-header-actions
+    > [data-slot="button"] {
+    font-size: 11px;
+  }
+}
+
+/* Mobile editing keeps the primary save action within reach at the screen bottom. */
+.mobile-discussion-editor > [data-slot="dialog-header"] {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+body
+  .workspace-dialog.mobile-discussion-editor
+  > [data-slot="dialog-header"]
+  > [data-slot="dialog-title"] {
+  grid-column: 1;
+  justify-self: start;
+  text-align: left;
+  font-size: 16px;
+}
+.mobile-discussion-header-actions > [data-slot="button"]:first-child {
+  grid-column: 2;
+  justify-self: end;
+}
+body
+  .workspace-dialog.mobile-discussion-editor
+  .mobile-discussion-header-actions
+  > [data-slot="button"] {
+  font-size: 12px;
+  padding-inline: 12px;
+}
+.mobile-discussion-save-bar {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 40;
+  padding: 16px 24px max(16px, env(safe-area-inset-bottom));
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  pointer-events: none;
+}
+body
+  .workspace-dialog.mobile-discussion-editor
+  .mobile-discussion-save-bar
+  > [data-slot="button"] {
+  pointer-events: auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+.mobile-discussion-editor .discussion-doc-editor {
+  padding-bottom: calc(104px + env(safe-area-inset-bottom));
+  scroll-padding-bottom: 104px;
+}
+
+.mobile-discussion-editor > [data-slot="dialog-header"] {
+  --ring: var(--focus-text);
+}
+.mobile-document-dialog {
+  scroll-padding-block: 128px 104px;
+}
+@media (max-width: 800px) {
+  .mobile-discussion-editor .discussion-format-group {
+    font-size: 16px;
+  }
+  .mobile-discussion-editor .discussion-font-size select {
+    font-size: 16px;
+  }
+}
+
+.mobile-discussion-editor .discussion-doc-toolbar {
+  top: var(--editor-header-height, 68px);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+body
+  .workspace-dialog.mobile-discussion-editor
+  > [data-slot="dialog-header"]
+  > [data-slot="dialog-title"] {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.mobile-discussion-editor .discussion-doc-format-tools,
+.mobile-discussion-editor .discussion-doc-toolbar-actions {
+  flex-shrink: 0;
+}
+.mobile-discussion-editor .discussion-format-group {
+  width: max(44px, 3ch);
+}
+.mobile-discussion-editor .discussion-font-size {
+  width: auto;
+  min-width: 68px;
+}
+.mobile-discussion-editor .discussion-font-size select {
+  width: max(44px, 3ch);
+}

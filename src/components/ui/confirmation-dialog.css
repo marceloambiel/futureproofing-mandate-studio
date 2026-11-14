@@ -1,24 +1,152 @@
 /* Approval and confirmation prompts share the page's heading hierarchy. */
-.workspace-dialog.confirmation-dialog[data-slot=dialog-content]{display:flex;flex-direction:column;width:480px;max-width:calc(100vw - 32px);gap:20px;padding:24px}
-.workspace-dialog.confirmation-dialog[data-slot=dialog-content]>[data-slot=dialog-header]{gap:10px;padding:0}
-.workspace-dialog.confirmation-dialog[data-slot=dialog-content] [data-slot=dialog-title]{margin:0;font-family:inherit;font-size:20px;font-weight:400;line-height:1.4;letter-spacing:-.3px}
-.workspace-dialog.confirmation-dialog[data-slot=dialog-content] [data-slot=dialog-description]{margin:0;font-size:13px;font-weight:400;line-height:1.65;color:var(--muted-foreground)}
-.workspace-dialog.confirmation-dialog[data-slot=dialog-content] .confirmation-dialog-close{position:static;display:flex;align-items:center;justify-content:center;width:44px;height:44px;min-height:44px;padding:10px;color:var(--muted-foreground)}
-.workspace-dialog.confirmation-dialog[data-slot=dialog-content] .confirmation-dialog-close>svg{width:24px;height:24px}
-.workspace-dialog.confirmation-dialog[data-slot=dialog-content]>:is(.workspace-actions,.assignment-detail-actions,[data-slot=dialog-footer]){display:flex;flex-direction:column-reverse;align-items:stretch;justify-content:flex-start;gap:12px;width:100%;margin:4px 0 0;padding:0;border:0;background:transparent}
-.workspace-dialog.confirmation-dialog[data-slot=dialog-content]>:is(.workspace-actions,.assignment-detail-actions,[data-slot=dialog-footer])>[data-slot=button]{width:100%;max-width:none;height:auto;min-height:44px;margin:0;padding:12px 16px;font-size:14px;font-weight:400;line-height:1.4;white-space:normal;touch-action:manipulation}
-
-/* All mobile modal footers use the same full-width action stack. */
-@media(max-width:800px){
- body [data-slot=dialog-content][role=dialog] [data-slot=dialog-footer],
- body .workspace-dialog[data-slot=dialog-content][role=dialog] :is(.workspace-actions,.assignment-detail-actions,.discussion-history-actions,.candidate-removal-actions){display:flex;flex-direction:column-reverse;align-items:stretch;gap:12px;width:100%;margin-inline:0}
- body [data-slot=dialog-content][role=dialog] [data-slot=dialog-footer]>:is(button,a),
- body .workspace-dialog[data-slot=dialog-content][role=dialog] :is(.workspace-actions,.assignment-detail-actions,.discussion-history-actions,.candidate-removal-actions)>:is(button,a){display:flex;align-items:center;justify-content:center;flex:none;width:100%;max-width:none;min-height:44px;margin-inline:0;padding:12px 16px;white-space:normal;line-height:1.4;touch-action:manipulation}
+.workspace-dialog.confirmation-dialog[data-slot="dialog-content"] {
+  display: flex;
+  flex-direction: column;
+  width: 480px;
+  max-width: calc(100vw - 32px);
+  gap: 20px;
+  padding: 24px;
+}
+.workspace-dialog.confirmation-dialog[data-slot="dialog-content"]
+  > [data-slot="dialog-header"] {
+  gap: 10px;
+  padding: 0;
+}
+.workspace-dialog.confirmation-dialog[data-slot="dialog-content"]
+  [data-slot="dialog-title"] {
+  margin: 0;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+}
+.workspace-dialog.confirmation-dialog[data-slot="dialog-content"]
+  [data-slot="dialog-description"] {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--muted-foreground);
+}
+.workspace-dialog.confirmation-dialog[data-slot="dialog-content"]
+  .confirmation-dialog-close {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 10px;
+  color: var(--muted-foreground);
+}
+.workspace-dialog.confirmation-dialog[data-slot="dialog-content"]
+  .confirmation-dialog-close
+  > svg {
+  width: 24px;
+  height: 24px;
+}
+.workspace-dialog.confirmation-dialog[data-slot="dialog-content"]
+  > :is(
+    .workspace-actions,
+    .assignment-detail-actions,
+    [data-slot="dialog-footer"]
+  ) {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 12px;
+  width: 100%;
+  margin: 4px 0 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.workspace-dialog.confirmation-dialog[data-slot="dialog-content"]
+  > :is(
+    .workspace-actions,
+    .assignment-detail-actions,
+    [data-slot="dialog-footer"]
+  )
+  > [data-slot="button"] {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  min-height: 44px;
+  margin: 0;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: normal;
+  touch-action: manipulation;
 }
 
-.workspace-dialog.confirmation-dialog[data-slot=dialog-content]>[data-slot=dialog-header]{padding-right:40px}
-.workspace-dialog.confirmation-dialog[data-slot=dialog-content] .confirmation-dialog-close{position:absolute;top:16px;right:16px}
+/* All mobile modal footers use the same full-width action stack. */
+@media (max-width: 800px) {
+  body [data-slot="dialog-content"][role="dialog"] [data-slot="dialog-footer"],
+  body
+    .workspace-dialog[data-slot="dialog-content"][role="dialog"]
+    :is(
+      .workspace-actions,
+      .assignment-detail-actions,
+      .discussion-history-actions,
+      .candidate-removal-actions
+    ) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    margin-inline: 0;
+  }
+  body
+    [data-slot="dialog-content"][role="dialog"]
+    [data-slot="dialog-footer"]
+    > :is(button, a),
+  body
+    .workspace-dialog[data-slot="dialog-content"][role="dialog"]
+    :is(
+      .workspace-actions,
+      .assignment-detail-actions,
+      .discussion-history-actions,
+      .candidate-removal-actions
+    )
+    > :is(button, a) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 100%;
+    max-width: none;
+    min-height: 44px;
+    margin-inline: 0;
+    padding: 12px 16px;
+    white-space: normal;
+    line-height: 1.4;
+    touch-action: manipulation;
+  }
+}
 
-@media(max-width:800px){
- body .workspace-dialog[data-slot=dialog-content]>[data-slot=dialog-close]{width:44px;height:44px;min-height:44px}
+.workspace-dialog.confirmation-dialog[data-slot="dialog-content"]
+  > [data-slot="dialog-header"] {
+  padding-right: 40px;
+}
+.workspace-dialog.confirmation-dialog[data-slot="dialog-content"]
+  .confirmation-dialog-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+@media (max-width: 800px) {
+  body
+    .workspace-dialog[data-slot="dialog-content"]
+    > [data-slot="dialog-close"] {
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+  }
 }

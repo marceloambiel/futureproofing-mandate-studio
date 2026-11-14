@@ -1,73 +1,125 @@
-import {test,expect} from '@playwright/test'
+import { test, expect } from "@playwright/test"
 
-test('Lenis eases wheel input and releases the page for contact and workspace routes',async({page})=>{
- await page.setViewportSize({width:1440,height:900})
- await page.goto('/')
- await expect(page.locator('html')).toHaveClass(/lenis/)
- await page.mouse.move(100,400)
- await page.mouse.wheel(0,600)
- await page.waitForTimeout(80)
- const early=await page.evaluate(()=>scrollY)
- expect(early).toBeGreaterThan(0)
- expect(early).toBeLessThan(550)
- await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThanOrEqual(598)
- await page.locator('.marketing-header-actions').getByRole('button',{name:'Request a conversation'}).click()
- await expect(page.locator('html')).not.toHaveClass(/lenis/)
- const frozen=await page.evaluate(()=>scrollY)
- await page.mouse.move(10,450)
- await page.mouse.wheel(0,500)
- await page.waitForTimeout(150)
- expect(await page.evaluate(()=>scrollY)).toBe(frozen)
- await page.getByRole('dialog').getByRole('button',{name:'Cancel',exact:true}).click()
- await expect(page.locator('html')).toHaveClass(/lenis/)
- await page.locator('#sample-workspace').getByRole('link',{name:'Start the demo',exact:true}).click()
- await expect(page.locator('html')).toHaveClass(/lenis-stopped/)
- await expect(page).toHaveURL(/\/workspace$/)
- await expect(page.locator('html')).not.toHaveClass(/lenis/)
+test("Lenis eases wheel input and releases the page for contact and workspace routes", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto("/")
+  await expect(page.locator("html")).toHaveClass(/lenis/)
+  await page.mouse.move(100, 400)
+  await page.mouse.wheel(0, 600)
+  await page.waitForTimeout(80)
+  const early = await page.evaluate(() => scrollY)
+  expect(early).toBeGreaterThan(0)
+  expect(early).toBeLessThan(550)
+  await expect
+    .poll(() => page.evaluate(() => scrollY))
+    .toBeGreaterThanOrEqual(598)
+  await page
+    .locator(".marketing-header-actions")
+    .getByRole("button", { name: "Request a conversation" })
+    .click()
+  await expect(page.locator("html")).not.toHaveClass(/lenis/)
+  const frozen = await page.evaluate(() => scrollY)
+  await page.mouse.move(10, 450)
+  await page.mouse.wheel(0, 500)
+  await page.waitForTimeout(150)
+  expect(await page.evaluate(() => scrollY)).toBe(frozen)
+  await page
+    .getByRole("dialog")
+    .getByRole("button", { name: "Cancel", exact: true })
+    .click()
+  await expect(page.locator("html")).toHaveClass(/lenis/)
+  await page
+    .locator("#sample-workspace")
+    .getByRole("link", { name: "Start the demo", exact: true })
+    .click()
+  await expect(page.locator("html")).toHaveClass(/lenis-stopped/)
+  await expect(page).toHaveURL(/\/workspace$/)
+  await expect(page.locator("html")).not.toHaveClass(/lenis/)
 })
 
-test('anchors preserve their URL and reach the right section',async({page})=>{
- await page.goto('/')
- await page.getByRole('navigation',{name:'Main navigation',exact:true}).getByRole('link',{name:'FAQ',exact:true}).click()
- await expect(page).toHaveURL(/#faq$/)
- await expect.poll(()=>page.locator('#faq').evaluate(el=>Math.abs(el.getBoundingClientRect().top-parseFloat(getComputedStyle(el).scrollMarginTop)-parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)))).toBeLessThan(3)
+test("anchors preserve their URL and reach the right section", async ({
+  page,
+}) => {
+  await page.goto("/")
+  await page
+    .getByRole("navigation", { name: "Main navigation", exact: true })
+    .getByRole("link", { name: "FAQ", exact: true })
+    .click()
+  await expect(page).toHaveURL(/#faq$/)
+  await expect
+    .poll(() =>
+      page
+        .locator("#faq")
+        .evaluate((el) =>
+          Math.abs(
+            el.getBoundingClientRect().top -
+              parseFloat(getComputedStyle(el).scrollMarginTop) -
+              parseFloat(
+                getComputedStyle(document.documentElement).scrollPaddingTop
+              )
+          )
+        )
+    )
+    .toBeLessThan(3)
 })
 
-test('reduced motion removes wheel inertia',async({page})=>{
- await page.emulateMedia({reducedMotion:'reduce'})
- await page.goto('/')
- await expect(page.locator('html')).toHaveClass(/lenis/)
- await page.mouse.move(100,400)
- await page.mouse.wheel(0,600)
- await expect.poll(()=>page.evaluate(()=>scrollY),{timeout:1500}).toBeGreaterThanOrEqual(598)
- expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBe(false)
+test("reduced motion removes wheel inertia", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" })
+  await page.goto("/")
+  await expect(page.locator("html")).toHaveClass(/lenis/)
+  await page.mouse.move(100, 400)
+  await page.mouse.wheel(0, 600)
+  await expect
+    .poll(() => page.evaluate(() => scrollY), { timeout: 1500 })
+    .toBeGreaterThanOrEqual(598)
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)
+  ).toBe(false)
 })
 
-test('wheel momentum keeps moving when the pointer crosses the stacked comparison preview',async({page})=>{
- await page.setViewportSize({width:1440,height:1000})
- await page.goto('/')
- const comparison=page.locator('.product-comparison-full')
- await comparison.waitFor()
- await comparison.evaluate(el=>window.scrollTo({top:el.getBoundingClientRect().top+scrollY-200,behavior:'instant'}))
- await expect(page.locator('html')).not.toHaveClass(/lenis-scrolling/)
- await page.mouse.move(450,450)
- await page.mouse.wheel(0,120)
- await page.waitForTimeout(60)
- const before=await page.evaluate(()=>scrollY)
- await page.mouse.move(1000,450)
- expect(await page.evaluate(()=>!!document.elementFromPoint(1000,450)?.closest('.product-comparison-full'))).toBe(true)
- await page.mouse.wheel(0,400)
- await page.waitForTimeout(250)
- expect((await page.evaluate(()=>scrollY))-before).toBeGreaterThan(250)
+test("wheel momentum keeps moving when the pointer crosses the stacked comparison preview", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 })
+  await page.goto("/")
+  const comparison = page.locator(".product-comparison-full")
+  await comparison.waitFor()
+  await comparison.evaluate((el) =>
+    window.scrollTo({
+      top: el.getBoundingClientRect().top + scrollY - 200,
+      behavior: "instant",
+    })
+  )
+  await expect(page.locator("html")).not.toHaveClass(/lenis-scrolling/)
+  await page.mouse.move(450, 450)
+  await page.mouse.wheel(0, 120)
+  await page.waitForTimeout(60)
+  const before = await page.evaluate(() => scrollY)
+  await page.mouse.move(1000, 450)
+  expect(
+    await page.evaluate(
+      () =>
+        !!document
+          .elementFromPoint(1000, 450)
+          ?.closest(".product-comparison-full")
+    )
+  ).toBe(true)
+  await page.mouse.wheel(0, 400)
+  await page.waitForTimeout(250)
+  expect((await page.evaluate(() => scrollY)) - before).toBeGreaterThan(250)
 })
 
-test('sideways comparison wheel gestures remain native',async({page})=>{
- await page.setViewportSize({width:900,height:1000})
- await page.goto('/')
- const comparison=page.locator('.product-comparison-full')
- await comparison.scrollIntoViewIfNeeded()
- await expect(page.locator('html')).not.toHaveClass(/lenis-scrolling/)
- await comparison.hover()
- await page.mouse.wheel(200,10)
- await expect.poll(()=>comparison.evaluate(el=>el.scrollLeft)).toBeGreaterThan(0)
+test("sideways comparison wheel gestures remain native", async ({ page }) => {
+  await page.setViewportSize({ width: 900, height: 1000 })
+  await page.goto("/")
+  const comparison = page.locator(".product-comparison-full")
+  await comparison.scrollIntoViewIfNeeded()
+  await expect(page.locator("html")).not.toHaveClass(/lenis-scrolling/)
+  await comparison.hover()
+  await page.mouse.wheel(200, 10)
+  await expect
+    .poll(() => comparison.evaluate((el) => el.scrollLeft))
+    .toBeGreaterThan(0)
 })

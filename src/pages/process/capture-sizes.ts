@@ -1,110 +1,29 @@
-export const captureSizes:Record<string,readonly [number,number]> = {
-  "restored-draft-blocked.jpg": [
-    1440,
-    1000
-  ],
-  "original-client-brief.jpg": [
-    1440,
-    1000
-  ],
-  "assignment-desktop.jpg": [
-    1440,
-    1000
-  ],
-  "fresh-review-required.jpg": [
-    1440,
-    1000
-  ],
-  "dashboard-notification.jpg": [
-    1440,
-    1000
-  ],
-  "completed-dashboard.jpg": [
-    1440,
-    1000
-  ],
-  "candidate-profile.jpg": [
-    1440,
-    1000
-  ],
-  "add-candidate.jpg": [
-    1440,
-    1000
-  ],
-  "candidates-mobile.jpg": [
-    390,
-    844
-  ],
-  "home-before-524e818.png": [
-    1440,
-    900
-  ],
-  "review-confirmation.jpg": [
-    1440,
-    1000
-  ],
-  "assignment-mobile.jpg": [
-    390,
-    844
-  ],
-  "embedded-demo.jpg": [
-    1208,
-    764
-  ],
-  "comparison-mobile.jpg": [
-    390,
-    844
-  ],
-  "website-challenges.jpg": [
-    1440,
-    1029
-  ],
-  "completed.jpg": [
-    1440,
-    1000
-  ],
-  "comparison-desktop.jpg": [
-    838,
-    700
-  ],
-  "discussion-editor-desktop.jpg": [
-    1440,
-    1000
-  ],
-  "candidates-desktop.jpg": [
-    1440,
-    1000
-  ],
-  "discussion-editor-mobile.jpg": [
-    390,
-    844
-  ],
-  "website-product.jpg": [
-    1208,
-    560
-  ],
-  "website-mobile.jpg": [
-    390,
-    633
-  ],
-  "dashboard-mobile.jpg": [
-    390,
-    844
-  ],
-  "edit-requirements.jpg": [
-    1440,
-    1000
-  ],
-  "website-desktop.jpg": [
-    1440,
-    603
-  ],
-  "discussion-history.jpg": [
-    1440,
-    1000
-  ],
-  "client-brief-versions.jpg": [
-    1440,
-    1000
-  ]
+export const captureSizes: Record<string, readonly [number, number]> = {
+  "restored-draft-blocked.jpg": [1440, 1000],
+  "original-client-brief.jpg": [1440, 1000],
+  "assignment-desktop.jpg": [1440, 1000],
+  "fresh-review-required.jpg": [1440, 1000],
+  "dashboard-notification.jpg": [1440, 1000],
+  "completed-dashboard.jpg": [1440, 1000],
+  "candidate-profile.jpg": [1440, 1000],
+  "add-candidate.jpg": [1440, 1000],
+  "candidates-mobile.jpg": [390, 844],
+  "home-before-524e818.png": [1440, 900],
+  "review-confirmation.jpg": [1440, 1000],
+  "assignment-mobile.jpg": [390, 844],
+  "embedded-demo.jpg": [1208, 764],
+  "comparison-mobile.jpg": [390, 844],
+  "website-challenges.jpg": [1440, 1029],
+  "completed.jpg": [1440, 1000],
+  "comparison-desktop.jpg": [838, 700],
+  "discussion-editor-desktop.jpg": [1440, 1000],
+  "candidates-desktop.jpg": [1440, 1000],
+  "discussion-editor-mobile.jpg": [390, 844],
+  "website-product.jpg": [1208, 560],
+  "website-mobile.jpg": [390, 633],
+  "dashboard-mobile.jpg": [390, 844],
+  "edit-requirements.jpg": [1440, 1000],
+  "website-desktop.jpg": [1440, 603],
+  "discussion-history.jpg": [1440, 1000],
+  "client-brief-versions.jpg": [1440, 1000],
 }

@@ -2,6 +2,8 @@
 
 A local Vite + React + TypeScript prototype for a fictional executive-search advisory firm. This refines the existing v1 app in place. The website and workspace require no login. The project hub has a presentation-only password gate; it is not server-side authentication.
 
+For architecture, state rules, styling guardrails and release instructions, read [the developer handoff](docs/HANDOFF.md).
+
 ## Start and review
 
 ```sh
@@ -29,14 +31,14 @@ V1 is the earlier approved expansion-focused mandate excerpt. V2 is the current 
 - Home's assistant offers three bounded local responses from actual sample fields. **Insert draft into brief** opens the normal editor; save creates a new draft. No remote AI/network call.
 - The assignment alert appears for the real supplied changed-mandate event until acknowledged. No invented prior visit, notification time, activity or unread count. The change remains discoverable afterward.
 - A/B/C start included. Remove/Add only changes local comparison membership, never rejection/deletion. Removed records can be re-added; reset restores initial membership. The required discussion always retains all three supplied profiles and explains membership when it differs.
-- Summary and full profile share the same data. Overview/Experience/Skills / Technical/Education navigate scroll sections. Unsupported fields and absent profile history are explicit.
+- Summary and full profile share the same data. The profile drawer provides Experience, Education, Projects and Skill Map tabs. Unsupported fields and absent profile history are explicit.
 - Ready means the exact saved version is **Ready for review**, never approved or sent. Editing changed ready content or restoring creates a new draft requiring fresh review; no-op/cancel preserves the source snapshot.
 - Compare versions and restore only V1's supplied mandate section. Candidate evidence/questions remain; the business mandate stays integration. **Update to revised mandate**, save, then explicitly mark ready.
 - `/workspace/discussion?scenario=save-failure` arms one failed changed save per visit. The editor retains text; **Retry save** persists it. No random failure or hidden mutator API.
 - Two tabs: edit in one, save a different edit in another. Reload saved copy or explicitly keep local edits as a new draft after the latest history.
-- Guided sample uses actual same-origin assignment, candidate and discussion screens. Next/Back/Skip/Escape/Close retain host-page context and guard embedded unsaved edits. The separate live-workspace link opens the real app.
+- The website preview opens the real full-screen workspace. Website and hub entry start a fresh sample; normal workspace navigation and reloads retain progress.
 
-Unsaved editing is protected on Close/Escape/backdrop, in-app navigation, browser Back and document exit. A single host navigation guard also protects unsaved edits in the homepage live preview and guided iframe. Hard process termination cannot preserve unsaved memory.
+Unsaved editing is protected by the document and navigation guards. The homepage iframe is an inert preview; editing happens in the full-page workspace. Hard process termination cannot preserve unsaved memory.
 
 ## Storage and recovery
 
@@ -45,6 +47,7 @@ The v1 brief schema/key `mandate-studio:v1` remains unchanged. Validated compari
 ## Build and checks
 
 ```sh
+pnpm format:check
 pnpm lint
 pnpm typecheck
 pnpm test:unit
@@ -57,7 +60,7 @@ pnpm preview --host 127.0.0.1
 
 Use the existing pinned installation. `check` aggregates all six gates. Browser checks require Chromium/loopback execution permission on restricted hosts. If Chromium is absent, the existing setup command is `pnpm exec playwright install chromium`. Run browser/preview suites sequentially to prevent trace-output collisions. Final test output is under `docs/run/mandate-studio-v2/evidence/`. Fixed desktop 1440×1000 and mobile 390×844 capture tests are included; captures alone do not constitute visual acceptance.
 
-The baseline source archive, manifest, test-first receipts, interface/reference locks, actual agent ownership, exact final source/build hashes, acceptance, independent review and handback are under `docs/run/mandate-studio-v2/`. Significant dirty v1 work was preserved before edits; no commit/reset was performed. `baseline-git-status.txt` records the starting state. The scaffold HEAD does not identify the assembled app.
+Historical local run evidence and source checkpoints remain under ignored `docs/run/` and `.checkpoints/` paths. They are not required to build the public repository. See Git history for published source revisions and `docs/deployment/publication-audit.md` for the public disclosure review.
 
 ## Design and evidence
 

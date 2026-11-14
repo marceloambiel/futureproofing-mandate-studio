@@ -1,35 +1,51 @@
-import {test,expect} from '@playwright/test'
-import AxeBuilder from '@axe-core/playwright'
+import { test, expect } from "@playwright/test"
+import AxeBuilder from "@axe-core/playwright"
 
-for(const width of [1440,320])test(`project hub requires a password and remembers this tab session at ${width}`,async({page,browser})=>{
- await page.setViewportSize({width,height:900})
- await page.goto('/prototype-notes')
- const input=page.getByLabel('Password',{exact:true})
- await expect(input).toHaveAttribute('type','password')
- await expect(page.locator('.prototype-hub-card')).toHaveCount(0)
- await input.fill('incorrect')
- await page.getByRole('button',{name:'View project hub'}).click()
- await expect(page.getByRole('alert')).toHaveText('Incorrect password. Please try again.')
- await expect(input).toHaveAttribute('aria-invalid','true')
- const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()
- expect(axe.violations).toEqual([])
- expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
- await page.screenshot({path:`/tmp/mandate-hub-password-${width}.png`})
- await input.fill('hiremarcelonow')
- await input.press('Enter')
- await expect(page.locator('.prototype-hub-card')).toHaveCount(5)
- await expect(page.getByRole('heading',{level:1})).toBeFocused()
- await expect(page.getByLabel('Password',{exact:true})).toHaveCount(0)
- expect(await page.evaluate(()=>JSON.stringify({...localStorage}))).not.toContain('hiremarcelonow')
- expect(await page.evaluate(()=>JSON.stringify({...sessionStorage}))).not.toContain('hiremarcelonow')
- await page.reload()
- await expect(page.locator('.prototype-hub-card')).toHaveCount(5)
- await page.getByRole('link',{name:/The website/}).click()
- await page.goto('/prototype-notes')
- await expect(page.locator('.prototype-hub-card')).toHaveCount(5)
- const freshContext=await browser.newContext()
- const fresh=await freshContext.newPage()
- await fresh.goto(new URL('/prototype-notes',page.url()).href)
- await expect(fresh.getByLabel('Password',{exact:true})).toBeVisible()
- await freshContext.close()
-})
+for (const width of [1440, 320])
+  test(`project hub requires a password and remembers this tab session at ${width}`, async ({
+    page,
+    browser,
+  }) => {
+    await page.setViewportSize({ width, height: 900 })
+    await page.goto("/prototype-notes")
+    const input = page.getByLabel("Password", { exact: true })
+    await expect(input).toHaveAttribute("type", "password")
+    await expect(page.locator(".prototype-hub-card")).toHaveCount(0)
+    await input.fill("incorrect")
+    await page.getByRole("button", { name: "View project hub" }).click()
+    await expect(page.getByRole("alert")).toHaveText(
+      "Incorrect password. Please try again."
+    )
+    await expect(input).toHaveAttribute("aria-invalid", "true")
+    const axe = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
+      .analyze()
+    expect(axe.violations).toEqual([])
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth
+      )
+    ).toBe(true)
+    await page.screenshot({ path: `/tmp/mandate-hub-password-${width}.png` })
+    await input.fill("hiremarcelonow")
+    await input.press("Enter")
+    await expect(page.locator(".prototype-hub-card")).toHaveCount(5)
+    await expect(page.getByRole("heading", { level: 1 })).toBeFocused()
+    await expect(page.getByLabel("Password", { exact: true })).toHaveCount(0)
+    expect(
+      await page.evaluate(() => JSON.stringify({ ...localStorage }))
+    ).not.toContain("hiremarcelonow")
+    expect(
+      await page.evaluate(() => JSON.stringify({ ...sessionStorage }))
+    ).not.toContain("hiremarcelonow")
+    await page.reload()
+    await expect(page.locator(".prototype-hub-card")).toHaveCount(5)
+    await page.getByRole("link", { name: /The website/ }).click()
+    await page.goto("/prototype-notes")
+    await expect(page.locator(".prototype-hub-card")).toHaveCount(5)
+    const freshContext = await browser.newContext()
+    const fresh = await freshContext.newPage()
+    await fresh.goto(new URL("/prototype-notes", page.url()).href)
+    await expect(fresh.getByLabel("Password", { exact: true })).toBeVisible()
+    await freshContext.close()
+  })

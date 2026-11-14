@@ -1,192 +1,726 @@
 /* Mobile-only task flow. Desktop markup and layout retain their existing styling. */
-@media(max-width:800px){
- .assignment-layout--mobile-overview .assignment-general-info{padding:24px 24px 12px;border:0}
- .assignment-layout--mobile-overview .assignment-general-info h1{font-size:20px;line-height:1.4}
- .mobile-assignment-context{margin-top:12px}
- .mobile-assignment-context>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;list-style:none;font-size:12px;color:var(--muted-foreground);cursor:pointer;touch-action:manipulation}
- .mobile-assignment-context>summary::-webkit-details-marker,.mobile-assignment-section>summary::-webkit-details-marker{display:none}
- .mobile-assignment-context>summary>svg{width:20px;height:20px;flex-shrink:0}
- .mobile-assignment-context[open]>summary>svg,.mobile-assignment-section[open]>summary>svg{transform:rotate(180deg)}
- .assignment-layout--mobile-overview .assignment-general-info .assignment-ai-summary{margin-top:16px}
- .assignment-layout--mobile-overview .assignment-general-info .assignment-header-facts{margin-top:24px;padding-bottom:16px}
- .assignment-layout--mobile-overview .assignment-workspace{padding-bottom:calc(112px + env(safe-area-inset-bottom))}
- .assignment-layout--mobile-overview .assignment-workspace>.assignment-steps,
- .assignment-layout--mobile-overview .assignment-workspace>.assignment-steps.is-stuck{padding-block:16px;margin-bottom:24px}
- .assignment-layout--mobile-overview .assignment-steps ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
- .assignment-layout--mobile-overview .assignment-steps li{position:relative;display:block;max-width:none;min-width:0}
- .assignment-layout--mobile-overview .assignment-steps li:not(:last-child)::after{display:none}
- .assignment-layout--mobile-overview .assignment-steps li+li::before{display:block;content:'';position:absolute;top:12px;right:50%;width:calc(100% + 12px);height:1px;background:var(--border)}
- .assignment-layout--mobile-overview .assignment-steps li.is-reached::before{background:var(--workflow-ink)}
- .assignment-layout--mobile-overview .assignment-step{flex-direction:column;align-items:center;justify-content:flex-start;width:100%;min-height:72px;max-width:none;gap:6px;padding:0;text-align:center;touch-action:manipulation}
- .assignment-layout--mobile-overview .assignment-step-marker{width:24px;height:24px;font-size:11px;background:var(--background);box-shadow:0 0 0 6px var(--background)}
- .assignment-layout--mobile-overview .assignment-step-marker.is-complete{background:var(--workflow-ink)}
- .assignment-layout--mobile-overview .assignment-step-copy{gap:3px}
- .assignment-layout--mobile-overview .assignment-step-copy>span{font-size:11px;line-height:1.4;overflow-wrap:normal}
- .assignment-layout--mobile-overview .assignment-step-copy small{font-size:10px;line-height:1.4;overflow-wrap:normal}
- .assignment-layout--mobile-overview .assignment-workspace>.assignment-steps::before{content:'';position:absolute;inset:0 calc(-1 * var(--page-gutter));z-index:-1;background:var(--background);border-bottom:1px solid var(--border)}
- .assignment-layout--mobile-overview .assignment-step-header{margin-bottom:24px}
- .assignment-layout--mobile-overview .assignment-step-header h2{font-size:20px}
- .assignment-layout--mobile-overview .assignment-step-header>p{font-size:13px;line-height:1.65}
- .assignment-layout--mobile-overview .assignment-document-layout{gap:24px}
- .assignment-layout--mobile-overview .assignment-mandate-heading{gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
- .assignment-layout--mobile-overview .assignment-mandate-heading .mandate-versions-trigger{min-height:44px;margin-left:auto;font-size:12px}
- .assignment-layout--mobile-overview .mobile-document-preview-paper{height:300px}
- .assignment-layout--mobile-overview .mobile-document-preview-action{min-height:48px;padding:12px 16px}
- .assignment-layout--mobile-overview .assignment-extracted-details.workspace-preparation{display:grid;gap:12px;padding:0;border:0;background:transparent}
- .mobile-assignment-section{position:relative;min-width:0;border:1px solid var(--border);border-radius:var(--card-radius);background:var(--card)}
- .mobile-assignment-section>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:16px;list-style:none;cursor:pointer;touch-action:manipulation}
- .assignment-page .mobile-assignment-section>summary>h2{margin:0;font-size:16px;font-weight:400}
- .mobile-assignment-section>summary>svg{width:20px;height:20px;flex-shrink:0;color:var(--muted-foreground)}
- .mobile-assignment-section>.assignment-detail-tertiary{position:absolute;top:6px;right:44px;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:8px;font-size:12px;touch-action:manipulation}
- .mobile-assignment-section>.assignment-extracted-facts{padding:4px 16px 20px;gap:20px}
- .mobile-assignment-section .assignment-extracted-facts dt{font-size:12px}
- .mobile-assignment-section .assignment-extracted-facts dd{font-size:13px;line-height:1.65}
- .mobile-assignment-action-bar{position:fixed;inset:auto 0 0;z-index:36;display:flex;align-items:center;padding:16px 24px max(16px,env(safe-area-inset-bottom));border-top:1px solid var(--border);background:var(--background)}
- .assignment-page .mobile-assignment-action-bar>.assignment-primary-action[data-slot=button]{position:static;width:100%;min-height:48px;max-width:none;margin:0;padding:12px 16px;box-shadow:none;font-size:14px;touch-action:manipulation}
- .mobile-assignment-context>summary:focus-visible,.mobile-assignment-section>summary:focus-visible{outline:2px solid var(--workflow-ink);outline-offset:3px;border-radius:4px}
+@media (max-width: 800px) {
+  .assignment-layout--mobile-overview .assignment-general-info {
+    padding: 24px 24px 12px;
+    border: 0;
+  }
+  .assignment-layout--mobile-overview .assignment-general-info h1 {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+  .mobile-assignment-context {
+    margin-top: 12px;
+  }
+  .mobile-assignment-context > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 44px;
+    list-style: none;
+    font-size: 12px;
+    color: var(--muted-foreground);
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .mobile-assignment-context > summary::-webkit-details-marker,
+  .mobile-assignment-section > summary::-webkit-details-marker {
+    display: none;
+  }
+  .mobile-assignment-context > summary > svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+  .mobile-assignment-context[open] > summary > svg,
+  .mobile-assignment-section[open] > summary > svg {
+    transform: rotate(180deg);
+  }
+  .assignment-layout--mobile-overview
+    .assignment-general-info
+    .assignment-ai-summary {
+    margin-top: 16px;
+  }
+  .assignment-layout--mobile-overview
+    .assignment-general-info
+    .assignment-header-facts {
+    margin-top: 24px;
+    padding-bottom: 16px;
+  }
+  .assignment-layout--mobile-overview .assignment-workspace {
+    padding-bottom: calc(112px + env(safe-area-inset-bottom));
+  }
+  .assignment-layout--mobile-overview .assignment-workspace > .assignment-steps,
+  .assignment-layout--mobile-overview
+    .assignment-workspace
+    > .assignment-steps.is-stuck {
+    padding-block: 16px;
+    margin-bottom: 24px;
+  }
+  .assignment-layout--mobile-overview .assignment-steps ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .assignment-layout--mobile-overview .assignment-steps li {
+    position: relative;
+    display: block;
+    max-width: none;
+    min-width: 0;
+  }
+  .assignment-layout--mobile-overview
+    .assignment-steps
+    li:not(:last-child)::after {
+    display: none;
+  }
+  .assignment-layout--mobile-overview .assignment-steps li + li::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 12px;
+    right: 50%;
+    width: calc(100% + 12px);
+    height: 1px;
+    background: var(--border);
+  }
+  .assignment-layout--mobile-overview .assignment-steps li.is-reached::before {
+    background: var(--workflow-ink);
+  }
+  .assignment-layout--mobile-overview .assignment-step {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 72px;
+    max-width: none;
+    gap: 6px;
+    padding: 0;
+    text-align: center;
+    touch-action: manipulation;
+  }
+  .assignment-layout--mobile-overview .assignment-step-marker {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+    background: var(--background);
+    box-shadow: 0 0 0 6px var(--background);
+  }
+  .assignment-layout--mobile-overview .assignment-step-marker.is-complete {
+    background: var(--workflow-ink);
+  }
+  .assignment-layout--mobile-overview .assignment-step-copy {
+    gap: 3px;
+  }
+  .assignment-layout--mobile-overview .assignment-step-copy > span {
+    font-size: 11px;
+    line-height: 1.4;
+    overflow-wrap: normal;
+  }
+  .assignment-layout--mobile-overview .assignment-step-copy small {
+    font-size: 10px;
+    line-height: 1.4;
+    overflow-wrap: normal;
+  }
+  .assignment-layout--mobile-overview
+    .assignment-workspace
+    > .assignment-steps::before {
+    content: "";
+    position: absolute;
+    inset: 0 calc(-1 * var(--page-gutter));
+    z-index: -1;
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+  }
+  .assignment-layout--mobile-overview .assignment-step-header {
+    margin-bottom: 24px;
+  }
+  .assignment-layout--mobile-overview .assignment-step-header h2 {
+    font-size: 20px;
+  }
+  .assignment-layout--mobile-overview .assignment-step-header > p {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .assignment-layout--mobile-overview .assignment-document-layout {
+    gap: 24px;
+  }
+  .assignment-layout--mobile-overview .assignment-mandate-heading {
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .assignment-layout--mobile-overview
+    .assignment-mandate-heading
+    .mandate-versions-trigger {
+    min-height: 44px;
+    margin-left: auto;
+    font-size: 12px;
+  }
+  .assignment-layout--mobile-overview .mobile-document-preview-paper {
+    height: 300px;
+  }
+  .assignment-layout--mobile-overview .mobile-document-preview-action {
+    min-height: 48px;
+    padding: 12px 16px;
+  }
+  .assignment-layout--mobile-overview
+    .assignment-extracted-details.workspace-preparation {
+    display: grid;
+    gap: 12px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+  .mobile-assignment-section {
+    position: relative;
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--card-radius);
+    background: var(--card);
+  }
+  .mobile-assignment-section > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 56px;
+    padding: 16px;
+    list-style: none;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .assignment-page .mobile-assignment-section > summary > h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .mobile-assignment-section > summary > svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--muted-foreground);
+  }
+  .mobile-assignment-section > .assignment-detail-tertiary {
+    position: absolute;
+    top: 6px;
+    right: 44px;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px;
+    font-size: 12px;
+    touch-action: manipulation;
+  }
+  .mobile-assignment-section > .assignment-extracted-facts {
+    padding: 4px 16px 20px;
+    gap: 20px;
+  }
+  .mobile-assignment-section .assignment-extracted-facts dt {
+    font-size: 12px;
+  }
+  .mobile-assignment-section .assignment-extracted-facts dd {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .mobile-assignment-action-bar {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 36;
+    display: flex;
+    align-items: center;
+    padding: 16px 24px max(16px, env(safe-area-inset-bottom));
+    border-top: 1px solid var(--border);
+    background: var(--background);
+  }
+  .assignment-page
+    .mobile-assignment-action-bar
+    > .assignment-primary-action[data-slot="button"] {
+    position: static;
+    width: 100%;
+    min-height: 48px;
+    max-width: none;
+    margin: 0;
+    padding: 12px 16px;
+    box-shadow: none;
+    font-size: 14px;
+    touch-action: manipulation;
+  }
+  .mobile-assignment-context > summary:focus-visible,
+  .mobile-assignment-section > summary:focus-visible {
+    outline: 2px solid var(--workflow-ink);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
 }
 
-@media(max-width:800px){
- .assignment-general-info .workspace-page-heading:has(>.mobile-assignment-context){align-items:stretch}
- .mobile-assignment-context{width:100%;margin-top:0}
- .mobile-assignment-context>summary{align-items:flex-start;color:var(--foreground)}
- .assignment-general-info .mobile-assignment-context>summary>h1{flex:1;min-width:0;margin:0}
- .mobile-assignment-context>summary>svg{margin-top:4px;color:var(--muted-foreground)}
+@media (max-width: 800px) {
+  .assignment-general-info
+    .workspace-page-heading:has(> .mobile-assignment-context) {
+    align-items: stretch;
+  }
+  .mobile-assignment-context {
+    width: 100%;
+    margin-top: 0;
+  }
+  .mobile-assignment-context > summary {
+    align-items: flex-start;
+    color: var(--foreground);
+  }
+  .assignment-general-info .mobile-assignment-context > summary > h1 {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+  }
+  .mobile-assignment-context > summary > svg {
+    margin-top: 4px;
+    color: var(--muted-foreground);
+  }
 }
 
 /* A full-width, compact mobile workflow across assignment pages. */
-@media(max-width:800px){
- .assignment-layout .assignment-workspace>.assignment-steps{width:calc(100% + 2 * var(--page-gutter));margin-inline:calc(-1 * var(--page-gutter));padding-inline:16px}
- .assignment-layout .assignment-steps ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%}
- .assignment-layout .assignment-steps li{display:block;position:relative;max-width:none;min-width:0}
- .assignment-layout .assignment-steps li:not(:last-child)::after{display:none}
- .assignment-layout .assignment-steps li+li::before{display:block;content:'';position:absolute;top:12px;right:50%;width:calc(100% + 8px);height:1px;background:var(--border)}
- .assignment-layout .assignment-steps li.is-reached::before{background:var(--workflow-ink)}
- .assignment-layout .assignment-step{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:8px;width:100%;min-width:0;min-height:48px;padding:0;text-align:center}
- .assignment-layout .assignment-step-marker{width:24px;height:24px;font-size:11px;background:var(--background);box-shadow:0 0 0 6px var(--background)}
- .assignment-layout .assignment-step-marker.is-complete{background:var(--workflow-ink)}
- .assignment-layout .assignment-step-copy>span{font-size:11px;line-height:1.4;white-space:nowrap;overflow-wrap:normal}
- .assignment-layout .assignment-step-copy small{display:none}
- .assignment-layout .assignment-workspace>.assignment-steps::before{left:0;right:0}
+@media (max-width: 800px) {
+  .assignment-layout .assignment-workspace > .assignment-steps {
+    width: calc(100% + 2 * var(--page-gutter));
+    margin-inline: calc(-1 * var(--page-gutter));
+    padding-inline: 16px;
+  }
+  .assignment-layout .assignment-steps ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+  }
+  .assignment-layout .assignment-steps li {
+    display: block;
+    position: relative;
+    max-width: none;
+    min-width: 0;
+  }
+  .assignment-layout .assignment-steps li:not(:last-child)::after {
+    display: none;
+  }
+  .assignment-layout .assignment-steps li + li::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 12px;
+    right: 50%;
+    width: calc(100% + 8px);
+    height: 1px;
+    background: var(--border);
+  }
+  .assignment-layout .assignment-steps li.is-reached::before {
+    background: var(--workflow-ink);
+  }
+  .assignment-layout .assignment-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 0;
+    text-align: center;
+  }
+  .assignment-layout .assignment-step-marker {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+    background: var(--background);
+    box-shadow: 0 0 0 6px var(--background);
+  }
+  .assignment-layout .assignment-step-marker.is-complete {
+    background: var(--workflow-ink);
+  }
+  .assignment-layout .assignment-step-copy > span {
+    font-size: 11px;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow-wrap: normal;
+  }
+  .assignment-layout .assignment-step-copy small {
+    display: none;
+  }
+  .assignment-layout .assignment-workspace > .assignment-steps::before {
+    left: 0;
+    right: 0;
+  }
 }
 
-@media(max-width:800px){
- .mobile-assignment-section .mobile-search-collapsed-new{margin-left:auto}
- .mobile-assignment-section[open] .mobile-search-collapsed-new{display:none}
+@media (max-width: 800px) {
+  .mobile-assignment-section .mobile-search-collapsed-new {
+    margin-left: auto;
+  }
+  .mobile-assignment-section[open] .mobile-search-collapsed-new {
+    display: none;
+  }
 }
 
 /* Mobile step actions finish the content, rather than floating above it. */
-@media(max-width:800px){
- .assignment-layout .assignment-workspace{padding-bottom:max(32px,env(safe-area-inset-bottom))}
- .mobile-assignment-action-bar{position:static;inset:auto;display:block;padding:24px 0 0;border:0;background:transparent}
- .assignment-page .assignment-primary-action[data-slot=button]{position:static;inset:auto;display:flex;width:100%;max-width:none;min-height:48px;margin:24px 0 0;padding:12px 16px;box-shadow:none;font-size:14px;line-height:1.4;touch-action:manipulation}
- .assignment-page .mobile-assignment-action-bar>.assignment-primary-action[data-slot=button]{margin:0}
- .assignment-page .discussion-review-actions{margin-top:24px}
- .assignment-page .discussion-review-actions>.assignment-primary-action[data-slot=button]{width:100%;margin:0}
- .assignment-page .discussion-review-actions>.workspace-muted{order:-1}
+@media (max-width: 800px) {
+  .assignment-layout .assignment-workspace {
+    padding-bottom: max(32px, env(safe-area-inset-bottom));
+  }
+  .mobile-assignment-action-bar {
+    position: static;
+    inset: auto;
+    display: block;
+    padding: 24px 0 0;
+    border: 0;
+    background: transparent;
+  }
+  .assignment-page .assignment-primary-action[data-slot="button"] {
+    position: static;
+    inset: auto;
+    display: flex;
+    width: 100%;
+    max-width: none;
+    min-height: 48px;
+    margin: 24px 0 0;
+    padding: 12px 16px;
+    box-shadow: none;
+    font-size: 14px;
+    line-height: 1.4;
+    touch-action: manipulation;
+  }
+  .assignment-page
+    .mobile-assignment-action-bar
+    > .assignment-primary-action[data-slot="button"] {
+    margin: 0;
+  }
+  .assignment-page .discussion-review-actions {
+    margin-top: 24px;
+  }
+  .assignment-page
+    .discussion-review-actions
+    > .assignment-primary-action[data-slot="button"] {
+    width: 100%;
+    margin: 0;
+  }
+  .assignment-page .discussion-review-actions > .workspace-muted {
+    order: -1;
+  }
 }
 
 /* Extracted details read as page sections, distinct from the client document. */
-@media(max-width:800px){
- .assignment-layout--mobile-overview .assignment-extracted-details.workspace-preparation{gap:0}
- .assignment-layout--mobile-overview .mobile-assignment-section{border:0;border-radius:0;background:transparent}
- .assignment-layout--mobile-overview .mobile-assignment-section+.mobile-assignment-section{border-top:1px solid var(--border)}
- .assignment-layout--mobile-overview .mobile-assignment-section>summary{padding:20px 0;min-height:64px}
- .assignment-layout--mobile-overview .mobile-assignment-section>.assignment-extracted-facts{padding:0 0 24px}
- .assignment-layout--mobile-overview .mobile-assignment-section>.assignment-detail-tertiary{top:10px;right:28px}
+@media (max-width: 800px) {
+  .assignment-layout--mobile-overview
+    .assignment-extracted-details.workspace-preparation {
+    gap: 0;
+  }
+  .assignment-layout--mobile-overview .mobile-assignment-section {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+  .assignment-layout--mobile-overview
+    .mobile-assignment-section
+    + .mobile-assignment-section {
+    border-top: 1px solid var(--border);
+  }
+  .assignment-layout--mobile-overview .mobile-assignment-section > summary {
+    padding: 20px 0;
+    min-height: 64px;
+  }
+  .assignment-layout--mobile-overview
+    .mobile-assignment-section
+    > .assignment-extracted-facts {
+    padding: 0 0 24px;
+  }
+  .assignment-layout--mobile-overview
+    .mobile-assignment-section
+    > .assignment-detail-tertiary {
+    top: 10px;
+    right: 28px;
+  }
 }
 
 /* Keep the mobile assignment context and milestones together across all steps. */
-@media(max-width:800px){
- .assignment-layout .assignment-general-info{padding-bottom:8px;border-bottom:0}
- .assignment-layout .assignment-general-info .assignment-header-facts{padding-bottom:0}
- .assignment-layout .assignment-workspace>.assignment-steps:not(.is-stuck){padding-top:8px}
+@media (max-width: 800px) {
+  .assignment-layout .assignment-general-info {
+    padding-bottom: 8px;
+    border-bottom: 0;
+  }
+  .assignment-layout .assignment-general-info .assignment-header-facts {
+    padding-bottom: 0;
+  }
+  .assignment-layout .assignment-workspace > .assignment-steps:not(.is-stuck) {
+    padding-top: 8px;
+  }
 }
 
-@media(max-width:800px){
- .mobile-assignment-context>summary{display:grid;grid-template-columns:minmax(0,1fr) 20px;column-gap:12px;row-gap:0}
- .mobile-assignment-context>summary>.assignment-title-label{grid-column:1;grid-row:1}
- .mobile-assignment-context>summary>h1{grid-column:1;grid-row:2}
- .mobile-assignment-context>summary>svg{grid-column:2;grid-row:2}
+@media (max-width: 800px) {
+  .mobile-assignment-context > summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 20px;
+    column-gap: 12px;
+    row-gap: 0;
+  }
+  .mobile-assignment-context > summary > .assignment-title-label {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .mobile-assignment-context > summary > h1 {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .mobile-assignment-context > summary > svg {
+    grid-column: 2;
+    grid-row: 2;
+  }
 }
 
 /* One dark mobile block joins navigation, assignment context, and workflow. */
-@media(max-width:800px){
- .assignment-layout:has(.assignment-steps)>.assignment-general-info,
- .assignment-layout .assignment-workspace>.assignment-steps{
-  --foreground:var(--focus-text);--text-secondary:var(--focus-secondary);--muted-foreground:var(--focus-secondary);
-  --background:var(--focus-surface);--card:var(--focus-surface);--border:var(--focus-border);--accent:var(--focus-muted);
-  --workflow-ink:var(--focus-text);--workflow-active-text:var(--focus-surface);--action-text:var(--primary);--ring:var(--primary);
-  background:var(--focus-surface);color:var(--foreground);
- }
- .assignment-layout .assignment-workspace>.assignment-steps{box-shadow:0 -8px 0 var(--focus-surface)}
- .assignment-layout .assignment-workspace>.assignment-steps.is-stuck::before{border-bottom-color:var(--focus-border)}
- .assignment-layout .assignment-step:disabled{color:var(--focus-secondary)}
+@media (max-width: 800px) {
+  .assignment-layout:has(.assignment-steps) > .assignment-general-info,
+  .assignment-layout .assignment-workspace > .assignment-steps {
+    --foreground: var(--focus-text);
+    --text-secondary: var(--focus-secondary);
+    --muted-foreground: var(--focus-secondary);
+    --background: var(--focus-surface);
+    --card: var(--focus-surface);
+    --border: var(--focus-border);
+    --accent: var(--focus-muted);
+    --workflow-ink: var(--focus-text);
+    --workflow-active-text: var(--focus-surface);
+    --action-text: var(--primary);
+    --ring: var(--primary);
+    background: var(--focus-surface);
+    color: var(--foreground);
+  }
+  .assignment-layout .assignment-workspace > .assignment-steps {
+    box-shadow: 0 -8px 0 var(--focus-surface);
+  }
+  .assignment-layout
+    .assignment-workspace
+    > .assignment-steps.is-stuck::before {
+    border-bottom-color: var(--focus-border);
+  }
+  .assignment-layout .assignment-step:disabled {
+    color: var(--focus-secondary);
+  }
 }
 
-@media(max-width:800px){
- .assignment-layout:has(.assignment-steps)>.assignment-general-info{padding-bottom:24px}
+@media (max-width: 800px) {
+  .assignment-layout:has(.assignment-steps) > .assignment-general-info {
+    padding-bottom: 24px;
+  }
 }
 
-@media(max-width:800px){
- .assignment-layout .assignment-step{align-items:flex-start;text-align:left}
- .assignment-layout .assignment-steps li+li::before{left:calc(-100% + 30px);right:auto;width:calc(100% - 36px)}
+@media (max-width: 800px) {
+  .assignment-layout .assignment-step {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .assignment-layout .assignment-steps li + li::before {
+    left: calc(-100% + 30px);
+    right: auto;
+    width: calc(100% - 36px);
+  }
 }
 
-@media(max-width:800px){
- .assignment-layout .assignment-workspace>.mobile-assignment-pager-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px;margin-bottom:24px;touch-action:pan-y}
- .mobile-assignment-pager-nav>button{display:grid;place-items:center;flex-shrink:0;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:transparent;color:var(--focus-text)}
- .mobile-assignment-pager-nav>button:disabled{color:var(--focus-secondary);opacity:.4;cursor:default}
- .mobile-assignment-pager-nav>button>svg{width:24px;height:24px}
- .mobile-assignment-current-step{display:grid;justify-items:center;gap:4px;min-width:0;text-align:center}
- .assignment-page .mobile-assignment-current-step>h2{margin:0;font-size:16px;font-weight:400;line-height:1.4}
- .mobile-assignment-current-step>small{font-size:11px;line-height:1.4;color:var(--focus-secondary)}
- .mobile-assignment-page-track{position:relative;display:flex;align-items:flex-start;width:calc(100% + 2 * var(--page-gutter));margin-inline:calc(-1 * var(--page-gutter));overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none}
- .mobile-assignment-page-track::-webkit-scrollbar{display:none}
- .mobile-assignment-page{position:relative;flex:0 0 100%;width:100%;min-width:0;padding-inline:var(--page-gutter);scroll-snap-align:start;scroll-snap-stop:always}
+@media (max-width: 800px) {
+  .assignment-layout .assignment-workspace > .mobile-assignment-pager-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px;
+    margin-bottom: 24px;
+    touch-action: pan-y;
+  }
+  .mobile-assignment-pager-nav > button {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--focus-text);
+  }
+  .mobile-assignment-pager-nav > button:disabled {
+    color: var(--focus-secondary);
+    opacity: 0.4;
+    cursor: default;
+  }
+  .mobile-assignment-pager-nav > button > svg {
+    width: 24px;
+    height: 24px;
+  }
+  .mobile-assignment-current-step {
+    display: grid;
+    justify-items: center;
+    gap: 4px;
+    min-width: 0;
+    text-align: center;
+  }
+  .assignment-page .mobile-assignment-current-step > h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .mobile-assignment-current-step > small {
+    font-size: 11px;
+    line-height: 1.4;
+    color: var(--focus-secondary);
+  }
+  .mobile-assignment-page-track {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    width: calc(100% + 2 * var(--page-gutter));
+    margin-inline: calc(-1 * var(--page-gutter));
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+  .mobile-assignment-page-track::-webkit-scrollbar {
+    display: none;
+  }
+  .mobile-assignment-page {
+    position: relative;
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+    padding-inline: var(--page-gutter);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
 }
 
-@media(max-width:800px){.app-main .assignment-layout{overflow-x:clip}}
-
-@media(max-width:800px){
- .assignment-layout .assignment-workspace:has(>.mobile-assignment-page-track){padding-inline:0}
- .assignment-layout .assignment-workspace>.mobile-assignment-pager-nav{width:100%;margin-inline:0}
- .assignment-layout .mobile-assignment-page-track{width:100%;margin-inline:0}
+@media (max-width: 800px) {
+  .app-main .assignment-layout {
+    overflow-x: clip;
+  }
 }
 
-@media(max-width:800px){
- .assignment-layout .assignment-step-header>h2{display:none}
- .assignment-page .assignment-document-layout>.assignment-extracted-details.workspace-preparation{padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
- .assignment-page .assignment-document-layout>.assignment-extracted-details .mobile-assignment-section{background:transparent}
+@media (max-width: 800px) {
+  .assignment-layout
+    .assignment-workspace:has(> .mobile-assignment-page-track) {
+    padding-inline: 0;
+  }
+  .assignment-layout .assignment-workspace > .mobile-assignment-pager-nav {
+    width: 100%;
+    margin-inline: 0;
+  }
+  .assignment-layout .mobile-assignment-page-track {
+    width: 100%;
+    margin-inline: 0;
+  }
 }
 
-@media(max-width:800px){
- .assignment-layout:has(>.assignment-general-info .mobile-assignment-context[open]) .assignment-workspace>.mobile-assignment-pager-nav{border-top:1px solid var(--focus-border)}
+@media (max-width: 800px) {
+  .assignment-layout .assignment-step-header > h2 {
+    display: none;
+  }
+  .assignment-page
+    .assignment-document-layout
+    > .assignment-extracted-details.workspace-preparation {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .assignment-page
+    .assignment-document-layout
+    > .assignment-extracted-details
+    .mobile-assignment-section {
+    background: transparent;
+  }
 }
 
+@media (max-width: 800px) {
+  .assignment-layout:has(
+      > .assignment-general-info .mobile-assignment-context[open]
+    )
+    .assignment-workspace
+    > .mobile-assignment-pager-nav {
+    border-top: 1px solid var(--focus-border);
+  }
+}
 
 /* Keep the current mobile workflow action visible while its page scrolls. */
-@media(max-width:800px){
- .assignment-layout .assignment-workspace{padding-bottom:calc(104px + env(safe-area-inset-bottom))}
- .assignment-layout .mobile-assignment-action-bar{position:fixed;inset:auto 0 0;z-index:36;padding:16px 24px max(16px,env(safe-area-inset-bottom));border-top:1px solid var(--border);background:var(--background)}
- .assignment-layout .assignment-primary-action[data-slot=button]{position:fixed;inset:auto 24px max(16px,env(safe-area-inset-bottom));z-index:36;display:flex;width:calc(100% - 48px);max-width:none;min-height:48px;margin:0;box-shadow:none}
- .assignment-layout .mobile-assignment-action-bar>.assignment-primary-action[data-slot=button]{position:static;inset:auto;width:100%;margin:0}
- .mobile-assignment-page[inert] :is(.mobile-assignment-action-bar,.assignment-primary-action){visibility:hidden}
+@media (max-width: 800px) {
+  .assignment-layout .assignment-workspace {
+    padding-bottom: calc(104px + env(safe-area-inset-bottom));
+  }
+  .assignment-layout .mobile-assignment-action-bar {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 36;
+    padding: 16px 24px max(16px, env(safe-area-inset-bottom));
+    border-top: 1px solid var(--border);
+    background: var(--background);
+  }
+  .assignment-layout .assignment-primary-action[data-slot="button"] {
+    position: fixed;
+    inset: auto 24px max(16px, env(safe-area-inset-bottom));
+    z-index: 36;
+    display: flex;
+    width: calc(100% - 48px);
+    max-width: none;
+    min-height: 48px;
+    margin: 0;
+    box-shadow: none;
+  }
+  .assignment-layout
+    .mobile-assignment-action-bar
+    > .assignment-primary-action[data-slot="button"] {
+    position: static;
+    inset: auto;
+    width: 100%;
+    margin: 0;
+  }
+  .mobile-assignment-page[inert]
+    :is(.mobile-assignment-action-bar, .assignment-primary-action) {
+    visibility: hidden;
+  }
 }
 
 /* Floating mobile actions have no surrounding surface or divider. */
-@media(max-width:800px){
- .assignment-layout .mobile-assignment-action-bar{background:transparent;border:0;box-shadow:none;pointer-events:none}
- .assignment-layout .mobile-assignment-action-bar>.assignment-primary-action{pointer-events:auto}
+@media (max-width: 800px) {
+  .assignment-layout .mobile-assignment-action-bar {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    pointer-events: none;
+  }
+  .assignment-layout
+    .mobile-assignment-action-bar
+    > .assignment-primary-action {
+    pointer-events: auto;
+  }
 }
 
-@media(max-width:800px){
- .assignment-layout--mobile-overview .assignment-document-layout{row-gap:48px}
+@media (max-width: 800px) {
+  .assignment-layout--mobile-overview .assignment-document-layout {
+    row-gap: 48px;
+  }
 }
 
-@media(max-width:800px){
- .assignment-layout>.assignment-general-info{--workflow-ink:var(--focus-text)}
- .assignment-detail-restore>.assignment-detail-tertiary{min-height:44px}
- .assignment-layout :is(button,a,summary,input,textarea,select):focus{scroll-margin-top:calc(var(--assignment-navigation-height,76px) + 16px);scroll-margin-bottom:104px}
- .assignment-steps-start{scroll-margin-top:0}
+@media (max-width: 800px) {
+  .assignment-layout > .assignment-general-info {
+    --workflow-ink: var(--focus-text);
+  }
+  .assignment-detail-restore > .assignment-detail-tertiary {
+    min-height: 44px;
+  }
+  .assignment-layout :is(button, a, summary, input, textarea, select):focus {
+    scroll-margin-top: calc(var(--assignment-navigation-height, 76px) + 16px);
+    scroll-margin-bottom: 104px;
+  }
+  .assignment-steps-start {
+    scroll-margin-top: 0;
+  }
 }
