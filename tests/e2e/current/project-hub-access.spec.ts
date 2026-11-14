@@ -29,7 +29,7 @@ for(const width of [1440,320])test(`project hub requires a password and remember
  await expect(page.locator('.prototype-hub-card')).toHaveCount(5)
  const freshContext=await browser.newContext()
  const fresh=await freshContext.newPage()
- await fresh.goto('http://127.0.0.1:5173/prototype-notes')
+ await fresh.goto(new URL('/prototype-notes',page.url()).href)
  await expect(fresh.getByLabel('Password',{exact:true})).toBeVisible()
  await freshContext.close()
 })

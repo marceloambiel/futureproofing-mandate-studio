@@ -78,7 +78,7 @@ Process document: https://futureproofing.marceloambiel.com/process
 Project hub: https://futureproofing.marceloambiel.com/prototype-notes  
 Source: https://github.com/marceloambiel/futureproofing-mandate-studio
 
-Cloudflare Pages uses GitHub integration with `main`, build command `pnpm build`, output `dist`, Node 24.22.2 and pnpm 12.16.1. `public/_redirects` preserves direct SPA routes and refreshes. Deployment verification is recorded separately; listing these targets is not a claim that deployment has succeeded.
+Cloudflare Pages uses GitHub integration with `main`, build command `pnpm build`, output `dist`, Node 24.22.2 and pnpm 12.16.1. Cloudflare Pages’ native SPA fallback preserves direct routes and refreshes; there is no top-level `404.html` or catch-all redirect rule. Deployment verification is recorded separately; listing these targets is not a claim that deployment has succeeded.
 
 The hub password is a client-side presentation gate. It does not protect the public repository, bundled code, media, or direct application routes. The website and demo remain available without authentication. Fresh entry from the website or hub resets only the sample workspace. Navigation inside the demo retains progress.
 
