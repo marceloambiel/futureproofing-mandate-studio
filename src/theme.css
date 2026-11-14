@@ -1,0 +1,44 @@
+/* Layered neutral UI; yellow sampled from the supplied reference's filled blocks. */
+:root{
+ --palette-paper:#F9F9F8;--palette-slate:#D9DDD6;--palette-ink:#292C29;
+ --palette-gold:#F9DB74;--palette-coral:#B77959;
+ --background:var(--palette-paper);--foreground:var(--palette-ink);
+ --card:#FFFFFF;--card-foreground:var(--foreground);--popover:var(--card);--popover-foreground:var(--foreground);
+ --primary:var(--palette-gold);--primary-foreground:var(--palette-ink);
+ --action-text:#6C591A;--action-stroke:#93802E;
+ --secondary:#ECEEE8;--secondary-foreground:var(--foreground);
+ --muted:#E7E9E3;--text-secondary:#62665F;--muted-foreground:var(--text-secondary);
+ --accent:#FFF4CD;--accent-foreground:#6C591A;
+ --border:#DDDFD9;--input:#7C8278;--ring:var(--foreground);--row-alt:#F7F8F5;
+ --success:#3E6048;--success-surface:#E6EFE3;
+ --warning:#70571D;--warning-surface:#FFF4CD;--warning-border:#987A27;--warning-hover:#F8E7AC;
+ --destructive:#914D37;--destructive-foreground:#FFFFFF;--destructive-surface:#F8E8DF;
+ --new-surface:#D64000;--new-foreground:#FFFFFF;
+ --change-background:var(--warning-surface);--change-foreground:var(--warning);--change-border:var(--warning-border);
+ --sidebar:#FFFFFF;--sidebar-foreground:var(--foreground);--sidebar-primary:var(--foreground);--sidebar-primary-foreground:#FFFFFF;
+ --sidebar-accent:#FFFFFF;--sidebar-accent-foreground:var(--foreground);--sidebar-border:var(--border);--sidebar-ring:var(--ring);
+ --shell-surface:var(--sidebar);
+ --chart-gold:#93802E;--chart-gold-fill:#FFF4CD;
+ --chart-sage:#5E7C60;--chart-sage-fill:#E5EEE2;
+ --chart-apricot:#A66E4E;--chart-apricot-fill:#F7E9DD;
+ --chart-rose:#986B7B;--chart-rose-fill:#F3E5EB;
+ --chart-lilac:#7C789A;--chart-lilac-fill:#ECE9F4;
+ --chart-coral:var(--chart-apricot);--chart-slate:var(--chart-rose);--chart-steel:var(--chart-lilac);--chart-ink:var(--chart-sage);
+ --chart-outline:#858D80;--chart-pending:#7A8276;--chart-pending-fill:#ECEFE8;
+ --chart-1:var(--chart-gold);--chart-2:var(--chart-sage);--chart-3:var(--chart-apricot);--chart-4:var(--chart-lilac);--chart-5:var(--chart-rose);
+ --chart-gradient-start:var(--chart-gold-fill);--chart-gradient-mid:var(--chart-sage-fill);--chart-gradient-end:var(--chart-apricot-fill);
+ --workflow-ink:var(--foreground);--workflow-active-text:#FFFFFF;--radius:4px;--card-radius:16px;--ease-out:cubic-bezier(.23,1,.32,1);
+ --ease-soft:cubic-bezier(.32,.72,0,1);--notification-enter-duration:600ms;
+ --notice-surface:rgb(255 255 255 / 80%);--notice-blur:10px;--notice-border:#FFFFFF;
+ --notice-title:#242424;--notice-text:#4C4C4C;--notice-meta:#666666;--notice-shadow:0 8px 24px rgb(0 0 0 / 10%);
+ --focus-surface:#2E322E;--focus-text:#F7F8F4;--focus-secondary:#C5C9BF;--focus-border:#50564D;--focus-muted:#454D41;
+}
+.dark{
+ --background:#292C29;--foreground:#F7F8F4;--card:#343934;--card-foreground:var(--foreground);--popover:var(--card);--popover-foreground:var(--foreground);
+ --secondary:#454D41;--secondary-foreground:var(--foreground);--muted:#454D41;--text-secondary:#C5C9BF;--muted-foreground:var(--text-secondary);
+ --accent:#5B5333;--accent-foreground:var(--primary);--border:#626B5B;--input:#A6AD9D;--row-alt:#393F36;
+ --action-text:var(--primary);--action-stroke:var(--primary);--success:#C8DFC3;--success-surface:#3F513C;
+ --warning:var(--primary);--warning-surface:#51472C;--warning-border:var(--primary);--warning-hover:#615232;
+ --destructive:#EDBEA5;--destructive-surface:#594237;
+}
+.marketing img[src^="/brand/"],.not-found>img{filter:grayscale(1) brightness(.3)}

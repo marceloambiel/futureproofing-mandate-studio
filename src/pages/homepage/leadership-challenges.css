@@ -1,0 +1,209 @@
+/* Section 02 only: product-derived previews on an editorial three-card grid. */
+.mandate-home .leadership-challenges { background: var(--background); }
+.mandate-home .challenges-intro { max-width: 760px; margin-bottom: 48px; }
+.mandate-home .challenges-intro > .eyebrow { margin: 0 0 20px; color: var(--muted-foreground); font-size: 12px; letter-spacing: .06em; }
+.mandate-home .challenges-intro > h2 { margin: 0 0 24px; }
+.mandate-home .challenges-intro > .homepage-copy { margin: 0; color: var(--muted-foreground); }
+.mandate-home .challenges-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.mandate-home .leadership-challenge {
+  display: grid;
+  grid-template-rows: 156px 1fr;
+  min-width: 0;
+  padding: 28px 24px 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--card);
+  transition: border-color 180ms ease;
+}
+.mandate-home .challenge-copy h3 { margin: 0 0 14px; font-size: 22px; line-height: 1.25; font-weight: 450; letter-spacing: -.025em; }
+.mandate-home .challenge-copy > p { margin: 0; color: var(--muted-foreground); font-size: 14px; line-height: 1.7; }
+.mandate-home .challenge-product-preview { min-width: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 12px; background: var(--background); }
+.mandate-home .challenge-preview-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 18px; border-bottom: 1px solid var(--focus-border); background: var(--focus-surface); color: var(--focus-text); font-size: 11px; line-height: 1.5; }
+.mandate-home .challenge-preview-bar > span:last-child { color: var(--focus-secondary); }
+.mandate-home .challenge-preview-content { padding: 24px 18px; }
+.mandate-home .challenge-preview-client { margin: 0 0 8px; font-size: 11px; line-height: 1.5; color: var(--muted-foreground); }
+.mandate-home .challenge-preview-content h4 { margin: 0 0 24px; font-size: 17px; font-weight: 500; line-height: 1.4; letter-spacing: -.02em; }
+.mandate-home .challenge-preview-content dl { margin: 0; display: grid; gap: 22px; }
+.mandate-home .challenge-preview-content dt { display: flex; align-items: center; gap: 8px; margin: 0 0 7px; font-size: 11px; line-height: 1.5; color: var(--muted-foreground); }
+.mandate-home .challenge-preview-content dd { margin: 0; font-size: 13px; line-height: 1.65; }
+.mandate-home .challenge-new-tag { display: inline-flex; padding: 2px 6px; border-radius: 4px; color: var(--new-foreground); background: var(--new-surface); font-size: 10px; line-height: 1.4; }
+.mandate-home .challenge-availability ul { list-style: none; padding: 0; margin: 0; }
+.mandate-home .challenge-availability li { padding: 14px 0; border-top: 1px solid var(--border); }
+.mandate-home .challenge-availability li:first-child { padding-top: 0; border-top: 0; }
+.mandate-home .challenge-availability li > div { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; font-size: 13px; line-height: 1.5; }
+.mandate-home .challenge-availability-value { white-space: nowrap; }
+.mandate-home .challenge-status { display: inline-flex; padding: 3px 7px; border-radius: 4px; font-size: 10px; line-height: 1.5; }
+.mandate-home .challenge-status-match { color: var(--success); background: var(--success-surface); }
+.mandate-home .challenge-status-unmet { color: var(--destructive); background: var(--destructive-surface); }
+.mandate-home .challenge-evidence-note { margin: 14px 0 0; color: var(--muted-foreground); font-size: 11px; line-height: 1.65; }
+.mandate-home .challenges-sample-note { margin: 24px 0 0; font-size: 11px; line-height: 1.7; color: var(--muted-foreground); }
+@media (hover: hover) {
+  .mandate-home .leadership-challenge:hover { border-color: var(--action-stroke); }
+}
+@media (max-width: 1100px) {
+  .mandate-home .challenges-grid { gap: 16px; }
+  .mandate-home .leadership-challenge { grid-template-rows: 188px 1fr; padding: 24px 18px 18px; }
+  .mandate-home .challenge-copy h3 { font-size: 20px; }
+  .mandate-home .challenge-preview-content { padding: 20px 14px; }
+  .mandate-home .challenge-preview-bar { padding-inline: 14px; }
+}
+@media (max-width: 900px) {
+  .mandate-home .challenges-grid { grid-template-columns: 1fr; gap: 24px; }
+  .mandate-home .challenges-intro { margin-bottom: 32px; }
+  .mandate-home .leadership-challenge { grid-template-rows: auto 1fr; gap: 28px; padding: 24px; }
+  .mandate-home .challenge-copy h3 { font-size: 23px; }
+  .mandate-home .challenge-copy > p { max-width: 54ch; }
+  .mandate-home .challenge-preview-content { padding: 24px 20px; }
+  .mandate-home .challenge-preview-bar { padding-inline: 20px; }
+}
+@media (max-width: 380px) {
+  .mandate-home .leadership-challenge { padding: 20px 16px 16px; }
+  .mandate-home .challenge-preview-content { padding: 20px 14px; }
+  .mandate-home .challenge-preview-bar { padding-inline: 14px; }
+  .mandate-home .challenge-availability li > div { flex-wrap: wrap; gap: 4px 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mandate-home .leadership-challenge { transition: none; }
+}
+
+.mandate-home .challenge-preview-scope { margin: -14px 0 24px; font-size: 11px; line-height: 1.6; color: var(--muted-foreground); }
+
+/* Preview first, followed by its title and explanation. */
+.mandate-home .leadership-challenge {
+  grid-template-rows: 1fr auto;
+  gap: 28px;
+}
+.mandate-home .challenge-copy h3 { margin-bottom: 10px; }
+
+.mandate-home .challenge-growth-chart { display: flex; flex-direction: column; }
+.mandate-home .challenge-growth-plot { display: flex; align-items: center; flex: 1; padding: 28px 18px; }
+.mandate-home .challenge-growth-plot svg { display: block; width: 100%; height: auto; overflow: visible; }
+.mandate-home .challenge-growth-plot text { font-family: inherit; font-size: 11px; fill: var(--muted-foreground); }
+
+/* Architecture provides an image stage behind each readable interface excerpt. */
+.mandate-home .leadership-challenge { padding: 0; overflow: hidden; gap: 28px; }
+.mandate-home .challenge-visual {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding: 40px 24px 32px;
+  background-color: #40869A;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+.mandate-home .challenge-visual-growth { background-image: url('/images/leadership/growth-architecture.jpg'); }
+.mandate-home .challenge-visual-transformation { background-image: url('/images/leadership/transformation-architecture.jpg'); background-position: center 60%; }
+.mandate-home .challenge-visual-transition { background-image: url('/images/leadership/transition-architecture.jpg'); }
+.mandate-home .challenge-visual > .challenge-product-preview { width: 100%; background: var(--card); box-shadow: 0 12px 32px rgb(0 0 0 / 16%); }
+.mandate-home .leadership-challenge > .challenge-copy { padding: 0 24px 28px; }
+@media (min-width: 901px) and (max-width: 1100px) {
+  .mandate-home .challenge-visual { padding-inline: 16px; }
+  .mandate-home .leadership-challenge > .challenge-copy { padding-inline: 18px; }
+}
+@media (max-width: 380px) {
+  .mandate-home .challenge-visual { padding: 32px 16px; }
+  .mandate-home .leadership-challenge > .challenge-copy { padding-inline: 20px; }
+}
+
+.mandate-home .leadership-challenge { border-radius: 4px; }
+
+/* Match the app homepage card-title typography. */
+.mandate-home .leadership-challenge .challenge-copy h3 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -.5px;
+}
+
+.mandate-home .challenge-visual-growth > .challenge-growth-chart {
+  width: 80%;
+  margin-inline: auto;
+}
+
+/* A read-only excerpt of Brief Breakdown's actual Priority history layout. */
+.mandate-home .challenge-priority-history { padding: 20px; }
+.mandate-home .challenge-priority-history > h4 { margin: 0 0 24px; font-size: 18px; font-weight: 400; line-height: 1.3; letter-spacing: -.4px; }
+.mandate-home .challenge-priority-history .field-history-list { display: grid; gap: 16px; }
+.mandate-home .challenge-priority-history h5 { margin: 0 0 8px; font-size: 12px; font-weight: 400; color: var(--text-secondary); }
+.mandate-home .challenge-priority-history .field-history-value { padding: 12px; border: 1px solid var(--border); border-radius: var(--card-radius); background: var(--card); }
+.mandate-home .challenge-priority-history .field-history-past .field-history-value { background: var(--muted); }
+.mandate-home .challenge-priority-history .field-history-value > p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--foreground); }
+.mandate-home .challenge-priority-history .field-history-source { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 8px; font-size: 11px; line-height: 1.6; color: var(--text-secondary); }
+
+.mandate-home .challenge-visual-transformation > .challenge-priority-history {
+  width: 100%;
+  margin-inline: auto;
+  transform: scale(.8);
+  transform-origin: center;
+}
+
+/* A concise visual handover between two fictional candidate profiles. */
+.mandate-home .challenge-candidate-transition { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 80%; margin-inline: auto; }
+.mandate-home .challenge-mini-candidate { display: flex; align-items: center; gap: 12px; width: 100%; min-width: 0; padding: 16px; border: 1px solid var(--border); border-radius: 4px; background: #FFF; box-shadow: 0 8px 24px rgb(0 0 0 / 12%); }
+.mandate-home .challenge-mini-candidate img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+.mandate-home .challenge-mini-candidate > div { min-width: 0; }
+.mandate-home .challenge-mini-candidate h4 { margin: 0 0 4px; font-size: 14px; font-weight: 400; line-height: 1.4; color: #292C29; }
+.mandate-home .challenge-mini-candidate p { margin: 0; font-size: 12px; line-height: 1.5; color: #585D58; }
+.mandate-home .challenge-mini-candidate.is-previous { background: #EAEAEA; border-color: #D5D5D5; box-shadow: none; }
+.mandate-home .challenge-mini-candidate.is-previous :is(h4,p) { color: #646464; }
+.mandate-home .challenge-mini-candidate.is-previous img { filter: grayscale(1); opacity: .65; }
+.mandate-home .challenge-replacement-arrow { width: 28px; height: 36px; color: #FFF; }
+@media (max-width: 1100px) and (min-width: 901px) {
+ .mandate-home .challenge-mini-candidate { padding: 12px; gap: 8px; }
+ .mandate-home .challenge-mini-candidate img { width: 36px; height: 36px; }
+}
+
+/* Editorial split introduction, aligned along its lower edge. */
+@media (min-width: 901px) {
+  .mandate-home .challenges-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 64px;
+    max-width: none;
+  }
+  .mandate-home .challenges-intro > h2 { flex: 0 1 46%; margin: 0; }
+  .mandate-home .challenges-intro > .homepage-copy { flex: 0 1 46%; max-width: 49ch; margin: 0; }
+}
+
+@media (min-width: 901px) {
+  .mandate-home .challenges-intro > .homepage-copy {
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right;
+  }
+}
+
+/* A single, 2.9-second story across the desktop previews; each mobile card
+   starts its own short sequence when it enters view. Final states stay static. */
+@media (prefers-reduced-motion: no-preference) {
+ .mandate-home [data-motion-ready] .leadership-challenge { --challenge-delay: 0ms; }
+ .mandate-home [data-motion-ready] .challenge-growth-chart { animation: challenge-preview-in 200ms var(--ease-out) both; }
+ .mandate-home [data-motion-ready] .challenge-growth-series { transform-origin: 0 224px; animation: challenge-chart-grow 700ms var(--ease-out) 100ms both; }
+ .mandate-home [data-motion-ready] .challenge-priority-history { animation: challenge-history-in 200ms var(--ease-out) var(--challenge-delay) both; }
+ .mandate-home [data-motion-ready] .field-history-entry { animation: challenge-history-reveal 450ms var(--ease-out) calc(var(--challenge-delay) + 200ms) both; }
+ .mandate-home [data-motion-ready] .field-history-past { animation-delay: calc(var(--challenge-delay) + 500ms); }
+ .mandate-home [data-motion-ready] .challenge-candidate-transition { position: relative; }
+ .mandate-home [data-motion-ready] .challenge-mini-candidate.is-previous { animation: challenge-candidate-handover 1100ms var(--ease-out) var(--challenge-delay) both; }
+ .mandate-home [data-motion-ready] .challenge-mini-candidate.is-previous img { animation: challenge-photo-handover 1100ms var(--ease-out) var(--challenge-delay) both; }
+ .mandate-home [data-motion-ready] .challenge-mini-candidate.is-previous :is(h4,p) { animation: challenge-text-handover 1100ms var(--ease-out) var(--challenge-delay) both; }
+ .mandate-home [data-motion-ready] .challenge-mini-candidate:not(.is-previous) { animation: challenge-preview-in 400ms var(--ease-out) calc(var(--challenge-delay) + 700ms) both; }
+ .mandate-home [data-motion-ready] .challenge-replacement-arrow { animation: challenge-preview-in 400ms var(--ease-out) calc(var(--challenge-delay) + 300ms) both; }
+ .mandate-home [data-motion-ready] .leadership-challenge:not([data-revealed]) :is(.challenge-growth-chart,.challenge-growth-series,.challenge-priority-history,.field-history-entry,.challenge-mini-candidate,.challenge-mini-candidate.is-previous img,.challenge-mini-candidate.is-previous h4,.challenge-mini-candidate.is-previous p,.challenge-replacement-arrow) { animation-play-state: paused; }
+}
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+ .mandate-home [data-motion-ready] .leadership-challenge:nth-child(2) { --challenge-delay: 900ms; }
+ .mandate-home [data-motion-ready] .leadership-challenge:nth-child(3) { --challenge-delay: 1800ms; }
+}
+@keyframes challenge-preview-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes challenge-chart-grow { from { transform: scaleY(.001); } to { transform: scaleY(1); } }
+@keyframes challenge-history-in { from { opacity: 0; transform: translateY(8px) scale(.8); } to { opacity: 1; transform: translateY(0) scale(.8); } }
+@keyframes challenge-history-reveal { from { opacity: 0; transform: translateY(32px); clip-path: inset(100% 0 0); } to { opacity: 1; transform: translateY(0); clip-path: inset(0); } }
+@keyframes challenge-candidate-handover {
+ 0% { opacity: 0; transform: translateY(var(--claire-start-y)); background: #FFF; border-color: var(--border); }
+ 18%, 27% { opacity: 1; transform: translateY(var(--claire-start-y)); background: #FFF; border-color: var(--border); }
+ 64%, 100% { opacity: 1; transform: translateY(0); background: #EAEAEA; border-color: #D5D5D5; }
+}
+@keyframes challenge-photo-handover { 0%,27% { filter: grayscale(0); opacity: 1; } 64%,100% { filter: grayscale(1); opacity: .65; } }
+@keyframes challenge-text-handover { 0%,27% { color: #292C29; } 64%,100% { color: #646464; } }

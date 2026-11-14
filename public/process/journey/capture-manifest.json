@@ -1,0 +1,258 @@
+{
+  "capturedAt": "2026-11-14T07:42:35.701Z",
+  "baseURL": "http://127.0.0.1:5173",
+  "head": "dd6a662dce28d51d7d1931d2e294a3f8b506cabc",
+  "source": "current working tree including pre-existing uncommitted refinements",
+  "browser": "158.0.8127.18",
+  "motion": "reduced (stable final UI captures)",
+  "captures": [
+    {
+      "file": "public/process/journey/website-desktop.jpg",
+      "url": "http://127.0.0.1:5173/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c53af0f75a1b94fcf736fb8f53250d8f938a26b01835f78828e2a28d1d0aa148"
+    },
+    {
+      "file": "public/process/journey/website-challenges.jpg",
+      "url": "http://127.0.0.1:5173/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c3af11b333cc5038eef0f45305efdd8c7d7743de27a9e3cc2da8c82d462576cc"
+    },
+    {
+      "file": "public/process/journey/website-product.jpg",
+      "url": "http://127.0.0.1:5173/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "5e2f2631e217a9633e363f659b751a536106ec59312959d3ff13b302f8d917e1"
+    },
+    {
+      "file": "public/process/journey/embedded-demo.jpg",
+      "url": "http://127.0.0.1:5173/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "987d8f561bd713f438edd2be179f21c56129f239baf5d4df8dbf1cb359f0e1d2"
+    },
+    {
+      "file": "public/process/journey/dashboard-notification.jpg",
+      "url": "http://127.0.0.1:5173/workspace",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4e6af79a258d26f2ae3c06ede38ec16bda900b1b65ffa55c90b9791120869490"
+    },
+    {
+      "file": "public/process/journey/assignment-desktop.jpg",
+      "url": "http://127.0.0.1:5173/workspace/assignment",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4b039526ada6c9f464d1e29b6e5016a54d92c4458234549f9e1beafd85277302"
+    },
+    {
+      "file": "public/process/journey/client-brief-versions.jpg",
+      "url": "http://127.0.0.1:5173/workspace/assignment",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "37f58fe272114b86d305a0bcafef20bd64843b44d042fc9ef871009a46c40cdb"
+    },
+    {
+      "file": "public/process/journey/original-client-brief.jpg",
+      "url": "http://127.0.0.1:5173/workspace/assignment",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "94dc2c3979719025b6f83a63570a8bbf4e486c62b324d3141faeb8949b3fbc76"
+    },
+    {
+      "file": "public/process/journey/edit-requirements.jpg",
+      "url": "http://127.0.0.1:5173/workspace/assignment",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "56e1e75749ea0483d0add9f445cbceb721b905b33d4826a07429f51c0fc4f57c"
+    },
+    {
+      "file": "public/process/journey/candidates-desktop.jpg",
+      "url": "http://127.0.0.1:5173/workspace/candidates",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "1cd8a7db6b2d649b6a1f1a0c43ca350154b98216539c95812b59838c10b67a43"
+    },
+    {
+      "file": "public/process/journey/candidate-profile.jpg",
+      "url": "http://127.0.0.1:5173/workspace/candidates?candidate=B",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "523ca085d5680d36c76939051894f7b6e6780ee02fb03164150c36e91c1734a0"
+    },
+    {
+      "file": "public/process/journey/add-candidate.jpg",
+      "url": "http://127.0.0.1:5173/workspace/candidates",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ac9172219bd69e4d75b07d395ffb78dafcec546cfe9fcab94b034e47ba43f3f6"
+    },
+    {
+      "file": "public/process/journey/comparison-desktop.jpg",
+      "url": "http://127.0.0.1:5173/workspace/candidates",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "76a7241bd08bdfa822e7862998f40ec66146f1f71bf42e8a111918bbdf7f02a6"
+    },
+    {
+      "file": "public/process/journey/discussion-editor-desktop.jpg",
+      "url": "http://127.0.0.1:5173/workspace/discussion",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d36391ddf055cc82e8eef5d7b5b3e49c4a3f981baba24c2fba4cc16c7b869a16"
+    },
+    {
+      "file": "public/process/journey/discussion-history.jpg",
+      "url": "http://127.0.0.1:5173/workspace/discussion",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "9bf2a70ca6ef72686149e9005a36798c3a2f888ca2c443ccdafe469bc23f6f6b"
+    },
+    {
+      "file": "public/process/journey/restored-draft-blocked.jpg",
+      "url": "http://127.0.0.1:5173/workspace/discussion",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d710a7326ff241be838f613a8b79349cefafec7e92a41aca00c0be3f5c41794a"
+    },
+    {
+      "file": "public/process/journey/review-confirmation.jpg",
+      "url": "http://127.0.0.1:5173/workspace/discussion",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "61faf98a6df66fae1a7be1b903ead09f06261702c68f4e6af4037e90353e2ea2"
+    },
+    {
+      "file": "public/process/journey/completed.jpg",
+      "url": "http://127.0.0.1:5173/workspace/completed",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "280d8964868182e44bbb23b8572f1ca42339ba52bd57238e553de1c1a958cee3"
+    },
+    {
+      "file": "public/process/journey/completed-dashboard.jpg",
+      "url": "http://127.0.0.1:5173/workspace",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "35d0e82c728254189620f04aecd4b4e0ee3b84274883860eefd08f36a6e4e131"
+    },
+    {
+      "file": "public/process/journey/fresh-review-required.jpg",
+      "url": "http://127.0.0.1:5173/workspace/assignment",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e00c60ff8b82a705c6ba6b9d318ab11a5caf771c465e9fa919761d96efcf4f94"
+    },
+    {
+      "file": "public/process/journey/website-mobile.jpg",
+      "url": "http://127.0.0.1:5173/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "6c4f0e7c8f9fdce8b1b45db16f91915455ef99ac0493c957af6a0234d91d9a17"
+    },
+    {
+      "file": "public/process/journey/dashboard-mobile.jpg",
+      "url": "http://127.0.0.1:5173/workspace",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "f71ab470f6dc671f575fbb0fae59abff297501b984a4e216ca21e776511bb175"
+    },
+    {
+      "file": "public/process/journey/assignment-mobile.jpg",
+      "url": "http://127.0.0.1:5173/workspace/assignment",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "02ad0c8698ed5d1ba26caeec2b42a8ed46a68a2c41f4886109b596f365fd01e6"
+    },
+    {
+      "file": "public/process/journey/candidates-mobile.jpg",
+      "url": "http://127.0.0.1:5173/workspace/candidates",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "0a0f032f153eaba12e63b1b9aa415671b5b259190a8eed8835164d433960523a"
+    },
+    {
+      "file": "public/process/journey/comparison-mobile.jpg",
+      "url": "http://127.0.0.1:5173/workspace/candidates",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "d0796cc9d8b1670b1d943bc42d3bd008a745118950448ee71d8267890c28dd97"
+    },
+    {
+      "file": "public/process/journey/discussion-editor-mobile.jpg",
+      "url": "http://127.0.0.1:5173/workspace/discussion",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "756a06ef4265b3c21f003938c016e99571ddde24cba00824bba7d04d15fef53a"
+    }
+  ],
+  "checks": [
+    "Candidate removal and re-add performed through visible UI; three profiles restored.",
+    "Restored historical expansion opening is a new draft; Send for review disabled in actual UI.",
+    "Submission reaches completion, then removes Northline from current assignments and displays local waiting-for-review summary.",
+    "Editing Search requires fresh review in the actual overview UI.",
+    "Mobile save closes the full-screen discussion editor and returns to the assignment view."
+  ],
+  "historicalArtifact": {
+    "file": "public/process/journey/home-before-524e818.png",
+    "commit": "524e8188f616a83bf2cddcda2ec0dee1f9d82e52",
+    "gitPath": "docs/qa/2026-11-13/home-01/hero-1440.png",
+    "provenance": "Exact bytes extracted using git show; original capture date not independently established beyond commit provenance.",
+    "sha256": "7429f9e753ca969ca0539e9e299c739a838b77d6af99c62f1efe15c4959364b4"
+  }
+}

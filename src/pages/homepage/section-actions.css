@@ -1,0 +1,15 @@
+.mandate-home .homepage-section-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-top: 48px; color: inherit; }
+.mandate-home .homepage-section-actions > :is(button,a) { display: inline-flex; align-items: center; justify-content: center; gap: 12px; height: 36px; min-height: 36px; padding: 8px 18px; border-radius: 4px; font-size: 13px; font-weight: 500; line-height: 1.25; white-space: nowrap; }
+.mandate-home .homepage-section-actions > a { border: 0; background: transparent; color: inherit; text-decoration: none; }
+.mandate-home .homepage-section-actions > a:hover { background: transparent; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.mandate-home .homepage-section-actions svg { width: 16px; height: 16px; flex-shrink: 0; }
+.mandate-home .homepage-section-actions > :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.mandate-home .product-value > .homepage-container > .homepage-section-actions,
+.mandate-home .interactive-demo .homepage-section-actions { justify-content: center; }
+@media (max-width: 650px) {
+ .mandate-home .homepage-section-actions { flex-direction: column; align-items: stretch; gap: 12px; margin-top: 36px; }
+ .mandate-home .homepage-section-actions > :is(button,a) { width: 100%; }
+}
+.mandate-home [data-nav-theme=dark] .homepage-section-actions > :focus-visible { outline-color: var(--focus-text); }
+
+.mandate-home .leadership-challenges .homepage-section-actions { justify-content: center; }

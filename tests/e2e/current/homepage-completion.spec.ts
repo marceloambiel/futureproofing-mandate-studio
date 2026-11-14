@@ -4,12 +4,12 @@ import AxeBuilder from '@axe-core/playwright'
 for(const width of [1440,390,320])test(`completed homepage navigation and closing invitation at ${width}`,async({page})=>{
  await page.setViewportSize({width,height:900})
  await page.goto('/')
- await expect(page.locator('#main > section')).toHaveCount(7)
+ await expect(page.locator('#main > section')).toHaveCount(8)
  await expect(page.getByText('Know what needs an answer before deciding.',{exact:true})).toHaveCount(0)
  const final=page.locator('#conversation')
  await final.scrollIntoViewIfNeeded()
  await expect(final.getByRole('heading')).toHaveText("Let's find the leadership your next chapter needs.")
- await expect(final.getByRole('link',{name:'Explore Mandate Studio'})).toHaveAttribute('href','#sample-workspace')
+ await expect(final.getByRole('link')).toHaveCount(0)
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
  const footer=page.getByRole('contentinfo')
  await expect(footer).toContainText('Mandate is a fictional prototype.')
@@ -38,6 +38,26 @@ for(const width of [1440,390,320])test(`completed homepage navigation and closin
  expect(writes).toEqual([])
  await dialog.getByRole('button',{name:'Close',exact:true}).first().click()
  await expect(final.getByRole('button',{name:'Request a conversation',exact:true})).toBeFocused()
- await final.getByRole('link',{name:'Explore Mandate Studio'}).click()
- await expect(page.locator('#sample-workspace')).toBeInViewport()
+})
+
+for(const width of [1440,390])test(`each marketing section has contextual conversation and demo actions at ${width}`,async({page})=>{
+ await page.setViewportSize({width,height:1000})
+ await page.goto('/')
+ for(const id of ['challenges','our-process']){
+  const actions=page.locator(`#${id} .homepage-section-actions`)
+  await expect(actions.getByRole('button')).toHaveCount(1)
+  await expect(actions.getByRole('link')).toHaveAttribute('href','/workspace')
+  const primary=actions.getByRole('button')
+  if(width<801){
+   const first=(await primary.boundingBox())!,second=(await actions.getByRole('link').boundingBox())!
+   expect(first.height).toBeGreaterThanOrEqual(44)
+   expect(second.height).toBeGreaterThanOrEqual(44)
+   expect(second.y-first.y-first.height).toBeGreaterThanOrEqual(12)
+  }
+  await primary.click()
+  const dialog=page.getByRole('dialog',{name:'Request a conversation',exact:true})
+  await expect(dialog).toBeVisible()
+  await dialog.getByRole('button',{name:'Cancel',exact:true}).click()
+  await expect(primary).toBeFocused()
+ }
 })

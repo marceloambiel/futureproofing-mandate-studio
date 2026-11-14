@@ -1,11 +1,17 @@
 /* Landing-page foundations. Product tokens and workspace layout remain independent.
    New sections opt into these utilities as their replacements are implemented. */
 .mandate-home {
+  --focus-surface: #242424;
+  --focus-muted: #3A3A3A;
+  --focus-border: #4D4D4D;
+  --focus-text: #FAFAFA;
+  --focus-secondary: #C7C7C7;
   --home-content-width: 1208px;
+  --home-cta-height: 36px;
   --home-gutter: clamp(24px, 4vw, 64px);
   --home-section-space: clamp(64px, 8vw, 120px);
   --home-display-size: clamp(36px, 4.3vw, 64px);
-  --home-heading-size: clamp(28px, 3vw, 44px);
+  --home-heading-size: clamp(24px, 2.5vw, 36px);
 }
 .mandate-home .homepage-container {
   width: min(calc(100% - 2 * var(--home-gutter)), var(--home-content-width));
@@ -24,8 +30,10 @@
 .mandate-home :is(#our-process, #challenges, #sample-workspace) { scroll-margin-top: 32px; }
 
 .marketing-v2.mandate-home > .site-header {
-  min-height: 88px;
-  padding: 20px max(var(--home-gutter), calc((100vw - var(--home-content-width)) / 2));
+  border-bottom: 0;
+  height: 64px;
+  min-height: 64px;
+  padding: 9px 96px;
   gap: 32px;
   background: rgb(14 17 20 / 58%);
   -webkit-backdrop-filter: blur(18px);
@@ -38,7 +46,9 @@
   min-height: 44px;
 }
 .marketing-v2.mandate-home > .site-header .marketing-header-cta {
-  min-height: 44px;
+  height: 36px;
+  min-height: 36px;
+  padding-block: 8px;
   background: var(--primary);
   color: var(--primary-foreground);
   border-color: var(--primary);
@@ -69,7 +79,7 @@
   font-weight: 400;
   letter-spacing: -.04em;
 }
-.mandate-home .mandate-hero h1 > span { display: block; }
+.mandate-home .mandate-hero h1 > span { display: block; font-weight: 400; }
 .marketing-v2.mandate-home .mandate-hero-content > p:not(.eyebrow) {
   max-width: 620px;
   margin-bottom: 36px;
@@ -90,13 +100,12 @@
   transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 .marketing-v2.mandate-home .mandate-hero-actions > a:not([data-slot=button]) {
-  border: 1px solid rgb(255 255 255 / 55%);
-  background: rgb(255 255 255 / 4%);
+  border: 0;
+  background: transparent;
   color: #fff;
 }
 .marketing-v2.mandate-home .mandate-hero-actions > a:not([data-slot=button]):hover {
-  background: rgb(255 255 255 / 12%);
-  border-color: #fff;
+  background: transparent;
   color: #fff;
 }
 .marketing-v2.mandate-home .mandate-hero small { margin-top: 24px; color: #d0d2d1; }
@@ -104,11 +113,11 @@
 @keyframes home-hero-enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 1100px) and (min-width: 801px) {
-  .marketing-v2.mandate-home > .site-header { gap: 20px; }
+  .marketing-v2.mandate-home > .site-header { gap: 20px; padding-inline: 32px; }
   .marketing-v2.mandate-home > .site-header > nav { gap: 16px; font-size: 12px; }
 }
 @media (max-width: 800px) {
-  .marketing-v2.mandate-home > .site-header { min-height: 76px; padding: 16px 24px; }
+  .marketing-v2.mandate-home > .site-header { min-height: 64px; padding: 9px 24px; }
   .marketing-v2.mandate-home .mandate-hero { min-height: 100svh; padding: 136px 24px 112px; }
   .marketing-v2.mandate-home .mandate-hero h1 { font-size: clamp(36px, 8vw, 52px); line-height: 1.12; margin-block: 20px 24px; }
   .marketing-v2.mandate-home .mandate-hero-content > .eyebrow { max-width: 32ch; margin-inline: auto; font-size: 11px; }
@@ -122,4 +131,265 @@
 }
 @media (prefers-reduced-transparency: reduce) {
   .marketing-v2.mandate-home > .site-header { background: #101316; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+
+/* Desktop navigation stays centered independently of the logo and CTA widths. */
+@media (min-width: 801px) {
+  .marketing-v2.mandate-home > .site-header { display: grid; grid-template-columns: 1fr auto 1fr; }
+  .marketing-v2.mandate-home > .site-header > a { grid-column: 1; grid-row: 1; justify-self: start; }
+  .marketing-v2.mandate-home > .site-header > nav { grid-column: 2; grid-row: 1; margin-left: 0; }
+  .marketing-v2.mandate-home > .site-header > .marketing-header-cta { grid-column: 3; grid-row: 1; justify-self: end; }
+}
+
+/* A widescreen stage for the hero; footage crops rather than stretching. */
+@media (min-width: 801px) {
+  .marketing-v2.mandate-home .mandate-hero {
+    min-height: 600px;
+    aspect-ratio: 2.39 / 1;
+    padding-block: 112px 64px;
+  }
+}
+.mandate-home .marketing-hero-media > video,
+.mandate-home .marketing-hero-poster { object-fit: cover; object-position: center; }
+@media (max-width: 800px) {
+  .marketing-v2.mandate-home .mandate-hero { min-height: 0; padding-block: 120px 72px; }
+}
+
+/* Persistent glass navigation follows the explicit tone of the section underneath. */
+.marketing-v2.mandate-home > .site-header {
+  --home-nav-text: #FFFFFF;
+  --home-nav-fill: rgb(14 17 20 / 86%);
+  --home-nav-panel: rgb(14 17 20 / 96%);
+  --home-nav-solid: #101316;
+  position: fixed;
+  background: var(--home-nav-fill);
+  color: var(--home-nav-text);
+  transition: background-color 180ms ease, color 180ms ease;
+}
+.marketing-v2.mandate-home > .site-header[data-nav-theme=light] {
+  --home-nav-text: #292C29;
+  --home-nav-fill: rgb(249 249 248 / 90%);
+  --home-nav-panel: rgb(249 249 248 / 96%);
+  --home-nav-solid: #F9F9F8;
+}
+.marketing-v2.mandate-home > .site-header > nav a,
+.marketing-v2.mandate-home > .site-header > nav a:hover,
+.marketing-v2.mandate-home .marketing-mobile-navigation-panel nav > a { color: var(--home-nav-text); }
+.marketing.marketing-v2.mandate-home > .site-header[data-nav-theme=light] > a > img { filter: brightness(0); }
+.marketing-v2.mandate-home .marketing-mobile-navigation-panel { background: var(--home-nav-panel); border-color: transparent; }
+.marketing-v2.mandate-home > .site-header :focus-visible { outline-color: var(--home-nav-text); }
+.mandate-home :is(#main, #our-process, #challenges, #sample-workspace, #product-value) { scroll-margin-top: 88px; }
+@media (prefers-reduced-motion: reduce) {
+  .marketing-v2.mandate-home > .site-header { transition: none; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .marketing-v2.mandate-home > .site-header,
+  .marketing-v2.mandate-home .marketing-mobile-navigation-panel { background: var(--home-nav-solid); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+
+/* Secondary workspace entry sits alongside the primary conversation action. */
+.mandate-home .marketing-header-actions { display: flex; align-items: center; gap: 12px; grid-column: 3; grid-row: 1; justify-self: end; }
+.marketing-v2.mandate-home .marketing-header-login { display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 8px 16px; border: 0; border-radius: 8px; background: transparent; color: var(--home-nav-text); font-size: 13px; line-height: 1.4; white-space: nowrap; text-decoration: none; transition: background-color 180ms ease; }
+.marketing-v2.mandate-home .marketing-header-login:hover { background: transparent; }
+.mandate-home .marketing-mobile-actions { display: flex; flex-direction: column; gap: 12px; }
+@media (min-width: 801px) and (max-width: 1000px) {
+  .marketing-v2.mandate-home > .site-header { gap: 16px; }
+  .marketing-v2.mandate-home > .site-header > nav { gap: 12px; font-size: 11px; }
+  .marketing-v2.mandate-home .marketing-header-actions { gap: 8px; }
+  .marketing-v2.mandate-home .marketing-header-actions :is(a,button) { font-size: 12px; padding-inline: 12px; }
+}
+@media (max-width: 800px) {
+  .mandate-home .marketing-header-actions { display: none; }
+  .marketing-v2.mandate-home .marketing-mobile-actions .marketing-header-login { height: var(--home-cta-height); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marketing-v2.mandate-home .marketing-header-login { transition: none; }
+}
+
+/* Text-only secondary actions gain a clear hover cue. */
+.marketing-v2.mandate-home .mandate-hero-actions > a:not([data-slot=button]):hover,
+.marketing-v2.mandate-home .marketing-header-login:hover,
+.mandate-home .homepage-final-actions > a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+/* Website calls to action share the compact navbar height. */
+.marketing-v2.mandate-home :is(
+  .marketing-header-cta,
+  .marketing-header-login,
+  .marketing-mobile-actions > button,
+  .mandate-hero-actions > a,
+  .mandate-hero-actions > button,
+  .homepage-final-actions > a,
+  .homepage-final-actions > button,
+  .demo-entry > button
+) {
+  height: var(--home-cta-height);
+  min-height: var(--home-cta-height);
+  padding-block: 7px;
+}
+
+.marketing-v2.mandate-home .mandate-hero .mandate-hero-actions > :is(a, [data-slot=button]) {
+  height: var(--home-cta-height);
+  min-height: var(--home-cta-height);
+  padding-block: 7px;
+}
+
+/* Match the hero actions to the navbar CTA's complete sizing treatment. */
+.marketing-v2.mandate-home .mandate-hero .mandate-hero-actions > :is(a, [data-slot=button]) {
+  height: 36px;
+  min-height: 36px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.25;
+  border-radius: 4px;
+}
+
+/* One shared rule for identical primary actions in the header and hero. */
+.marketing-v2.mandate-home .site-header .homepage-primary-cta,
+.marketing-v2.mandate-home .mandate-hero .mandate-hero-actions > .homepage-primary-cta {
+  box-sizing: border-box;
+  height: 36px;
+  min-height: 36px;
+  padding: 8px 18px;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.25;
+  box-shadow: none;
+}
+
+/* Keep the complete hero content group centered within the video stage. */
+@media (min-width: 801px) {
+  .marketing-v2.mandate-home .mandate-hero { padding-block: 88px; }
+}
+@media (max-width: 800px) {
+  .marketing-v2.mandate-home .mandate-hero { padding-block: 96px; }
+}
+.marketing-v2.mandate-home .mandate-hero-content > h1 { margin-top: 0; }
+
+/* Center within the visible hero area below the fixed 64px navigation. */
+@media (min-width: 801px) {
+  .marketing-v2.mandate-home .mandate-hero { padding-block: 120px 56px; }
+}
+@media (max-width: 800px) {
+  .marketing-v2.mandate-home .mandate-hero { padding-block: 128px 64px; }
+}
+
+/* Medium weight for website CTA labels. */
+.marketing-v2.mandate-home .site-header .homepage-primary-cta,
+.marketing-v2.mandate-home .mandate-hero .mandate-hero-actions > :is(a, [data-slot=button]),
+.marketing-v2.mandate-home .homepage-final-actions > :is(a, button),
+.marketing-v2.mandate-home .marketing-header-login,
+.marketing-v2.mandate-home .marketing-mobile-actions > button,
+.marketing-v2.mandate-home .demo-entry > button {
+  font-weight: 500;
+}
+
+
+/* Primary and secondary actions share an identical footprint within each section. */
+.marketing-v2.mandate-home :is(.mandate-hero-actions, .homepage-section-actions, .homepage-final-actions) > :is(button, a) {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  width: 256px;
+  max-width: 100%;
+  height: var(--home-cta-height);
+  min-height: var(--home-cta-height);
+}
+@media (max-width: 800px) {
+  .marketing-v2.mandate-home :is(.mandate-hero-actions, .homepage-final-actions) > :is(button, a) { width: 100%; }
+}
+@media (max-width: 650px) {
+  .marketing-v2.mandate-home .homepage-section-actions > :is(button, a) { width: 100%; }
+}
+
+.marketing-v2.mandate-home > .site-header > nav a:hover,
+.marketing-v2.mandate-home .marketing-mobile-navigation-panel nav > a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+/* A taller mobile video stage with actions centered beneath the message. */
+@media (max-width: 800px) {
+  .marketing-v2.mandate-home .mandate-hero { min-height: 75svh; padding-block: 96px 32px; }
+  .marketing-v2.mandate-home .mandate-hero-actions > a:not([data-slot=button]) { justify-content: center; text-align: center; }
+}
+
+/* Comfortable touch targets for mobile action groups, without changing desktop CTAs. */
+@media (max-width: 800px) {
+  .marketing-v2.mandate-home :is(.mandate-hero-actions, .homepage-section-actions, .homepage-final-actions) { flex-direction: column; gap: 12px; }
+  .marketing-v2.mandate-home :is(.mandate-hero-actions, .homepage-section-actions, .homepage-final-actions) > :is(button, a) { width: 100%; height: 44px; min-height: 44px; justify-content: center; }
+  .marketing-v2.mandate-home .homepage-faq-contact > button { min-height: 44px; }
+}
+
+.enquiry-dialog[data-slot=dialog-content] { border-radius: 8px; }
+.enquiry-dialog[data-slot=dialog-content],
+.enquiry-dialog [data-slot=dialog-footer] { background: #FFFFFF; }
+
+/* Mobile editorial content follows one left edge; the hero stays centered. */
+@media (max-width: 800px) {
+ .marketing-v2.mandate-home .homepage-section { text-align: left; }
+ .marketing-v2.mandate-home .homepage-section :is(.homepage-heading,.homepage-copy,.product-value-intro,.interactive-demo-intro,.tech-intro,.challenges-intro,.approach-intro) { text-align: left; margin-inline: 0; }
+ .marketing-v2.mandate-home .homepage-faq-contact { justify-content: flex-start; }
+ .marketing-v2.mandate-home .homepage-footer { text-align: left; }
+}
+
+/* One subtitle typography treatment, shared with the product-value introduction. */
+.marketing-v2.mandate-home .homepage-section .homepage-copy,
+.marketing-v2.mandate-home .mandate-hero-content > p:not(.eyebrow) {
+ font-family: inherit;
+ font-size: 17px;
+ font-weight: 400;
+ line-height: 1.7;
+ letter-spacing: normal;
+}
+
+/* Lenis owns interpolation while mounted; avoid a second native easing layer. */
+html.lenis { scroll-behavior: auto; }
+
+@media (min-width: 801px) {
+ .marketing-v2.mandate-home > .site-header { padding-inline: 48px; }
+ .marketing-v2.mandate-home > .homepage-footer > .homepage-container { width: calc(100% - 96px); max-width: none; }
+}
+
+/* The challenge hub stays one clear step away from the marketing site. */
+.marketing-v2.mandate-home { --home-announcement-height: 44px; padding-top: var(--home-announcement-height); }
+.mandate-home .homepage-announcement {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 80;
+  height: var(--home-announcement-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding-inline: 24px;
+  background: #242424;
+  color: #FFFFFF;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.mandate-home .homepage-announcement > span { color: #D0D0D0; }
+.mandate-home .homepage-announcement > a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: underline; text-underline-offset: 3px; }
+.mandate-home .homepage-announcement svg { width: 14px; height: 14px; }
+.mandate-home .homepage-announcement a:hover { color: var(--primary); }
+.marketing-v2.mandate-home > .site-header { top: var(--home-announcement-height); }
+.mandate-home :is(#main, #challenges, #product-value, #our-process, #technology-judgment, #sample-workspace, #faq) { scroll-margin-top: 132px; }
+@media (min-width: 801px) {
+  .mandate-home .approach-context { top: 140px; }
+}
+@media (min-width: 1001px) {
+  .mandate-home .product-value-features[data-stacked=true] > .product-feature { top: 132px; }
+  .mandate-home .product-value-features[data-stacked=true] > .product-feature:nth-child(2) { top: 148px; }
+  .mandate-home .product-value-features[data-stacked=true] > .product-feature:nth-child(3) { top: 164px; }
+}
+@media (max-width: 650px) {
+  .mandate-home .homepage-announcement > span { display: none; }
 }

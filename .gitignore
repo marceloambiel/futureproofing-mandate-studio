@@ -22,3 +22,25 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local credentials and agent working material (preserved on disk)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.checkpoints/
+.impeccable/
+.agents/
+.codex/
+
+# Generated QA reports, archives and browser evidence
+coverage/
+playwright-report/
+test-results/
+docs/run/
+docs/audit/
+docs/process-journey/qa/
+docs/process-journey/Process.before.tsx.txt
+*.tsbuildinfo
+docs/qa/

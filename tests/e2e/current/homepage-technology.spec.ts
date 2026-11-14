@@ -1,52 +1,35 @@
-import { test, expect } from '@playwright/test'
+import {test,expect} from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
-
-for (const width of [1440, 1024, 390, 320]) {
-  test(`technology and judgment illustrates human-reviewed preparation at ${width}`, async ({ page }) => {
-    await page.setViewportSize({ width, height: 1000 })
-    await page.goto('/#technology-judgment')
-    const section = page.getByRole('region', { name: 'Built to support the thinking behind every search.' })
-    await expect(section).toBeVisible()
-    await expect(section.getByRole('heading', { level: 3 })).toHaveText(['Everything in context', 'AI-assisted preparation', 'Room to refine', 'Human judgment at every stage'])
-    await expect(section).not.toContainText(/Northline|Head of Operations|Candidate [ABC]\b|12 locations|60.day|Claire Bennett|Marcus Reed|Daniel Foster/)
-    await expect(section.locator('.discussion-doc-editor')).toHaveCount(1)
-    await expect(section.locator('[contenteditable=true], iframe')).toHaveCount(0)
-    await expect(page.locator('iframe')).toHaveCount(1)
-    await expect(section.getByText('AI generation and review submission are simulated', { exact: false })).toBeVisible()
-    const revisions = section.getByLabel('Editor toolbar and discussion version history illustration')
-    await revisions.getByRole('button', { name: 'Earlier draft Preserved for reference' }).click()
-    await expect(revisions.getByRole('status')).toContainText('Earlier discussion focus')
-    await revisions.getByRole('button', { name: 'Current draft Latest discussion context' }).focus()
-    await page.keyboard.press('Space')
-    await expect(revisions.getByRole('status')).toContainText('Current discussion focus')
-    const review = section.getByRole('button', { name: 'Preview review step' })
-    await review.click()
-    const dialog = page.getByRole('dialog', { name: 'Send for review?', exact: true })
-    await expect(dialog).toBeVisible()
-    await expect(dialog).toContainText('Interface preview only. No document will be sent.')
-    await expect(dialog.getByRole('button', { name: 'Send for review', exact: true })).toBeDisabled()
-    const modalResult = await new AxeBuilder({ page }).include('.tech-review-dialog').withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze()
-    expect(modalResult.violations).toEqual([])
-    if (width === 1440 || width === 390) await dialog.screenshot({ path: `docs/qa/2026-11-13/home-06/review-preview-${width}.png` })
-    await page.keyboard.press('Escape')
-    await expect(dialog).not.toBeVisible()
-    await expect(review).toBeFocused()
-    await section.evaluate(element => window.scrollTo({ top: element.getBoundingClientRect().top + window.scrollY + 16, behavior: 'instant' }))
-    await expect(page.locator('.mandate-home>.site-header')).toHaveAttribute('data-nav-theme', 'dark')
-    await section.evaluate(element => Promise.allSettled(element.getAnimations({ subtree: true }).map(animation => animation.finished)))
-    const boxes = await section.locator('.tech-card').evaluateAll(nodes => nodes.map(node => { const bounds = node.getBoundingClientRect(); return { y: bounds.y, area: bounds.width * bounds.height } }))
-    if (width > 800) expect(boxes[1].area).toBeGreaterThan(Math.max(boxes[0].area, boxes[2].area, boxes[3].area))
-    else expect(boxes[1].y).toBeLessThan(boxes[0].y)
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
-    expect(await section.locator('.product-interface').evaluateAll(nodes => nodes.some(node => node.scrollWidth > node.clientWidth + 1))).toBe(false)
-    const result = await new AxeBuilder({ page }).include('#technology-judgment').withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze()
-    expect(result.violations).toEqual([])
-    await section.screenshot({ path: `docs/qa/2026-11-13/home-06/technology-${width}.png`, style: '.skip-link, .mandate-home > .site-header { visibility: hidden; }' })
-  })
-}
-
-test('technology illustrations respect reduced motion', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' })
-  await page.goto('/#technology-judgment')
-  await expect(page.locator('#technology-judgment .tech-card').first()).toHaveCSS('animation-name', 'none')
+for(const width of [1440,1280,1201,1024,390,320])test(`technology icon cards reflow and remain accessible at ${width}`,async({page})=>{
+ await page.setViewportSize({width,height:1000})
+ await page.goto('/#technology-judgment')
+ const section=page.locator('#technology-judgment')
+ await expect(section.locator('.tech-card')).toHaveCount(3)
+ await expect(section.locator('.tech-card-icon')).toHaveCount(3)
+ await expect(section.getByRole('heading',{level:3})).toHaveText(['Connected workspace','AI-assisted preparation','Human judgment'])
+ await expect(section.locator('.product-interface,.discussion-doc-editor,[role=dialog],iframe')).toHaveCount(0)
+ const lines=await section.locator('.tech-card-copy > p').evaluateAll(items=>items.map(el=>el.getBoundingClientRect().height/parseFloat(getComputedStyle(el).lineHeight)))
+ lines.forEach(count=>expect(count).toBeCloseTo(4,1))
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
+ const boxes=await section.locator('.tech-card').evaluateAll(items=>items.map(item=>item.getBoundingClientRect().toJSON()))
+ expect(new Set(boxes.map(box=>box.x)).size).toBe(width>900?3:1)
+ if(width>1200){
+  const intro=(await section.locator('.tech-intro').boundingBox())!,grid=(await section.locator('.tech-grid').boundingBox())!
+  expect(grid.x).toBeGreaterThan(intro.x+intro.width)
+  expect(Math.abs(grid.y-intro.y)).toBeLessThan(2)
+  const heading=(await section.locator('.tech-intro h2').boundingBox())!
+  for(const card of await section.locator('.tech-card').all()){
+   const icon=(await card.locator('.tech-card-icon').boundingBox())!,copy=(await card.locator('.tech-card-copy').boundingBox())!
+   expect(Math.abs(icon.y-heading.y)).toBeLessThan(2)
+   expect(Math.abs(copy.y+copy.height-heading.y-heading.height)).toBeLessThan(2)
+  }
+ }
+ const result=await new AxeBuilder({page}).include('#technology-judgment').withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()
+ expect(result.violations).toEqual([])
+ await section.screenshot({path:`/tmp/mandate-technology-icons-${width}.png`})
+})
+test('technology icon entry respects reduced motion',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'})
+ await page.goto('/#technology-judgment')
+ await expect(page.locator('.tech-card').first()).toHaveCSS('animation-name','none')
 })
